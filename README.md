@@ -22,7 +22,7 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 - Technologies Used: JavaScript, HTML, CSS.
 - Key Features: Product search, shopping cart.
 
-3. Study Point
+## 3. Study Point
 
 - Description: Built an educational platform offering a variety of courses and resources to students.
 - Technologies Used: HTML, CSS, JavaScript, React-Router.
@@ -34,7 +34,7 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 - Technologies Used: JavaScript, React, Tailwind CSS.
 - Key Features: Interactive maps, itinerary management, real-time notifications.
 
-5. Our Testimonials
+## 5. Our Testimonials
 
 - Description: Developed a platform for collecting and showcasing user testimonials.
 - Technologies Used: HTML, CSS, JavaScript, React.

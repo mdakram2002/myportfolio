@@ -59,4 +59,4 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 ## Contact:
 
 - Email: mdakram12022002@gmail.com
-  View My Protfolio: https://portfolio-mdakram.netlify.app/
+- View My Protfolio: https://portfolio-mdakram.netlify.app/

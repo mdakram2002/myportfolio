@@ -21,6 +21,11 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 - Key Features: Product search, shopping cart.
 
 3. Study Point
+- Description: Created an e-commerce platform that simplifies the online shopping experience.
+- Technologies Used: JavaScript, HTML, CSS.
+- Key Features: Product search, shopping cart.
+
+## 3. Study Point
 
 - Description: Built an educational platform offering a variety of courses and resources to students.
 - Technologies Used: HTML, CSS, JavaScript, React-Router.
@@ -33,6 +38,8 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 - Key Features: Interactive maps, itinerary management, real-time notifications.
 
 5. Our Testimonials
+## 5. Our Testimonials
+
 
 - Description: Developed a platform for collecting and showcasing user testimonials.
 - Technologies Used: HTML, CSS, JavaScript, React.
@@ -57,4 +64,7 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 ## Contact:
 
 - Email: mdakram12022002@gmail.com
-- View My Portfolio: https://portfolio-mdakram.netlify.app/
+- Portfolio: https://portfolio-mdakram.netlify.app/
+
+
+

@@ -1,5 +1,3 @@
-<!-- @format -->
-
 ## Welcome to My Portfolio
 
 Welcome to my portfolio! I am Md Akram, a passionate and dedicated web developer specializing in front-end and full-stack development. This portfolio is a comprehensive showcase of my journey, skills, and accomplishments in the field of web development.
@@ -59,3 +57,4 @@ I have always been driven by a relentless curiosity and a desire to solve real-w
 ## Contact:
 
 - Email: mdakram12022002@gmail.com
+- View My Portfolio: https://portfolio-mdakram.netlify.app/

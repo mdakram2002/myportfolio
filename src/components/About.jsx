@@ -1,15 +1,14 @@
-/** @format */
-
-import AboutImg from "../assets/about_me.jpg";
 
 const About = () => {
+  // const aboutMeImage = process.env.REACT_APP_ABOUT_ME;
+
   return (
     <div className="bg-black text-white py-20" id="about">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
         <div className="flex flex-col md:flex-row items-center md:space-x-12">
           <img
-            src={AboutImg}
+            src={`https://res.cloudinary.com/dy15xrrzh/image/upload/v1737727005/AkramDeveloper/v57s5t13d8ouqpdk5gyi.jpg`}
             alt="aboutMe"
             className="w-[380px] h-[500px] rounded object-cover mb-8 md:mb-0"
           />
@@ -24,102 +23,84 @@ const About = () => {
               {/* Section of DSA */}
               <div className="flex items-center -mb-[5px]">
                 <label htmlFor="htmlandcss" className="w-2/10 mr-[8px]">
-                  Data Structure
+                  {" "}
+                  Data Structure{" "}
                 </label>
                 <div className="grow bg-gray-800 rounded-full h-[1.2rem] -mb-[5px]">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full
-                        transform transition-transform duration-300 hover:scale-105 w-6/12"
-                  ></div>
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-6/12"></div>
                 </div>
               </div>
-
               {/* section of HTML & CSS */}
               <div className="flex items-center -mb-[8px]">
                 <label htmlFor="htmlandcss" className="w-2/10 mr-[16px]">
-                  HTML & CSS
+                  {" "}
+                  HTML & CSS{" "}
                 </label>
                 <div className="grow bg-gray-800 rounded-full h-[1.2rem] -mb-[8px]">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full
-                        transform transition-transform duration-300 hover:scale-105 w-10/12"
-                  ></div>
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-10/12"></div>
                 </div>
               </div>
-
               {/* section of JAVASCTIPT */}
               <div className="flex items-center -mb-[8px]">
                 <label htmlFor="htmlandcss" className="w-2/10 mr-9">
-                  JavaScript
+                  {" "}
+                  JavaScript{" "}
                 </label>
                 <div className="grow bg-gray-800 rounded-full h-[1.2rem] -mb-[8px]">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full
-                        transform transition-transform duration-300 hover:scale-105 w-9/12"
-                  ></div>
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-9/12"></div>
                 </div>
               </div>
-
               {/* section of REACT */}
               <div className="flex items-center -mb-[8px]">
                 <label htmlFor="htmlandcss" className="w-2/10 mr-[68px]">
-                  React
+                  {" "}
+                  React{" "}
                 </label>
                 <div className="grow bg-gray-800 rounded-full h-[1.2rem] -mb-[8px]">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full
-                        transform transition-transform duration-300 hover:scale-105 w-9/12"
-                  ></div>
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-9/12"></div>
                 </div>
               </div>
-
               {/* section of Git and Github */}
               <div className="flex items-center -mb-[8px]">
                 <label htmlFor="htmlandcss" className="w-2/10 mr-4">
-                  Git & GitHub
+                  {" "}
+                  Git & GitHub{" "}
                 </label>
                 <div className="grow bg-gray-800 rounded-full h-[1.2rem] -mb-[8px]">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full
-                        transform transition-transform duration-300 hover:scale-105 w-9/12"
-                  ></div>
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-9/12"></div>
                 </div>
               </div>
-
               {/* section of SQL */}
               <div className="flex items-center">
                 <label htmlFor="htmlandcss" className="w-2/10 mr-[80px]">
-                  SQL
+                  {" "}
+                  SQL{" "}
                 </label>
                 <div className="grow bg-gray-800 rounded-full h-[1.2rem]">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full
-                        transform transition-transform duration-300 hover:scale-105 w-10/12"
-                  ></div>
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-10/12"></div>
                 </div>
               </div>
             </div>
-
             {/* Exprerience section */}
-
             <div className="flex mt-10 justify-between text-center ">
               <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                  0
+                  {" "}
+                  0{" "}
                 </h3>
                 <p>Year Exprience</p>
               </div>
-
               <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                  05+
+                  {" "}
+                  05+{" "}
                 </h3>
                 <p>Projects</p>
               </div>
-
               <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                  2+
+                  {" "}
+                  2+{" "}
                 </h3>
                 <p>Happy Clients</p>
               </div>
@@ -130,5 +111,4 @@ const About = () => {
     </div>
   );
 };
-
 export default About;

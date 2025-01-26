@@ -9,13 +9,13 @@ const services = [
   },
   {
     id: 2,
-    title: "Backend Development (Learn..)",
+    title: "Backend Development",
     description:
       "Building strong server-side logic and managing databases to ensure reliable, efficient, and scalable back-end services for web applications.",
   },
   {
     id: 3,
-    title: "Full-Stack Development (Learn..)",
+    title: "Full-Stack Development",
     description:
       "Blending front-end and back-end development expertise to create holistic web applications, ensuring seamless performance and cohesive user experiences from start to finish.",
   },

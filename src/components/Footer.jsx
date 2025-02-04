@@ -32,14 +32,14 @@ const Footer = () => {
                 className="bg-gradient-to-r from-green-600 to-blue-800 text-white px-3 py-[8.5px] rounded-r-lg md:flex-wrap
                 "
               >
-                Subscripe
+                Subscribe
               </button>
             </form>
           </div>
         </div>
 
         {/* Terms and Conditions sections */}
-        <dir className="flex  flex-col md:flex-row border-t border-gray-600 pt-4 justify-between items-center">
+        <dir className="flex  flex-col md:flex-row border-t border-gray-600 pt-4 justify-between items-center pl-0">
           <p className="text-gray-400">
             &copy; {new Date().getFullYear()} Akram. All rights reserved.
           </p>

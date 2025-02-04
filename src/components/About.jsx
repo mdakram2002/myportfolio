@@ -80,6 +80,26 @@ const About = () => {
                   <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-10/12"></div>
                 </div>
               </div>
+              <div className="flex items-center">
+                <label htmlFor="htmlandcss" className="w-2/10 mr-[35px]">
+                  {" "}
+                  MongoDB{" "}
+                </label>
+                <div className="grow bg-gray-800 rounded-full h-[1.2rem]">
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-6/12"></div>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <label htmlFor="htmlandcss" className="w-2/10 mr-[24px]">
+                  {" "}
+                  Postman API{" "}
+                </label>
+                <div className="grow bg-gray-800 rounded-full h-[1.2rem]">
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 h-[1.2rem] rounded-full transform transition-transform duration-300 hover:scale-105 w-6/12"></div>
+                </div>
+              </div>
+
+
             </div>
             {/* Exprerience section */}
             <div className="flex mt-10 justify-between text-center ">
@@ -88,7 +108,7 @@ const About = () => {
                   {" "}
                   0{" "}
                 </h3>
-                <p>Year Exprience</p>
+                <p>Year Exprience(Fresher)</p>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
@@ -97,13 +117,13 @@ const About = () => {
                 </h3>
                 <p>Projects</p>
               </div>
-              <div>
+              {/* <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
                   {" "}
-                  2+{" "}
+                  0{" "}
                 </h3>
                 <p>Happy Clients</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

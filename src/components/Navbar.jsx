@@ -14,7 +14,7 @@ const Navbar = () => {
             Services
           </a>
           <a href="#contect" className="hover:text-gray-400">
-            Contect
+            Contact
           </a>
           <a href="#project" className="hover:text-gray-400">
             Projects
@@ -24,7 +24,7 @@ const Navbar = () => {
           className="text-white  hidden md:inline bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl
           text-lg text-center hover:scale-105 px-[12px] pt-[5px] pb-[5px] rounded-full"
         >
-          Contect Me
+          Contact Me
         </button>
       </div>
     </nav>

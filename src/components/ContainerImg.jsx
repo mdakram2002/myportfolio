@@ -25,7 +25,7 @@ const Container = () => {
           className="text-white md:inline bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl
           font-semibold text-lg text-center me-2 mb-2 hover:scale-105 px-4 pt-2 pb-2 rounded-full"
         >
-          <a href="https://mdakram12022002@gmail.com">Contect With Me</a>
+          <a href="https://mdakram12022002@gmail.com">Contact With Me</a>
         </button>
         <button
           className="text-white md:inline bg-gradient-to-br from-red-500 to-yellow-500 hover:bg-gradient-to-bl

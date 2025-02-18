@@ -1,8 +1,9 @@
+/** @format */
 
 import ApplicationForm from "../assets/applicationForm.png";
 import OurTestimonials from "../assets/ourTestimonials.png";
 import PlanForAdven from "../assets/planForAdventure.png";
-import StudyPoint from "../assets/studyPoint.png";
+import StudyPoint from "../assets/StudyPoint.png";
 import TopTenCourse from "../assets/topTenCourses.png";
 import EasyShopping from "../assets/easyShopping.png";
 import Amazon from "../assets/amazon.png";
@@ -11,6 +12,14 @@ import Netflix from "../assets/netflix.png";
 const projects = [
   {
     id: 1,
+    name: "StudyPoint",
+    technologies: "Currently Building a StudyPoint",
+    image: StudyPoint,
+    github: "https://github.com/mdakram2002/Study_Point",
+    netlify: "https://studypointorg.netlify.app",
+  },
+  {
+    id: 2,
     name: "Netflix GPT Clone",
     technologies:
       "JavaScript, React-Redux, Firebase Auth, OpenAI API, TMDB API and Tailwind",
@@ -19,22 +28,13 @@ const projects = [
     netlify: "https://netflixGPT-firebase.netlify.app/",
   },
   {
-    id: 2,
+    id: 3,
     name: "Easy Shopping",
     technologies: "JavaScript, React-Redux, and Tailwind",
     image: EasyShopping,
     github:
       "https://github.com/mdakram2002/React.js-WebDev/tree/main/online_shopping",
     netlify: "https://easyshoppingin.netlify.app/",
-  },
-  {
-    id: 3,
-    name: "Study Point",
-    technologies: "JavaScript, React, and Tailwind CSS",
-    image: StudyPoint,
-    github:
-      "https://github.com/mdakram2002/React.js-WebDev/tree/main/study-point",
-    netlify: "https://studypointakram.netlify.app/login",
   },
   {
     id: 4,

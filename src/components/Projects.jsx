@@ -1,9 +1,8 @@
-/** @format */
 
 import ApplicationForm from "../assets/applicationForm.png";
 import OurTestimonials from "../assets/ourTestimonials.png";
 import PlanForAdven from "../assets/planForAdventure.png";
-import StudyPoint from "../assets/StudyPoint.png";
+import StudyPoint from "../assets/banner.png";
 import TopTenCourse from "../assets/topTenCourses.png";
 import EasyShopping from "../assets/easyShopping.png";
 import Amazon from "../assets/amazon.png";

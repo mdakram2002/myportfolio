@@ -13,10 +13,10 @@ const projects = [
   {
     id: 1,
     name: "StudyPoint",
-    technologies: "Currently Building a StudyPoint",
+    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB, Redux Toolkit, JWT Auth, Cloudinary, Stripe, Vercel",
     image: StudyPoint,
     github: "https://github.com/mdakram2002/Study_Point",
-    netlify: "https://studypointorg.netlify.app",
+    netlify: "https://study-point-silk.vercel.app",
   },
   {
     id: 2,

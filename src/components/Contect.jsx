@@ -59,7 +59,8 @@ const Contect = () => {
 
           {/* form section  */}
           <div className="flex-1 w-full md:mt-2">
-            <form className="space-y-4">
+            <form action="https://formspree.io/f/mjkokpno"
+              method="POST" className="space-y-4">
               <div>
                 <label htmlFor="name" className="block mb-2">
                   Enter Your Name

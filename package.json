@@ -3,18 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "client": "vite",
-  "client:build": "vite build",
-  "client:preview": "vite preview",
-  "lint": "eslint .",
-  "server": "cd server && npm run dev",
-  "server:start": "node server/index.js",
-  "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm run client\" \"npm run server\"",
-  "start": "concurrently \"npm run client:preview\" \"npm run server:start\"",
-  "build": "npm run client:build"
-},
+  "scripts": {
+    "client": "vite",
+    "client:build": "vite build",
+    "client:preview": "vite preview",
+    "lint": "eslint .",
+    "server": "cd server && npm run dev",
+    "server:start": "node server/index.js",
+    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm run client\" \"npm run server\"",
+    "start": "concurrently \"npm run client:preview\" \"npm run server:start\"",
+    "build": "npm run client:build"
+  },
   "dependencies": {
+    "axios": "^1.11.0",
     "concurrently": "^9.2.0",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.23.7",

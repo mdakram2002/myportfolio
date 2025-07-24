@@ -4,7 +4,7 @@
 
 const Container = () => {
   return (
-    <div className="bg-gray-950 text-white text-center py-16 ">
+    <div className="bg-richblack-900 text-white text-center py-16 ">
       <img
         src={`https://res.cloudinary.com/dy15xrrzh/image/upload/v1737727005/AkramDeveloper/v57s5t13d8ouqpdk5gyi.jpg`}
         alt="container"

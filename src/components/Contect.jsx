@@ -145,7 +145,7 @@ const Contact = () => {
                     id="contactNumber"
                     type="tel"
                     placeholder="1234567890"
-                    className="flex-1 p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    className="flex-1 min-w-0 p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                     {...register("contactNumber", {
                       required: "Phone number is required",
                       minLength: { value: 8, message: "Too short" },

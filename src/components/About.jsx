@@ -1,6 +1,5 @@
 
 const About = () => {
-  // const aboutMeImage = process.env.REACT_APP_ABOUT_ME;
 
   return (
     <div className="bg-black text-white py-20" id="about">
@@ -106,9 +105,9 @@ const About = () => {
               <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
                   {" "}
-                  0{" "}
+                  1.5+{" "}
                 </h3>
-                <p>Year Exprience(Fresher)</p>
+                <p>Years of Hands-on Exp</p>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">

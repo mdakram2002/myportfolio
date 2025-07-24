@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 
-const userRoute = require("./routes/User");
+
 const contactRoute = require("./routes/ContactUs");
 
 const database = require("./config/database");
@@ -13,14 +13,14 @@ const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
 dotenv.config();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 database.connect();
 app.use(express.json());
 app.use(cookieParser());
 
 const corsOptions = {
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:5173/", "https://mdakram-portfolio-green.vercel.app"],
     credentials: true,
 };
 
@@ -35,7 +35,6 @@ app.use(
 
 // cloudinary connection established and routes
 cloudinaryConnect();
-app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/contact", contactRoute);
 
 app.get("/", (req, res) => {

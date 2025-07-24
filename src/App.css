@@ -1,1 +1,25 @@
-/** @format */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Rich Black Colors */
+.bg-richblack-900 {
+  background-color: #000814;
+}
+.bg-richblack-800 {
+  background-color: #161D29;
+}
+.bg-richblack-700 {
+  background-color: #2C333F;
+}
+.text-richblack-300 {
+  color: #838894;
+}
+.text-richblack-5 {
+  color: #F1F2FF;
+}
+
+/* Gradient Text Utility */
+.text-gradient {
+  @apply bg-clip-text text-transparent;
+}

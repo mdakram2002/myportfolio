@@ -1,111 +1,189 @@
-/** @format */
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaEnvelope, FaLinkedin, FaGithubSquare } from "react-icons/fa";
-// import { SiLeetcode } from "react-icons/si";
+import { apiConnector } from "../services/apiConnector";
+import { contactusEndpoint } from "../services/api";
+import { CountryCode } from "../data/CountryCode";
+import { motion } from "framer-motion";
 
-const Contect = () => {
+const Contact = () => {
+  const [loading, setLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm();
+
+  const submitContactForm = async (data) => {
+    try {
+      setLoading(true);
+      const res = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
+      toast.success("Message sent successfully");
+    } catch (err) {
+      toast.error("Failed to send message");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
   return (
-    <div className="bg-black text-white py-20" id="contect">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-12">Contact Me</h2>
-        <div className="flex flex-col md:flex-row items-center md:space-x-12 space-x-3">
-          {/* talk section  */}
+    <section className="bg-richblack-900 text-white py-20 px-4 md:px-10" id="contact">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-center text-4xl font-bold mb-14 text-gradient bg-gradient-to-r from-yellow-400 via-green-400 to-blue-500 bg-clip-text text-transparent">
+          Contact Me
+        </h2>
 
-          <div className="flex-1 -mt-2">
-            <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-2">
-              Lets Talk
-            </h3>
-            <p>
-              I am open to discussaing web development projects or patnership
-              opportunites.
+        <div className="flex flex-col md:flex-row gap-10">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="md:w-1/2 space-y-6"
+          >
+            <h3 className="text-2xl font-semibold">Let’s Talk</h3>
+            <p className="text-sm text-richblack-300">
+              Have a project in mind or just want to connect? Feel free to reach out to me through this form or any of the platforms below.
             </p>
 
-            <div className="mb-4 mt-6">
-              <FaEnvelope className="inline-block text-green-500 mr-2"></FaEnvelope>
-              <a href="mdakram12022002@gmail.com" className="hover:underline">
-                Email
+            <div className="flex items-center gap-3 text-sm">
+              <FaEnvelope className="text-yellow-400" />
+              <a href="mailto:mdakram12022002@gmail.com" className="hover:underline">
+                mdakram12022002@gmail.com
               </a>
             </div>
 
-            <div className="mb-4">
-              <FaLinkedin className="inline-block text-green-500 mr-2"></FaLinkedin>
+            <div className="flex items-center gap-3 text-sm">
+              <FaLinkedin className="text-blue-400" />
               <a
                 href="https://www.linkedin.com/in/mdakram2002"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:underline"
               >
                 LinkedIn
               </a>
             </div>
 
-            <div className="mb-4">
-              <FaGithubSquare className="inline-block text-green-500 mr-2"></FaGithubSquare>
+            <div className="flex items-center gap-3 text-sm">
+              <FaGithubSquare className="text-white" />
               <a
                 href="https://github.com/mdakram2002"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:underline"
               >
                 GitHub
               </a>
             </div>
+          </motion.div>
 
-            {/* <div className="mb-4">
-              <SiLeetcode className="inline-block text-green-500 mr-2"></SiLeetcode>
-              <a
-                href="https://leetcode.com/u/mdakram2002"
-                className="hover:underline"
-              >
-                LeetCode
-              </a>
-            </div> */}
-          </div>
-
-          {/* form section  */}
-          <div className="flex-1 w-full md:mt-2">
-            <form action="https://formspree.io/f/mjkokpno"
-              method="POST" className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block mb-2">
-                  Enter Your Name
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-2 rounded bg-gray-900 border border-gray-400 focus:outline-none focus:border-green-400"
-                  placeholder="Enter Your Name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block mb-2">
-                  Enter Email Address
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-2 rounded bg-gray-900 border border-gray-400 focus:outline-none focus:border-green-400"
-                  placeholder="Enter Email Address"
-                />
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="md:w-1/2 bg-richblack-800 p-8 rounded-xl shadow-2xl"
+          >
+            <form onSubmit={handleSubmit(submitContactForm)} className="space-y-5">
+              {/* Name fields */}
+              <div className="flex flex-col md:flex-row gap-4">
+                {["firstName", "lastName"].map((field, idx) => (
+                  <div key={idx} className="w-full">
+                    <label htmlFor={field} className="text-sm font-medium capitalize">
+                      {field === "firstName" ? "First Name" : "Last Name"} <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id={field}
+                      placeholder={field === "firstName" ? "John" : "Doe"}
+                      className="mt-1 w-full p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                      {...register(field, { required: `${field.replace(/^\w/, c => c.toUpperCase())} is required` })}
+                    />
+                    {errors[field] && <p className="text-red-400 text-xs mt-1">{errors[field]?.message}</p>}
+                  </div>
+                ))}
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="message" className="block mb-2">
-                  Message
+                <label htmlFor="email" className="text-sm font-medium">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className="mt-1 w-full p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  {...register("email", { required: "Email is required" })}
+                />
+                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label htmlFor="contactNumber" className="text-sm font-medium">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-3">
+                  <select
+                    className="w-[90px] p-3 bg-richblack-700 text-white rounded-md text-sm"
+                    {...register("CountryCode", { required: true })}
+                  >
+                    {CountryCode.map((c, i) => (
+                      <option key={i} value={c.code}>{c.code}</option>
+                    ))}
+                  </select>
+                  <input
+                    id="contactNumber"
+                    type="tel"
+                    placeholder="1234567890"
+                    className="flex-1 p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    {...register("contactNumber", {
+                      required: "Phone number is required",
+                      minLength: { value: 8, message: "Too short" },
+                      maxLength: { value: 10, message: "Too long" },
+                    })}
+                  />
+                </div>
+                {errors.contactNumber && <p className="text-red-400 text-xs mt-1">{errors.contactNumber.message}</p>}
+              </div>
+
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="text-sm font-medium">
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
-                  type="text"
-                  rows="4"
-                  cols="22"
-                  className="w-full p-2 rounded bg-gray-900 border border-gray-400 focus:outline-none focus:border-green-400"
-                  placeholder="Enter Your Message"
+                  id="message"
+                  rows="5"
+                  placeholder="Type your message..."
+                  className="mt-1 w-full p-3 bg-richblack-700 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  {...register("message", { required: "Message is required" })}
                 />
+                {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
               </div>
+
               <button
-                className="text-white  hidden md:inline bg-gradient-to-br from-green-600 to-blue-800 hover:bg-gradient-to-bl
-              text-lg text-center hover:scale-105 px-[16px] pt-[5px] pb-[5px] rounded-full"
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 font-medium bg-yellow-400 text-black rounded-md hover:bg-yellow-300 transition"
               >
-                Submit
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Contect;
+export default Contact;

@@ -1,6 +1,5 @@
 
-const mailSender = require("../utils/mailSender");
-const Contact = require("../models/ContactUs")
+const Contact = require("../models/ConstactUs")
 const User = require("../models/User");
 
 exports.contact = async (req, res) => {

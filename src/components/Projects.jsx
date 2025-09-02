@@ -7,6 +7,7 @@ import TopTenCourse from "../assets/topTenCourses.png";
 import EasyShopping from "../assets/easyShopping.png";
 import Amazon from "../assets/amazon.png";
 import Netflix from "../assets/netflix.png";
+import DSA_Chatbot from "../assets/dsa_chatbot.png"
 
 const projects = [
   {
@@ -19,6 +20,14 @@ const projects = [
   },
   {
     id: 2,
+    name: "DSA Chatbot",
+    technologies: "React, Tailwind CSS, Node.js, Express.js, Gemini API",
+    image: DSA_Chatbot,
+    github: "https://github.com/mdakram2002/dsa_chatbot",
+    netlify: "https://dsa-chatbot-ashy.vercel.app",
+  },
+  {
+    id: 3,
     name: "Netflix GPT Clone",
     technologies:
       "JavaScript, React-Redux, Firebase Auth, OpenAI API, TMDB API and Tailwind",
@@ -27,7 +36,7 @@ const projects = [
     netlify: "https://netflixGPT-firebase.netlify.app/",
   },
   {
-    id: 3,
+    id: 4,
     name: "Easy Shopping",
     technologies: "JavaScript, React-Redux, and Tailwind",
     image: EasyShopping,
@@ -36,7 +45,7 @@ const projects = [
     netlify: "https://easyshoppingin.netlify.app/",
   },
   {
-    id: 4,
+    id: 5,
     name: "Our Testimonial",
     technologies: "JavaScript, React, and Vanilla CSS",
     image: OurTestimonials,
@@ -45,7 +54,7 @@ const projects = [
     netlify: "https://our-review-akram.netlify.app",
   },
   {
-    id: 5,
+    id: 6,
     name: "Form Aplication",
     technologies: "JavaScript, React, and Vanilla CSS",
     image: ApplicationForm,
@@ -54,7 +63,7 @@ const projects = [
     netlify: "https://applicationformin.netlify.app",
   },
   {
-    id: 6,
+    id: 7,
     name: "Plan For Advanture",
     technologies: "JavaScript, React, and Tailwind CSS",
     image: PlanForAdven,
@@ -63,7 +72,7 @@ const projects = [
     netlify: "https://plan-for-adventure.netlify.app",
   },
   {
-    id: 7,
+    id: 8,
     name: "Top Ten Courses",
     technologies: "JavaScript, React, and Tailwindcss",
     image: TopTenCourse,
@@ -72,7 +81,7 @@ const projects = [
     netlify: "https://toptencourses.netlify.app",
   },
   {
-    id: 8,
+    id: 9,
     name: "Amazon Clone",
     technologies: "HTML & CSS",
     image: Amazon,

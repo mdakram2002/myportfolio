@@ -1,14 +1,13 @@
 
-const Contact = require("../models/ConstactUs")
-const User = require("../models/User");
+const Contact = require("../models/ConstactUs");
+const mailSender = require("../utils/mailSender");
+const confirmationTemplate = require("../utils/emailTemplates/confirmationTemplate");
+const adminNotificationTemplate = require("../utils/emailTemplates/adminNotificationTemplate");
 
 exports.contact = async (req, res) => {
     try {
-        // Fetch user details from request body
-        const { firstName, lastName, email, contactNumber, message, userId } =
-            req.body;
+        const { firstName, lastName, email, contactNumber, message } = req.body;
 
-        // Validate the request
         if (!firstName || !lastName || !email || !contactNumber || !message) {
             return res.status(400).json({
                 success: false,
@@ -16,17 +15,6 @@ exports.contact = async (req, res) => {
             });
         }
 
-        let userType = "Guest User"; // Default for random users
-
-        // Check if the user is registered
-        if (userId) {
-            const registeredUser = await User.findById(userId);
-            if (registeredUser) {
-                userType = registeredUser.accountType; // Admin, Student, Instructor
-            }
-        }
-
-        // Save user query in the database
         const contactEntry = await Contact.create({
             firstName,
             lastName,
@@ -35,34 +23,31 @@ exports.contact = async (req, res) => {
             message,
         });
 
-        // Email to User (Confirmation Email)
+        // Email to User
         await mailSender(
             email,
-            "Query Received - StudyPoint",
-            `<p>Hello ${firstName},</p>
-             <p>We have received your query and will get back to you shortly.</p>
-             <p>Thank you for reaching out!</p>
-             <p>Best Regards,<br>StudyPoint Team</p>`
+            "Query Received - Portfolio",
+            confirmationTemplate(firstName)
         );
 
-        // Email to StudyPoint (Admin Notification)
+        // Email to Admin
         await mailSender(
-            process.env.ADMIN_EMAIL, // Assuming admin email is set in environment variables
-            "New Query Received - StudyPoint",
-            `<p>A new query has been submitted by a ${userType}:</p>
-             <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-             <p><strong>Email:</strong> ${email}</p>
-             <p><strong>Contact Number:</strong> ${contactNumber}</p>
-             <p><strong>Message:</strong> ${message}</p>
-             <p>Please review and respond accordingly.</p>
-             <p>StudyPoint Team</p>`
+            process.env.ADMIN_EMAIL,
+            "New Contact Form Submission - Portfolio",
+            adminNotificationTemplate(
+                firstName,
+                lastName,
+                email,
+                contactNumber,
+                message
+            )
         );
 
         return res.status(200).json({
             success: true,
             message:
                 "Your query has been submitted successfully. A confirmation email has been sent to you.",
-            contactEntry,
+            data: contactEntry,
         });
     } catch (error) {
         console.error("Error in Contact Us Controller:", error);

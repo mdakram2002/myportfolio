@@ -19,7 +19,13 @@ const Contact = () => {
   const submitContactForm = async (data) => {
     try {
       setLoading(true);
-      const res = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
+      const res = await apiConnector(
+        "POST",
+        contactusEndpoint.CONTACT_US_API,
+        data,
+        { "Content-Type": "application/json" }
+      );
+      console.log(res);
       toast.success("Message sent successfully");
     } catch (err) {
       toast.error("Failed to send message");
@@ -35,7 +41,10 @@ const Contact = () => {
   }, [isSubmitSuccessful, reset]);
 
   return (
-    <section className="bg-richblack-900 text-white py-20 px-4 md:px-10" id="contact">
+    <section
+      className="bg-richblack-900 text-white py-20 px-4 md:px-10"
+      id="contact"
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-center text-4xl font-bold mb-14 text-gradient bg-gradient-to-r from-yellow-400 via-green-400 to-blue-500 bg-clip-text text-transparent">
           Contact Me
@@ -51,12 +60,16 @@ const Contact = () => {
           >
             <h3 className="text-2xl font-semibold">Let’s Talk</h3>
             <p className="text-sm text-richblack-300">
-              Have a project in mind or just want to connect? Feel free to reach out to me through this form or any of the platforms below.
+              Have a project in mind or just want to connect? Feel free to reach
+              out to me through this form or any of the platforms below.
             </p>
 
             <div className="flex items-center gap-3 text-sm">
               <FaEnvelope className="text-yellow-400" />
-              <a href="mailto:mdakram12022002@gmail.com" className="hover:underline">
+              <a
+                href="mailto:mdakram12022002@gmail.com"
+                className="hover:underline"
+              >
                 mdakram12022002@gmail.com
               </a>
             </div>
@@ -93,21 +106,36 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="md:w-1/2 bg-richblack-800 p-8 rounded-xl shadow-2xl"
           >
-            <form onSubmit={handleSubmit(submitContactForm)} className="space-y-5">
+            <form
+              onSubmit={handleSubmit(submitContactForm)}
+              className="space-y-5"
+            >
               {/* Name fields */}
               <div className="flex flex-col md:flex-row gap-4">
                 {["firstName", "lastName"].map((field, idx) => (
                   <div key={idx} className="w-full">
-                    <label htmlFor={field} className="text-sm font-medium capitalize">
-                      {field === "firstName" ? "First Name" : "Last Name"} <span className="text-red-500">*</span>
+                    <label
+                      htmlFor={field}
+                      className="text-sm font-medium capitalize"
+                    >
+                      {field === "firstName" ? "First Name" : "Last Name"}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       id={field}
-                      placeholder={field === "firstName" ? "John" : "Doe"}
+                      placeholder={field === "firstName" ? "Akram" : "Shaikh"}
                       className="mt-1 w-full p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                      {...register(field, { required: `${field.replace(/^\w/, c => c.toUpperCase())} is required` })}
+                      {...register(field, {
+                        required: `${field.replace(/^\w/, (c) =>
+                          c.toUpperCase()
+                        )} is required`,
+                      })}
                     />
-                    {errors[field] && <p className="text-red-400 text-xs mt-1">{errors[field]?.message}</p>}
+                    {errors[field] && (
+                      <p className="text-red-400 text-xs mt-1">
+                        {errors[field]?.message}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -124,7 +152,11 @@ const Contact = () => {
                   className="mt-1 w-full p-3 bg-richblack-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   {...register("email", { required: "Email is required" })}
                 />
-                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               {/* Phone */}
@@ -138,7 +170,9 @@ const Contact = () => {
                     {...register("CountryCode", { required: true })}
                   >
                     {CountryCode.map((c, i) => (
-                      <option key={i} value={c.code}>{c.code}</option>
+                      <option key={i} value={c.code}>
+                        {c.code}
+                      </option>
                     ))}
                   </select>
                   <input
@@ -153,7 +187,11 @@ const Contact = () => {
                     })}
                   />
                 </div>
-                {errors.contactNumber && <p className="text-red-400 text-xs mt-1">{errors.contactNumber.message}</p>}
+                {errors.contactNumber && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.contactNumber.message}
+                  </p>
+                )}
               </div>
 
               {/* Message */}
@@ -168,7 +206,11 @@ const Contact = () => {
                   className="mt-1 w-full p-3 bg-richblack-700 text-white rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   {...register("message", { required: "Message is required" })}
                 />
-                {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
+                {errors.message && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.message.message}
+                  </p>
+                )}
               </div>
 
               <button

@@ -15,8 +15,3 @@ export const apiConnector = (method, url, bodyData, headers, params) => {
     params: params ? params : null,
   });
 };
-
-// CONTACT-US API endpoint
-export const contactusEndpoint = {
-  CONTACT_US_API: `${BASE_URL}/contact/contactUs`,
-};

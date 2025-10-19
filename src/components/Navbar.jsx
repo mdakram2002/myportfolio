@@ -11,18 +11,18 @@ const Navbar = () => {
   return (
     <nav className="bg-black text-white px-6 md:px-16 lg:px-24 py-3 relative">
       <div className="flex justify-between items-center">
-        <div className="text-2xl font-bold">Akram</div>
+        <div className="text-3xl font-bold">Akram</div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-6 items-center">
+        <div className="hidden md:flex space-x-6 items-center text-base">
           <a href="#home" className="hover:text-gray-400">Home</a>
           <a href="#about" className="hover:text-gray-400">About Me</a>
           <a href="#services" className="hover:text-gray-400">Services</a>
           <a href="#contect" className="hover:text-gray-400">Contact</a>
           <a href="#project" className="hover:text-gray-400">Projects</a>
-          <button className="bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl text-lg text-center hover:scale-105 px-4 py-2 rounded-full">
+          {/* <button className="bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl text-lg text-center hover:scale-105 px-4 py-2 rounded-full">
             Contact Me
-          </button>
+          </button> */}
         </div>
 
         {/* Mobile Menu Icon */}
@@ -41,9 +41,6 @@ const Navbar = () => {
           <a href="#services" className="block hover:text-gray-400" onClick={toggleMenu}>Services</a>
           <a href="#contect" className="block hover:text-gray-400" onClick={toggleMenu}>Contact</a>
           <a href="#project" className="block hover:text-gray-400" onClick={toggleMenu}>Projects</a>
-          <button className="mt-2 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl px-4 py-2 rounded-full" onClick={toggleMenu}>
-            Contact Me
-          </button>
         </div>
       )}
     </nav>

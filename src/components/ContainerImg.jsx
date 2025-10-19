@@ -6,7 +6,7 @@ const Container = () => {
   return (
     <div className="bg-richblack-900 text-white text-center py-16 ">
       <img
-        src={`https://res.cloudinary.com/dy15xrrzh/image/upload/v1737727005/AkramDeveloper/v57s5t13d8ouqpdk5gyi.jpg`}
+        src={`https://res.cloudinary.com/dy15xrrzh/image/upload/v1760903467/AkramDeveloper/mfizfmtzno7abzp5i48b.png`}
         alt="container"
         className="mx-auto mb-8 w-48 h-48 rounded-full object-cover transform transition-transform duration-300 hover:scale-105"
       />

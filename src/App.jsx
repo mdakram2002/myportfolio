@@ -1,21 +1,20 @@
-
-import About from "./components/About";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Container from "./components/ContainerImg";
-import Services from "./components/Services";
+import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contect from "./components/Contect";
 import Footer from "./components/Footer";
+import Education from "./components/Education";
+import Home from "./components/Home";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Container />
-      <About />
-      <Services />
+      <Home/>
+      <Skills />
       <Projects />
+      <Education/>
       <Contect />
       <Footer />
     </div>

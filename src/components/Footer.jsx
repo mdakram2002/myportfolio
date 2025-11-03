@@ -1,84 +1,44 @@
-/** @format */
-
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-richblack-900 text-white py-8">
-      <div className="contianer mx-auto px-8 md:px-16 lg:px-24">
-        <div className="flex md:flex-wrap md:space-x-12 items-center mb-4">
-          {/* name section  */}
-          <div className="flex-1 mb-4 md:mb-0">
-            <h3 className="text-2xl font-bold mb-2">Akram</h3>
-            <p className="text-gray-400">
-              Front-End Developer based n India, specializing in web and
-              software development.
-            </p>
-          </div>
+    <footer className="bg-[#0b0b14] text-white py-10">
+      <div className="max-w-6xl mx-auto px-4 text-center space-y-4">
+        {/* Name */}
+        <h2 className="text-2xl font-semibold text-purple-400">Mohammad Akram</h2>
 
-          {/* form section  */}
-
-          <div className="flex-1 w-full">
-            <form className="flex items-center justify-between">
-              <input
-                type="email"
-                placeholder="Enter Email"
-                className="w-full p-2 rounded-l-lg bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400 "
-              />
-
-              {/* Subscripe section  */}
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-green-600 to-blue-800 text-white px-3 py-[8.5px] rounded-r-lg md:flex-wrap
-                "
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
+        {/* Navigation Links */}
+        <div className="flex flex-wrap justify-center gap-6 text-gray-300 text-sm font-medium">
+          <a href="#home" className="hover:text-white transition-colors">About</a>
+          <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+          <a href="#home" className="hover:text-white transition-colors">Experience</a>
+          <a href="#project" className="hover:text-white transition-colors">Projects</a>
+          <a href="#education" className="hover:text-white transition-colors">Education</a>
         </div>
 
-        {/* Terms and Conditions sections */}
-        <dir className="flex  flex-col md:flex-row border-t border-gray-600 pt-4 justify-between items-center pl-0">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Akram. All rights reserved.
-          </p>
-          <div className="flex space-x-4 my-4 md:my-0">
-            <a
-              href="https://www.youtube.com/@iamakramshaikh"
-              className="text-gray-400 hover:text-white"
-            >
-              <FaYoutube />
-            </a>
-            <a
-              href="https://x.com/mdakram2002_"
-              className="text-gray-400 hover:text-white"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://www.instagram.com/mdakram2002_"
-              className="text-gray-400 hover:text-white"
-            >
-              <FaInstagram />
-            </a>
-          </div>
+        {/* Social Media Icons */}
+        <div className="flex justify-center space-x-6 text-xl">
+          {/* <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            <FaFacebook />
+          </a> */}
+          <a href="https://twitter.com/mdakram2002_" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            <FaTwitter />
+          </a>
+          <a href="https://www.linkedin.com/in/mdakram2002" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            <FaLinkedin />
+          </a>
+          <a href="https://www.instagram.com/akram.ai_" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            <FaInstagram />
+          </a>
+          <a href="https://www.youtube.com/@iamakramshaikh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            <FaYoutube />
+          </a>
+        </div>
 
-          <div className="flex space-x-4">
-            <a
-              href="https://en.wikipedia.org/wiki/Privacy"
-              className="text-gray-400 hover:text-white"
-            >
-              Privacy
-            </a>
-            <a
-              href="https://en.wikipedia.org/wiki/Terms_of_service"
-              className="text-gray-400 hover:text-white"
-            >
-              Terms of Services
-            </a>
-          </div>
-        </dir>
+        {/* Copyright */}
+        <p className="text-gray-500 text-sm mt-4">
+          © {new Date().getFullYear()} Mohammad Akram. All rights reserved.
+        </p>
       </div>
     </footer>
   );

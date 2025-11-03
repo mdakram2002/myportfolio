@@ -150,9 +150,11 @@ const Contact = () => {
                 <label htmlFor="contactNumber" className="text-sm font-medium">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-3">
+
+                {/* Wrapper adjusts layout based on screen size */}
+                <div className="flex flex-col sm:flex-row gap-3 mt-1">
                   <select
-                    className="w-[90px] p-3 bg-gray-800 text-white rounded-md text-sm"
+                    className="w-full sm:w-[100px] p-3 bg-gray-800 text-white rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
                     {...register("CountryCode", { required: true })}
                   >
                     {CountryCode.map((c, i) => (
@@ -161,11 +163,12 @@ const Contact = () => {
                       </option>
                     ))}
                   </select>
+
                   <input
                     id="contactNumber"
                     type="tel"
                     placeholder="1234567890"
-                    className="flex-1 p-3 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+                    className="w-full flex-1 p-3 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
                     {...register("contactNumber", {
                       required: "Phone number is required",
                       minLength: { value: 8, message: "Too short" },
@@ -173,12 +176,14 @@ const Contact = () => {
                     })}
                   />
                 </div>
+
                 {errors.contactNumber && (
                   <p className="text-red-400 text-xs mt-1">
                     {errors.contactNumber.message}
                   </p>
                 )}
               </div>
+
 
               {/* Message */}
               <div>

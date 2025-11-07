@@ -44,17 +44,17 @@ const projects = [
       "https://github.com/mdakram2002/React.js-WebDev/tree/main/online_shopping",
     netlify: "https://easyshoppingin.netlify.app/",
   },
+  // {
+  //   id: 5,
+  //   name: "Our Testimonials",
+  //   technologies: "React, Vanilla CSS",
+  //   image: OurTestimonials,
+  //   github:
+  //     "https://github.com/mdakram2002/React.js-WebDev/tree/main/our-testimonials",
+  //   netlify: "https://our-review-akram.netlify.app",
+  // },
   {
     id: 5,
-    name: "Our Testimonials",
-    technologies: "React, Vanilla CSS",
-    image: OurTestimonials,
-    github:
-      "https://github.com/mdakram2002/React.js-WebDev/tree/main/our-testimonials",
-    netlify: "https://our-review-akram.netlify.app",
-  },
-  {
-    id: 6,
     name: "Form Application",
     technologies: "React, Vanilla CSS",
     image: ApplicationForm,
@@ -63,7 +63,7 @@ const projects = [
     netlify: "https://applicationformin.netlify.app",
   },
   {
-    id: 7,
+    id: 6,
     name: "Plan for Adventure",
     technologies: "React, Tailwind CSS",
     image: PlanForAdven,
@@ -71,23 +71,23 @@ const projects = [
       "https://github.com/mdakram2002/React.js-WebDev/tree/main/plan-for-advanture",
     netlify: "https://plan-for-adventure.netlify.app",
   },
-  {
-    id: 8,
-    name: "Top Ten Courses",
-    technologies: "React, Tailwind CSS",
-    image: TopTenCourse,
-    github:
-      "https://github.com/mdakram2002/React.js-WebDev/tree/main/top-ten-courses",
-    netlify: "https://toptencourses.netlify.app",
-  },
-  {
-    id: 9,
-    name: "Amazon Clone (HTML & CSS)",
-    technologies: "HTML, CSS",
-    image: Amazon,
-    github: "https://github.com/mdakram2002/Amazon-Clone",
-    netlify: "https://amazon-clone-akram.netlify.app",
-  },
+  // {
+  //   id: 8,
+  //   name: "Top Ten Courses",
+  //   technologies: "React, Tailwind CSS",
+  //   image: TopTenCourse,
+  //   github:
+  //     "https://github.com/mdakram2002/React.js-WebDev/tree/main/top-ten-courses",
+  //   netlify: "https://toptencourses.netlify.app",
+  // },
+  // {
+  //   id: 9,
+  //   name: "Amazon Clone (HTML & CSS)",
+  //   technologies: "HTML, CSS",
+  //   image: Amazon,
+  //   github: "https://github.com/mdakram2002/Amazon-Clone",
+  //   netlify: "https://amazon-clone-akram.netlify.app",
+  // },
 ];
 
 const Projects = () => {

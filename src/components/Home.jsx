@@ -18,11 +18,15 @@ const Home = () => {
         <h2 className="text-2xl md:text-3xl font-semibold mb-6">
           <TypeAnimation
             sequence={[
-              "Front-End Developer 💻",
+              "Front-End Developer",
               2000,
-              "AI & ML Enthusiast 🤖",
+              "Backend Developer",
               2000,
-              "Tech Content Creator 🎥",
+              "MERN Developer",
+              2000,
+              "Data Science Enthusiast",
+              2000,
+              "Tech Content Creator",
               2000,
             ]}
             wrapper="span"

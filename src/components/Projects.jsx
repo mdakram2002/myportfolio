@@ -24,7 +24,7 @@ const projects = [
     technologies: "React, Tailwind CSS, Node.js, Express.js, Gemini API",
     image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
-    netlify: "https://dsa-chatbot-ashy.vercel.app",
+    netlify: "https://dsa-chatbot-six.vercel.app",
   },
   {
     id: 3,

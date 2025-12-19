@@ -21,7 +21,7 @@ const projects = [
     technologies: "React, Tailwind CSS, Node.js, Express.js, Gemini API, Google Auth 2.0, MongoDB Atlas",
     image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
-    Vercel: "https://dsa-chatbot-six.vercel.app",
+    Vercel: "https://dsa-chatbot-qty5.onrender.com",
   },
   {
     id: 3,

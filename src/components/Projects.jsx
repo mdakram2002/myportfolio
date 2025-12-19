@@ -1,66 +1,54 @@
-import ApplicationForm from "../assets/applicationForm.png";
-import OurTestimonials from "../assets/ourTestimonials.png";
 import PlanForAdven from "../assets/planForAdventure.png";
 import StudyPoint from "../assets/banner.png";
-import TopTenCourse from "../assets/topTenCourses.png";
 import EasyShopping from "../assets/easyShopping.png";
-import Amazon from "../assets/amazon.png";
 import Netflix from "../assets/netflix.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
+import Even_Platform from "../assets/event.png"
 
 const projects = [
   {
     id: 1,
-    name: "StudyPoint (Full-Stack LMS)",
+    name: "StudyPoint (Full-Stack MERN)",
     technologies:
       "React, Tailwind CSS, Node.js, Express.js, MongoDB, Redux Toolkit, JWT Auth, Cloudinary, Stripe, Vercel",
     image: StudyPoint,
     github: "https://github.com/mdakram2002/Study_Point",
-    netlify: "https://study-point-silk.vercel.app",
+    Vercel: "https://study-point-self.vercel.app",
   },
   {
     id: 2,
     name: "DSA Chatbot (AI Project)",
-    technologies: "React, Tailwind CSS, Node.js, Express.js, Gemini API",
+    technologies: "React, Tailwind CSS, Node.js, Express.js, Gemini API, Google Auth 2.0, MongoDB Atlas",
     image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
-    netlify: "https://dsa-chatbot-six.vercel.app",
+    Vercel: "https://dsa-chatbot-six.vercel.app",
   },
   {
     id: 3,
+    name: "Event Platform",
+    technologies:
+      "React.js, TailwindCSS, JWT, Node.js (Express.js), MongoDB Atlas",
+    image: Even_Platform,
+    github: "https://github.com/mdakram2002/mini-event-platform",
+    Vercel: "https://mini-event-platform-ten.vercel.app",
+  },
+  {
+    id: 4,
     name: "Netflix GPT Clone",
     technologies:
       "JavaScript, React-Redux, Firebase Auth, OpenAI API, TMDB API, Tailwind CSS",
     image: Netflix,
     github: "https://github.com/mdakram2002/netflixGPT-firebase",
-    netlify: "https://netflixGPT-firebase.netlify.app/",
+    Vercel: "https://netflixGPT-firebase.netlify.app/",
   },
   {
-    id: 4,
+    id: 5,
     name: "Easy Shopping (E-Commerce UI)",
     technologies: "React, Redux, Tailwind CSS",
     image: EasyShopping,
     github:
       "https://github.com/mdakram2002/React.js-WebDev/tree/main/online_shopping",
-    netlify: "https://easyshoppingin.netlify.app/",
-  },
-  // {
-  //   id: 5,
-  //   name: "Our Testimonials",
-  //   technologies: "React, Vanilla CSS",
-  //   image: OurTestimonials,
-  //   github:
-  //     "https://github.com/mdakram2002/React.js-WebDev/tree/main/our-testimonials",
-  //   netlify: "https://our-review-akram.netlify.app",
-  // },
-  {
-    id: 5,
-    name: "Form Application",
-    technologies: "React, Vanilla CSS",
-    image: ApplicationForm,
-    github:
-      "https://github.com/mdakram2002/React.js-WebDev/tree/main/formapplication",
-    netlify: "https://applicationformin.netlify.app",
+    Vercel: "https://easyshoppingin.netlify.app/",
   },
   {
     id: 6,
@@ -69,25 +57,8 @@ const projects = [
     image: PlanForAdven,
     github:
       "https://github.com/mdakram2002/React.js-WebDev/tree/main/plan-for-advanture",
-    netlify: "https://plan-for-adventure.netlify.app",
+    Vercel: "https://plan-for-adventure.netlify.app",
   },
-  // {
-  //   id: 8,
-  //   name: "Top Ten Courses",
-  //   technologies: "React, Tailwind CSS",
-  //   image: TopTenCourse,
-  //   github:
-  //     "https://github.com/mdakram2002/React.js-WebDev/tree/main/top-ten-courses",
-  //   netlify: "https://toptencourses.netlify.app",
-  // },
-  // {
-  //   id: 9,
-  //   name: "Amazon Clone (HTML & CSS)",
-  //   technologies: "HTML, CSS",
-  //   image: Amazon,
-  //   github: "https://github.com/mdakram2002/Amazon-Clone",
-  //   netlify: "https://amazon-clone-akram.netlify.app",
-  // },
 ];
 
 const Projects = () => {
@@ -132,7 +103,7 @@ const Projects = () => {
                   GitHub
                 </a>
                 <a
-                  href={project.netlify}
+                  href={project.Vercel}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 text-center border border-green-400 text-green-400 font-semibold px-4 py-2 rounded-full hover:bg-green-400 hover:text-black transition-colors"

@@ -3,7 +3,10 @@ import StudyPoint from "../assets/banner.png";
 import EasyShopping from "../assets/easyShopping.png";
 import Netflix from "../assets/netflix.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
-import Even_Platform from "../assets/event.png"
+import Even_Platform from "../assets/event.png";
+import Health from "../assets/Health.png";
+import SecondBrain from "../assets/SecondBrain.png"
+import Dr_Maya from "../assets/Dr_Maya.png"
 
 const projects = [
   {
@@ -25,6 +28,33 @@ const projects = [
   },
   {
     id: 3,
+    name: "Second Brain",
+    technologies:
+      "Next.js 14, React, Tailwind CSS, Node.js, Express, MongoDB Atlas, Gemini API",
+    image: SecondBrain,
+    github: "https://github.com/mdakram2002/second-brain-app",
+    Vercel: "https://second-brain-app-client.vercel.app",
+  },
+  {
+    id: 4,
+    name: "Dr. Maya Reynolds, PsyD",
+    technologies:
+      "Next.js 14, React, Tailwind CSS",
+    image: Dr_Maya,
+    github: "https://github.com/mdakram2002/dr-maya-therapy",
+    Vercel: "https://dr-maya-therapy-chi.vercel.app",
+  },
+  {
+    id: 5,
+    name: "Healthcare Dashboard",
+    technologies:
+      "React.js, HTML5, CSS, Chart.js & React-chartjs-2, Javascript(ES6+)",
+    image: Health,
+    github: "https://github.com/mdakram2002/healthcare-dashboard",
+    Vercel: "https://healthcare-dashboard-swart-phi.vercel.app",
+  },
+  {
+    id: 6,
     name: "Event Platform",
     technologies:
       "React.js, TailwindCSS, JWT, Node.js (Express.js), MongoDB Atlas",
@@ -33,7 +63,7 @@ const projects = [
     Vercel: "https://mini-event-platform-ten.vercel.app",
   },
   {
-    id: 4,
+    id: 7,
     name: "Netflix GPT Clone",
     technologies:
       "JavaScript, React-Redux, Firebase Auth, OpenAI API, TMDB API, Tailwind CSS",
@@ -42,7 +72,7 @@ const projects = [
     Vercel: "https://netflixGPT-firebase.netlify.app/",
   },
   {
-    id: 5,
+    id: 8,
     name: "Easy Shopping (E-Commerce UI)",
     technologies: "React, Redux, Tailwind CSS",
     image: EasyShopping,
@@ -51,7 +81,7 @@ const projects = [
     Vercel: "https://easyshoppingin.netlify.app/",
   },
   {
-    id: 6,
+    id: 9,
     name: "Plan for Adventure",
     technologies: "React, Tailwind CSS",
     image: PlanForAdven,

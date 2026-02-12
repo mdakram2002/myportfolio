@@ -6,6 +6,7 @@ import HTML from "../assets/html.png";
 import CSS from "../assets/css.png";
 import JavaScript from "../assets/javascript.png";
 import ReactLogo from "../assets/react.png";
+import NextLogo from "../assets/NextLogo.png";
 import Redux from "../assets/redux.png";
 import Node from "../assets/node.png";
 import Tailwind from "../assets/tailwindcss.png";
@@ -29,6 +30,7 @@ const skills = [
       { name: "CSS", icon: CSS },
       { name: "JavaScript", icon: JavaScript },
       { name: "React.js", icon: ReactLogo },
+      { name: "Next.js", icon: NextLogo },
       { name: "Redux", icon: Redux },
       { name: "Tailwind CSS", icon: Tailwind },
     ],

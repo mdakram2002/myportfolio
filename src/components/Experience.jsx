@@ -168,7 +168,14 @@ const Experience = () => {
                                                     </div>
                                                     <div className="min-w-0">
                                                         <h3 className="text-lg sm:text-2xl font-bold text-black truncate">{item.company}</h3>
-                                                        <p className="text-sm sm:text-base text-[#4B4B4B] truncate">{item.role}</p>
+                                                        <div className="flex items-center gap-2">
+                                                            <p className="text-sm sm:text-base text-[#4B4B4B] truncate">{item.role}</p>
+                                                            {item.link && (
+                                                                <a href={item.link} target="_blank" rel="noreferrer" aria-label={`Open ${item.company} website`} className="text-[#0A66C2] hover:text-[#094e9f]">
+                                                                    <ExternalLink className="w-4 h-4" />
+                                                                </a>
+                                                            )}
+                                                        </div>
                                                         <div className="flex items-center gap-1 text-xs text-[#6B6B6B]">
                                                             <MapPin className="w-3 h-3" />
                                                             <span className="truncate">{item.location}</span>

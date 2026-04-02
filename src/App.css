@@ -1,22 +1,39 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 /* Custom Rich Black Colors */
 .bg-richblack-900 {
   background-color: #000814;
 }
 .bg-richblack-800 {
-  background-color: #161D29;
+  background-color: #161d29;
 }
 .bg-richblack-700 {
-  background-color: #2C333F;
+  background-color: #2c333f;
 }
 .text-richblack-300 {
   color: #838894;
 }
 .text-richblack-5 {
-  color: #F1F2FF;
+  color: #f1f2ff;
 }
 
 /* Gradient Text Utility */

@@ -1,3 +1,4 @@
+import { Github, ExternalLink } from "lucide-react";
 import PlanForAdven from "../assets/planForAdventure.png";
 import StudyPoint from "../assets/banner.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
@@ -43,7 +44,7 @@ const projects = [
     technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Google OAuth 2.0, JWT, Vercel",
     image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
-    live: "https://dsa-chatbot-qty5.onrender.com",
+    live: "https://dsa-chatbot-six.vercel.app",
   },
 ];
 
@@ -51,59 +52,84 @@ const Projects = () => {
   const featured = projects[0];
 
   return (
-    <section id="project" className="bg-black text-white py-20">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
+    <section id="project" className="bg-black text-white py-20 overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-24 max-w-full">
         <h2 className="text-4xl font-bold text-center mb-12">PROJECTS</h2>
 
         <div className="space-y-12">
           {projects.map((project, idx) => (
             <div
               key={project.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center rounded-3xl border border-gray-800 bg-gradient-to-br from-slate-900 via-gray-950 to-black p-6 shadow-2xl"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch rounded-3xl border border-gray-800 bg-gradient-to-br from-slate-900 via-gray-950 to-black overflow-hidden shadow-2xl"
             >
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block overflow-hidden rounded-2xl bg-black"
-              >
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  className="w-full h-80 object-cover object-center transition-transform duration-500 hover:scale-110"
-                />
-              </a>
+              {/* Image Section with Hover Overlay */}
+              <div className="relative w-full h-full min-h-80 bg-black overflow-hidden group rounded-l-3xl">
+                <div className="relative w-full h-full aspect-[16/9] sm:aspect-[4/3] md:aspect-auto">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-contain object-center transition-all duration-500 group-hover:blur-sm"
+                  />
+                </div>
 
-              <div className="flex flex-col justify-center p-4 md:p-6 bg-gray-900/70 rounded-2xl">
-                <p className="text-xs text-green-400 font-semibold uppercase tracking-widest mb-2">Featured Project</p>
-                <h3 className="text-3xl md:text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-400">
-                  {project.name}
-                </h3>
-                <p className="text-gray-300 mb-4 text-lg">{project.subtitle}</p>
-                <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
-                  {project.details.map((detail, lineIdx) => (
-                    <li key={lineIdx}>{detail}</li>
-                  ))}
-                </ul>
-                <p className="text-gray-400 text-sm mb-5">Tech Stack: {project.technologies}</p>
-
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-full bg-zinc-800 border border-zinc-700 text-sm text-white hover:bg-zinc-700 transition"
-                  >
-                    GitHub
-                  </a>
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold hover:opacity-90 transition"
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
+                    aria-label="View live project"
                   >
-                    Live
+                    <ExternalLink className="w-7 h-7" />
                   </a>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="flex flex-col justify-between p-4 md:p-6 lg:p-8">
+                {/* Title with GitHub link in top-right */}
+                <div>
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-400 leading-tight">
+                      {project.name}
+                    </h3>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 transition flex-shrink-0 mt-1"
+                      aria-label="View GitHub repository"
+                    >
+                      <Github className="w-5 h-5 text-white" />
+                    </a>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-gray-400 mb-4">{project.subtitle}</p>
+
+                  {/* Details - Made text smaller */}
+                  <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 text-xs sm:text-sm">
+                    {project.details.map((detail, lineIdx) => (
+                      <li key={lineIdx} className="line-clamp-2">{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Tech Stack */}
+                <div>
+                  <p className="text-gray-400 text-xs mb-4">
+                    <span className="font-semibold text-gray-300">Tech Stack:</span> {project.technologies}
+                  </p>
+
+                  {/* View Project Button - for direct access */}
+                  {/* <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold hover:opacity-90 transition"
+                  >
+                    View Project
+                  </a> */}
                 </div>
               </div>
             </div>

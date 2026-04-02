@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaReact } from "react-icons/fa";
 
 // Import all skill icons
 import HTML from "../assets/html.png";
@@ -21,6 +22,9 @@ import Azure from "../assets/azure.png";
 import JWT from "../assets/jwt.png";
 import Cpp from "../assets/cpp.png";
 import Python from "../assets/python.png";
+import Typescript from "../assets/typescript.png"
+import Cursor_AI from "../assets/Cursor.png";
+import Firebase from "../assets/firebase.png";
 // import { MdApi } from "react-icons/md";
 
 const skills = [
@@ -34,6 +38,7 @@ const skills = [
       { name: "Next.js", icon: NextLogo },
       { name: "Redux", icon: Redux },
       { name: "Tailwind CSS", icon: Tailwind },
+      { name: "Typescript", icon: Typescript },
     ],
   },
   {
@@ -65,30 +70,32 @@ const skills = [
       { name: "VS Code", icon: VSCode },
       { name: "Vercel", icon: Vercel },
       { name: "Azure", icon: Azure },
+      { name: "Firebase", icon: Firebase },
+      { name: "Cursor AI", icon: Cursor_AI },
     ],
   },
-  {
-    category: "Core Concepts",
-    items: [
-      { name: "Data Structures & Algorithms" },
-      { name: "OOP" },
-      { name: "DBMS" },
-      { name: "Operating Systems" },
-      { name: "Computer Networks" },
-    ],
-  },
-  {
-    category: "Other Skills",
-    items: [
-      { name: "CI/CD (GitHub Actions, Vercel)" },
-      { name: "Agile & SDLC" },
-      { name: "Cloud (Azure Fundamentals)" },
-      { name: "Adaptable" },
-      { name: "Collaborative" },
-      { name: "Problem Solving" },
-      { name: "Analytical Thinking" },
-    ],
-  }
+  // {
+  //   category: "Core Concepts",
+  //   items: [
+  //     { name: "Data Structures & Algorithms" },
+  //     { name: "OOP" },
+  //     { name: "DBMS" },
+  //     { name: "Operating Systems" },
+  //     { name: "Computer Networks" },
+  //   ],
+  // },
+  // {
+  //   category: "Other Skills",
+  //   items: [
+  //     { name: "CI/CD (GitHub Actions, Vercel)" },
+  //     { name: "Agile & SDLC" },
+  //     { name: "Cloud (Azure Fundamentals)" },
+  //     { name: "Adaptable" },
+  //     { name: "Collaborative" },
+  //     { name: "Problem Solving" },
+  //     { name: "Analytical Thinking" },
+  //   ],
+  // }
 ];
 
 const Skills = () => {
@@ -116,43 +123,55 @@ const Skills = () => {
         </motion.p>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skillGroup, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg hover:shadow-blue-500/10 transition duration-300"
-            >
-              <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 mb-4">
-                {skillGroup.category}
-              </h3>
+        <div className="space-y-12">
+          {[
+            "Programming Languages",
+            "Frontend",
+            "Backend",
+            "Tools",
+            "Core Concepts",
+            "Other Skills",
+          ].map((sectionName, sectionIndex) => {
+            const section = skills.find((s) => s.category === sectionName);
+            if (!section) return null;
 
-              <ul className="grid grid-cols-2 gap-3">
-                {skillGroup.items.map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-2 bg-gray-800/50 rounded-lg px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700/60 transition"
-                  >
-                    {item.icon && (
-                      <img
-                        src={item.icon}
-                        alt={item.name}
-                        className="w-5 h-5 object-contain"
-                      />
-                    )}
-                    <span className="text-sm">{item.name}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+            return (
+              <motion.div
+                key={section.category}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+              >
+                <h3 className="text-3xl md:text-4xl font-extrabold mb-6 text-[#f1fffd] tracking-wide">
+                  {section.category}
+                </h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {section.items.map((item, i) => (
+                    <motion.div
+                      key={`${section.category}-${i}`}
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.05 }}
+                      className="group bg-[#0f171f] border border-[#1f3f57] rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-[0_12px_30px_rgba(0,95,135,0.35)] hover:shadow-[0_18px_40px_rgba(0,173,198,0.45)] transition-all"
+                    >
+                      {item.icon ? (
+                        <img
+                          src={item.icon}
+                          alt={item.name}
+                          className="w-16 h-16 md:w-20 md:h-20 object-contain mb-4"
+                        />
+                      ) : (
+                        <FaReact className="w-16 h-16 md:w-20 md:h-20 text-[#61dafb] mb-4" />
+                      )}
+
+                      <p className="text-lg md:text-xl font-semibold text-[#f1fcff]">{item.name}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

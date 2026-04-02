@@ -32,9 +32,10 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8 items-center text-base">
           <a href="#home" className="hover:text-green-400 transition">About</a>
-          <a href="#skills" className="hover:text-green-400 transition">Skills</a>
+          {/* <a href="#skills" className="hover:text-green-400 transition">Skills</a> */}
+          <a href="#experience" className="hover:text-green-400 transition">Experience</a>
           <a href="#project" className="hover:text-green-400 transition">Projects</a>
-          <a href="#education" className="hover:text-green-400 transition">Education</a>
+          {/* <a href="#education" className="hover:text-green-400 transition">Education</a> */}
           <a href="#contact" className="hover:text-green-400 transition">Contact</a>
         </div>
 
@@ -52,6 +53,7 @@ const Navbar = () => {
           <a href="#home" className="block hover:text-green-400 transition">About</a>
           <a href="#education" className="block hover:text-green-400 transition">Education</a>
           <a href="#skills" className="block hover:text-green-400 transition">Skills</a>
+          <a href="#experience" className="hover:text-green-400 transition">Experience</a>
           <a href="#project" className="block hover:text-green-400 transition">Projects</a>
           <a href="#contact" className="block hover:text-green-400 transition">Contact</a>
         </div>

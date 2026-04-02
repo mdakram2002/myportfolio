@@ -21,6 +21,7 @@ import Azure from "../assets/azure.png";
 import JWT from "../assets/jwt.png";
 import Cpp from "../assets/cpp.png";
 import Python from "../assets/python.png";
+// import { MdApi } from "react-icons/md";
 
 const skills = [
   {
@@ -42,6 +43,9 @@ const skills = [
       { name: "MongoDB", icon: MongoDB },
       { name: "SQL", icon: SQL },
       { name: "Authentication (JWT, OAuth)", icon: JWT },
+      // { name: "RESTful APIs", icon: MdApi },
+      // { name: "Authentication (JWT, OAuth)", icon: JWT },
+      // { name: "API Integration", icon: MdIntegrationInstructions }
     ],
   },
   {
@@ -79,17 +83,12 @@ const skills = [
       { name: "CI/CD (GitHub Actions, Vercel)" },
       { name: "Agile & SDLC" },
       { name: "Cloud (Azure Fundamentals)" },
-    ],
-  },
-  {
-    category: "Soft Skills",
-    items: [
       { name: "Adaptable" },
       { name: "Collaborative" },
       { name: "Problem Solving" },
       { name: "Analytical Thinking" },
     ],
-  },
+  }
 ];
 
 const Skills = () => {

@@ -1,20 +1,22 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Skills from "./components/Skills";
+import Experience from "./components/Experience";
 import Projects from "./components/Projects";
+import Education from "./components/Education";
 import Contect from "./components/Contect";
 import Footer from "./components/Footer";
-import Education from "./components/Education";
 import Home from "./components/Home";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Home/>
+      <Home />
       <Skills />
+      <Experience />
       <Projects />
-      <Education/>
+      <Education />
       <Contect />
       <Footer />
     </div>

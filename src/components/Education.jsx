@@ -29,7 +29,6 @@ const Education = () => {
     return (
         <section id="education" className="bg-richblack-900 text-white py-20">
             <div className="container mx-auto px-8 md:px-16 lg:px-24">
-                {/* Section Heading */}
                 <motion.h2
                     initial={{ opacity: 0, y: -30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +38,6 @@ const Education = () => {
                     EDUCATION
                 </motion.h2>
 
-                {/* Subtitle */}
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -49,7 +47,6 @@ const Education = () => {
                     A timeline of my academic journey and milestones that built the foundation of my technical skills.
                 </motion.p>
 
-                {/* Education Timeline */}
                 <div className="relative border-l border-gray-700 ml-4 md:ml-10">
                     {educationData.map((edu, index) => (
                         <motion.div
@@ -82,4 +79,5 @@ const Education = () => {
         </section>
     );
 };
+
 export default Education;

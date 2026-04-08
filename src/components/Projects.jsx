@@ -1,5 +1,6 @@
 import { Github, ExternalLink } from "lucide-react";
-import PlanForAdven from "../assets/planForAdventure.png";
+import Dr_Maya_Website from "../assets/Dr_Maya.png";
+import Mini_Event_Platform from "../assets/event.png";
 import StudyPoint from "../assets/banner.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
 import SecondBrain from "../assets/SecondBrain.png";
@@ -46,6 +47,36 @@ const projects = [
     github: "https://github.com/mdakram2002/dsa_chatbot",
     live: "https://dsa-chatbot-six.vercel.app",
   },
+  {
+  id: 4,
+  name: "Dr. Maya Reynolds – Therapy Homepage",
+  subtitle: "Squarespace template clone + redesign",
+  details: [
+    "Cloned the Lilac Squarespace template homepage with pixel-perfect layout, responsive grid system, and Tailwind CSS utilities to ensure consistent spacing and hierarchy across devices.",
+    "Redesigned the theme with a calming, professional color palette (primary, secondary, accent) while maintaining WCAG-compliant contrast, warm typography, and glassmorphism UI effects.",
+    "Rewrote all copy for Dr. Maya Reynolds (imaginary therapist) – headlines, service descriptions, and CTAs – using location-based SEO keywords (Santa Monica, CA) and a warm, human therapeutic tone.",
+    "Added a custom 'Our Office' section (not in original template) featuring real office imagery, supportive copy about safety and privacy, and full visual/typographic consistency with the rest of the site.",
+  ],
+  technologies: "Next.js 14, Tailwind CSS, Vercel",
+  image: Dr_Maya_Website,
+  github: "https://github.com/mdakram2002/dr-maya-therapy",
+  live: "https://dr-maya-therapy-chi.vercel.app",
+},
+{
+  id: 5,
+  name: "Mini Event Platform",
+  subtitle: "Full‑stack MERN event management with dark mode",
+  details: [
+    "Built a complete event management platform using MERN stack (MongoDB, Express, React, Node.js) with JWT authentication, role‑based access, Google/GitHub OAuth, and bcrypt password hashing.",
+    "Implemented full CRUD for events – rich creation with Cloudinary image upload, markdown descriptions, real‑time RSVP system, capacity enforcement using MongoDB transactions, and visual fill indicators.",
+    "Added seamless dark/light mode, responsive mobile‑first design, search/filtering by title or location, personal dashboard with event statistics, and separate tabs for created vs. attending events.",
+    "Deployed frontend to Vercel, backend to Railway, with API rate limiting, CORS configuration, error handling, and toast notifications for instant user feedback.",
+  ],
+  technologies: "MERN (MongoDB, Express, React, Node.js), Tailwind CSS, Cloudinary, JWT, Vercel, Railway",
+  image: Mini_Event_Platform,
+  github: "https://github.com/mdakram2002/mini-event-platform",
+  live: "https://mini-event-platform-ten.vercel.app",
+}
 ];
 
 const Projects = () => {

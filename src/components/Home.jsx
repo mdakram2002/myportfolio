@@ -1,4 +1,4 @@
-import { TypeAnimation } from "react-type-animation";
+// import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   return (
@@ -15,37 +15,17 @@ const Home = () => {
           </span>
         </h1>
 
-        <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-          <TypeAnimation
-            sequence={[
-              "Front-End Developer",
-              2000,
-              "Backend Developer",
-              2000,
-              "MERN Developer",
-              2000,
-              "Data Science Enthusiast",
-              2000,
-              "Tech Content Creator",
-              2000,
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-          />
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+          Full Stack Developer
         </h2>
 
         <p className="text-gray-300 mb-8 max-w-xl mx-auto md:mx-0">
-          A passionate MERN stack developer with 2 years of hands-on experience
-          in building modern, responsive, and AI-driven web applications using
-          React, JavaScript, and Node.js. Adaptable and detail-oriented, with a
-          strong foundation in C++ and SQL, focused on creating impactful and
-          innovative web applications.
+          A passionate Full-Stack Developer with hands-on experience building modern, responsive, and AI-integrated web applications. Detail-oriented and adaptable, with a strong foundation in programming and databases, focused on delivering clean code, scalable architecture, and innovative digital experiences.
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
           <a
-            href="https://onedrive.live.com/view.aspx?resid=58672C223DE1BF64%21194424&authkey=!ANHXhn3eJq48vzQ"
+            href="https://1drv.ms/b/c/58672c223de1bf64/IQA5EcROp7hYRrr2QBfWNVpzAcDn5FaXBNizU5mfThFulLU?e=qfgYXl"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold rounded-full hover:scale-105 transition-transform"

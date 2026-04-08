@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 items-center text-base">
+        <div className="hidden md:flex space-x-8 items-center text-[18px] font-semibold">
           <a href="#home" className="hover:text-green-400 transition">About</a>
           {/* <a href="#skills" className="hover:text-green-400 transition">Skills</a> */}
           <a href="#experience" className="hover:text-green-400 transition">Experience</a>

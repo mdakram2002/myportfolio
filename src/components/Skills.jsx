@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaReact } from "react-icons/fa";
+import { FaDocker, FaReact, FaRegHandPaper } from "react-icons/fa";
 
 // Import all skill icons
 import HTML from "../assets/html.png";
@@ -25,9 +25,21 @@ import Python from "../assets/python.png";
 import Typescript from "../assets/typescript.png"
 import Cursor_AI from "../assets/Cursor.png";
 import Firebase from "../assets/firebase.png";
-// import { MdApi } from "react-icons/md";
+import RestfulAPI from "../assets/restfullAPI.png";
+import APIIntegration from "../assets/api_integration.png";
+import DockerIcon from "../assets/docker.png";
+import RenderIcon from "../assets/render.jpg";
+import PostgreSQL from "../assets/postgre.png";
 
 const skills = [
+  {
+    category: "Programming Languages",
+    items: [
+      { name: "C++", icon: Cpp },
+      { name: "JavaScript", icon: JavaScript },
+      { name: "Python (Basic)", icon: Python },
+    ],
+  },
   {
     category: "Frontend",
     items: [
@@ -36,7 +48,7 @@ const skills = [
       { name: "JavaScript", icon: JavaScript },
       { name: "React.js", icon: ReactLogo },
       { name: "Next.js", icon: NextLogo },
-      { name: "Redux", icon: Redux },
+      { name: "Redux Toolkit", icon: Redux },
       { name: "Tailwind CSS", icon: Tailwind },
       { name: "Typescript", icon: Typescript },
     ],
@@ -48,17 +60,9 @@ const skills = [
       { name: "MongoDB", icon: MongoDB },
       { name: "SQL", icon: SQL },
       { name: "Authentication (JWT, OAuth)", icon: JWT },
-      // { name: "RESTful APIs", icon: MdApi },
-      // { name: "Authentication (JWT, OAuth)", icon: JWT },
-      // { name: "API Integration", icon: MdIntegrationInstructions }
-    ],
-  },
-  {
-    category: "Programming Languages",
-    items: [
-      { name: "C++", icon: Cpp },
-      { name: "JavaScript", icon: JavaScript },
-      { name: "Python (Basic)", icon: Python },
+      { name: "RESTful APIs", icon: RestfulAPI },
+      { name: "API Integration", icon: APIIntegration },
+      { name: "PostgreSQL", icon: PostgreSQL },
     ],
   },
   {
@@ -66,36 +70,16 @@ const skills = [
     items: [
       { name: "Git", icon: Git },
       { name: "GitHub", icon: GitHub },
-      { name: "Postman", icon: Postman },
+      { name: "Postman API", icon: Postman },
       { name: "VS Code", icon: VSCode },
       { name: "Vercel", icon: Vercel },
       { name: "Azure", icon: Azure },
       { name: "Firebase", icon: Firebase },
       { name: "Cursor AI", icon: Cursor_AI },
+      { name: "Docker", icon: DockerIcon },
+      { name: "Render", icon: RenderIcon }
     ],
   },
-  // {
-  //   category: "Core Concepts",
-  //   items: [
-  //     { name: "Data Structures & Algorithms" },
-  //     { name: "OOP" },
-  //     { name: "DBMS" },
-  //     { name: "Operating Systems" },
-  //     { name: "Computer Networks" },
-  //   ],
-  // },
-  // {
-  //   category: "Other Skills",
-  //   items: [
-  //     { name: "CI/CD (GitHub Actions, Vercel)" },
-  //     { name: "Agile & SDLC" },
-  //     { name: "Cloud (Azure Fundamentals)" },
-  //     { name: "Adaptable" },
-  //     { name: "Collaborative" },
-  //     { name: "Problem Solving" },
-  //     { name: "Analytical Thinking" },
-  //   ],
-  // }
 ];
 
 const Skills = () => {

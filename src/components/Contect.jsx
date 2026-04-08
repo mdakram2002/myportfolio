@@ -23,9 +23,17 @@ const Contact = () => {
         "Content-Type": "application/json",
       });
       console.log(res);
-      toast.success("Connection sent successfully!");
+      
+      // Check if backend indicates success
+      if (res.data?.success) {
+        toast.success(res.data.message || "Message sent successfully!");
+        reset(); // optionally reset form here instead of useEffect
+      } else {
+        toast.error(res.data?.message || "Something went wrong. Please try again.");
+      }
     } catch (err) {
-      toast.error("Failed to send message. Please try again.");
+      console.error(err);
+      toast.error(err?.response?.data?.message || "Failed to send message. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 database.connect();
 
 const corsOptions = {
-    origin: ["http://localhost:5173", "https://mdakram-portfolio-green.vercel.app"],
+    origin: ["http://localhost:5173", "https://mdakram.vercel.app"],
     credentials: true,
 };
 

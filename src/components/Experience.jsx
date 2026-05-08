@@ -7,7 +7,7 @@ const history = [
     {
         company: "Diyos Infotech Pvt. Ltd.",
         role: "ReactJS Developer Intern",
-        period: "March 2026 — Present",
+        period: "March 2026 — April 2026",
         location: "Hyderabad, Telangana, India",
         description:
             "Building scalable, high-performance frontend features using TypeScript and React.js. Recognized for resolving critical bugs and improving system reliability while collaborating closely with backend teams.",

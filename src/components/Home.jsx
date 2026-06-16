@@ -20,12 +20,15 @@ const Home = () => {
         </h2>
 
         <p className="text-gray-300 mb-8 max-w-xl mx-auto md:mx-0">
-          A passionate Full-Stack Developer with hands-on experience building modern, responsive, and AI-integrated web applications. Detail-oriented and adaptable, with a strong foundation in programming and databases, focused on delivering clean code, scalable architecture, and innovative digital experiences.
+          Full-stack developer experienced in building high-performance, scalable web applications with React, Node.js, and RESTful
+          APIs. Proficient in the MERN stack (MongoDB, Express.js, React.js, Node.js) with expertise in responsive UI development,
+          API integration, secure authentication (JWT, OAuth), performance optimization, database design, CI/CD deployment
+          (Vercel, Render), and Agile-based SDLC.
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
           <a
-            href="https://1drv.ms/b/c/58672c223de1bf64/IQA5EcROp7hYRrr2QBfWNVpzAcDn5FaXBNizU5mfThFulLU?e=qfgYXl"
+            href="https://1drv.ms/b/c/58672c223de1bf64/IQCl16WYyO8uQ6W_Ajb5EmZzAUL44zQbhxNoWB8OqCdNxvg?e=5mRaYm"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold rounded-full hover:scale-105 transition-transform"

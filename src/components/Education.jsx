@@ -4,8 +4,8 @@ import { GraduationCap } from "lucide-react";
 
 const educationData = [
     {
-        degree: "B.E. in Computer Science and Engineering (AI & ML)",
-        institution: "Technocrats Institute of Technology, Bhopal (M.P.)",
+        degree: "B.Tech in Computer Science and Engineering (AI & ML)",
+        institution: "Technocrats Institute of Technology, Bhopal (M.P.), India",
         duration: "2022 – 2026",
         gpa: "GPA: 7.62 / 10",
         description:
@@ -13,13 +13,13 @@ const educationData = [
     },
     {
         degree: "Senior Secondary (12th)",
-        institution: "Supaul Senior Secondary School, Supaul",
+        institution: "Supaul Senior Secondary School, Supaul, Bihar, India",
         duration: "2021",
         gpa: "Percentage: 66.6%",
     },
     {
         degree: "High School (10th)",
-        institution: "Supaul Senior Secondary School, Supaul",
+        institution: "Supaul Senior Secondary School, Supaul, Bihar, India",
         duration: "2019",
         gpa: "Percentage: 70%",
     },

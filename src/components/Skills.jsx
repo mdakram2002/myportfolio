@@ -37,7 +37,7 @@ const skills = [
     items: [
       { name: "C++", icon: Cpp },
       { name: "JavaScript", icon: JavaScript },
-      { name: "Python (Basic)", icon: Python },
+      { name: "Python", icon: Python },
     ],
   },
   {

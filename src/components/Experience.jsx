@@ -15,9 +15,10 @@ const history = [
         logo: diyosLogo,
         link: "http://qa.diyosfame.com",
         bullets: [
-            "Delivered scalable, efficient frontend features using TypeScript and React.js, resolving 25+ bugs weekly and improving system reliability by 12%, as recognized by senior engineers",
-            "Implemented complex form validations using React Hook Form and TypeScript, including conditional ID card validation and date range validation, collaborating with backend APIs to ensure seamless data flow",
-            "Enhanced overall user experience by integrating real-time validation feedback and robust error handling mechanisms, reducing data entry errors by 13% and improving overall data accuracy",
+            "Delivered 33+ tickets across the FaME ERP system using React.js and TypeScript, owning UI development from initial build to bug resolution across client management, payroll, invoicing, and reporting modules.",
+            "Implemented complex form validation across 6+ modules including PAN card, PF (22-character alphanumeric), ESI (17-digit), HSN code, and comprehensive AddEmployee sections (bank, statutory, address) with robust real-time error handling in TypeScript.",
+            "Built responsive AddClient screens across all breakpoints and introduced a live address mirroring feature, reducing form completion time by 20% and saving 2 hours per week for the admin team.",
+            "Collaborated with backend and support teams to develop a receipt table consuming REST APIs, resolved critical blank-screen bugs in the Inventory Module, and fixed UI rendering across 70–100% zoom, reducing overall support tickets by 25% and saving 1.5 hours weekly."
         ],
         isCurrent: true,
     },

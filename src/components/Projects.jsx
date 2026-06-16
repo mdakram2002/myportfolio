@@ -3,49 +3,50 @@ import Dr_Maya_Website from "../assets/Dr_Maya.png";
 import Mini_Event_Platform from "../assets/event.png";
 import StudyPoint from "../assets/banner.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
-import SecondBrain from "../assets/SecondBrain.png";
+import Knowbase from "../assets/knowbase.png";
 
 const projects = [
   {
     id: 1,
-    name: "Second Brain App",
+    name: "KnowBase",
     subtitle: "AI Knowledge Management Platform",
     details: [
-      "Architected a full-stack platform using Next.js, Node.js, Express, and MongoDB with client–server architecture, reusable components, and modular backend services supporting 5+ core modules.",
-      "Implemented 8+ RESTful APIs with JWT authentication and CRUD operations, integrating AI-powered text summarization and semantic search, improving performance and scalability.",
+      "Spearheaded the development of a full-stack AI knowledge platform using Next.js, Node.js, Express, and MongoDB, designing a modular architecture that reduced feature development time by 21% and supported 5+ core modules.",
+      "Deployed 8+ RESTful APIs with JWT authentication, rate limiting, and input validation, enabling CRUD operations and integrating Google Gemini AI for automated text summarization and semantic search across 1,000+ documents.",
+      "Optimized platform performance by implementing MongoDB text indexes and batch processing pipelines, reducing search latency by 30% and ensuring relevance scoring for 95% of user queries."
     ],
-    technologies: "Next.js 14, React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Gemini API",
-    image: SecondBrain,
-    github: "https://github.com/mdakram2002/second-brain-app",
-    live: "https://second-brain-app-client.vercel.app",
+    technologies: "Next.js 14, React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Google Gemini API",
+    image: Knowbase,
+    github: "https://github.com/mdakram2002/knowbase-ai",
+    live: "https://knowbase-ai-client.vercel.app/"
   },
   {
     id: 2,
     name: "StudyPoint",
     subtitle: "EdTech Application",
     details: [
-      "Engineered a full-stack EdTech platform using the MERN stack and MVC architecture, enabling course creation, enrollment, and progress tracking for 100+ users through role-based dashboards.",
-      "Developed 19+ RESTful APIs with JWT authentication, OTP verification, and role-based access control, implementing features like course management, ratings and reviews, and profile management.",
-      "Integrated Razorpay payment gateway and Cloudinary media storage, and deployed using CI/CD with GitHub Actions to Vercel, improving application performance, scalability, and user experience.",
+      "Engineered an EdTech platform using React.js, Node.js, Express, and MongoDB following MVC architecture with Redux management, enabling instructors to create course content and students to enroll 100+ user base with progress tracking.",
+      "Developed 19+ RESTful APIs with JWT authentication, OTP, and role-based access control (RBAC); integrated Razorpay for payments, Cloudinary for video uploads, and Nodemailer for enrollment confirmations and password resets.",
+      "Deployed to Netlify with GitHub Actions CI/CD pipeline for zero-downtime updates; configured Redux slices for state management and optimized payment flow, reducing checkout steps from 5 to 3 and improving enrollment completion rate."
     ],
-    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB, Redux Toolkit, JWT Auth, Razorpay, Cloudinary, Vercel",
+    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB, Redux Toolkit, JWT Auth, Razorpay, Cloudinary, Nodemailer, Netlify",
     image: StudyPoint,
     github: "https://github.com/mdakram2002/Study_Point",
-    live: "https://study-point-self.vercel.app",
+    live: "https://studypointin.netlify.app/"
   },
   {
     id: 3,
-    name: "DSA AI Chatbot",
-    subtitle: "AI-powered chatbot platform",
+    name: "DSA AI Assistant",
+    subtitle: "Chatbot Application",
     details: [
-      "Developed a full-stack AI chatbot using MERN stack with separate client-server architecture, implementing JWT authentication, Google OAuth 2.0, and guest user functionality.",
-      "Built a real-time chat interface with persistent message history and responsive design, with RESTful APIs, robust error handling, and CORS configuration.",
-      "Deployed client to Vercel and server to Railway using MongoDB Atlas; optimized performance via state management, API rate limiting, and production-ready error boundaries.",
+      "Created an AI platform using React, Node.js, Express, and Gemini API, unifying DSA resources into a single system.",
+      "Delivered structured explanations with complexity analysis, formatted code examples, and interview-focused tips eliminating the need to juggle multiple sources (YouTube, LeetCode, textbooks).",
+      "Developed guest authentication (optional Google OAuth), persistent multi-session chat history, and real-time Markdown with syntax highlighting; enabled switching between 3+ concurrent chats, reducing login-to-learning friction by 60%."
     ],
-    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Google OAuth 2.0, JWT, Vercel",
+    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Google OAuth 2.0, JWT, Gemini API, Vercel",
     image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
-    live: "https://dsa-chatbot-six.vercel.app",
+    live: "https://dsa-chatbot-six.vercel.app/"
   },
   {
   id: 4,

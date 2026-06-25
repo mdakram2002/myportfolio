@@ -4,39 +4,86 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#root {
+html, body, #root {
   width: 100%;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Custom Rich Black Colors */
-.bg-richblack-900 {
-  background-color: #000814;
-}
-.bg-richblack-800 {
-  background-color: #161d29;
-}
-.bg-richblack-700 {
-  background-color: #2c333f;
-}
-.text-richblack-300 {
-  color: #838894;
-}
-.text-richblack-5 {
-  color: #f1f2ff;
+/* ─── GLOBAL BACKGROUND ────────────────────────────────────────────────────
+   One fixed layer behind every section so scrolling never reveals a seam.
+   All sections must be bg-transparent (or bg-slate-950 is fine too since it
+   matches — but the grid/glows live here only, not repeated per component).
+─────────────────────────────────────────────────────────────────────────── */
+body {
+  background-color: #020817; /* slate-950 */
 }
 
-/* Gradient Text Utility */
-.text-gradient {
-  @apply bg-clip-text text-transparent;
+/* Fixed grid pattern — stays put while content scrolls */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
 }
+
+/* Fixed ambient glows — violet top-right, teal bottom-left */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 480px 480px at 100% 0%, rgba(139,92,246,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 0% 100%, rgba(45,212,191,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Every section sits above the fixed background */
+#root > div > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── NAVBAR (fixed, fully opaque) ─────────────────────────────────────── */
+.navbar-fixed {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: #020817 !important;       /* always solid slate-950 */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Offset page content so it doesn't hide under the fixed nav */
+.nav-offset {
+  padding-top: 80px;
+}
+
+/* ─── TYPOGRAPHY ────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
+
+.font-display { font-family: 'Manrope', sans-serif; }
+.font-body    { font-family: 'Inter', sans-serif; }
+
+/* ─── CUSTOM RICHBLACK UTILITIES (kept for legacy) ──────────────────────── */
+.bg-richblack-900 { background-color: #000814; }
+.bg-richblack-800 { background-color: #161d29; }
+.bg-richblack-700 { background-color: #2c333f; }
+.text-richblack-300 { color: #838894; }
+.text-richblack-5 { color: #f1f2ff; }
+
+.text-gradient { @apply bg-clip-text text-transparent; }

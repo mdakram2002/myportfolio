@@ -1,161 +1,124 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { FaDocker, FaReact, FaRegHandPaper } from "react-icons/fa";
+import { useState } from "react";
+import { Code2, Server, Bot, Database, Wrench, ArrowRight, Sparkles } from "lucide-react";
 
-// Import all skill icons
-import HTML from "../assets/html.png";
-import CSS from "../assets/css.png";
-import JavaScript from "../assets/javascript.png";
-import ReactLogo from "../assets/react.png";
-import NextLogo from "../assets/NextLogo.png";
-import Redux from "../assets/redux.png";
-import Node from "../assets/node.png";
-import Tailwind from "../assets/tailwindcss.png";
-import MongoDB from "../assets/mongodb.png";
-import Git from "../assets/git.png";
-import GitHub from "../assets/github.png";
-import Postman from "../assets/postman.png";
-import VSCode from "../assets/vscode.png";
-import SQL from "../assets/sql.png";
-import Vercel from "../assets/vercel.png";
-import Azure from "../assets/azure.png";
-import JWT from "../assets/jwt.png";
-import Cpp from "../assets/cpp.png";
-import Python from "../assets/python.png";
-import Typescript from "../assets/typescript.png"
-import Cursor_AI from "../assets/Cursor.png";
-import Firebase from "../assets/firebase.png";
-import RestfulAPI from "../assets/restfullAPI.png";
-import APIIntegration from "../assets/api_integration.png";
-import DockerIcon from "../assets/docker.png";
-import RenderIcon from "../assets/render.jpg";
-import PostgreSQL from "../assets/postgre.png";
-
-const skills = [
-  {
-    category: "Programming Languages",
-    items: [
-      { name: "C++", icon: Cpp },
-      { name: "JavaScript", icon: JavaScript },
-      { name: "Python", icon: Python },
-    ],
-  },
-  {
-    category: "Frontend",
-    items: [
-      { name: "HTML", icon: HTML },
-      { name: "CSS", icon: CSS },
-      { name: "JavaScript", icon: JavaScript },
-      { name: "React.js", icon: ReactLogo },
-      { name: "Next.js", icon: NextLogo },
-      { name: "Redux Toolkit", icon: Redux },
-      { name: "Tailwind CSS", icon: Tailwind },
-      { name: "Typescript", icon: Typescript },
-    ],
-  },
-  {
-    category: "Backend",
-    items: [
-      { name: "Node.js (Express)", icon: Node },
-      { name: "MongoDB", icon: MongoDB },
-      { name: "SQL", icon: SQL },
-      { name: "Authentication (JWT, OAuth)", icon: JWT },
-      { name: "RESTful APIs", icon: RestfulAPI },
-      { name: "API Integration", icon: APIIntegration },
-      { name: "PostgreSQL", icon: PostgreSQL },
-    ],
-  },
-  {
-    category: "Tools",
-    items: [
-      { name: "Git", icon: Git },
-      { name: "GitHub", icon: GitHub },
-      { name: "Postman API", icon: Postman },
-      { name: "VS Code", icon: VSCode },
-      { name: "Vercel", icon: Vercel },
-      { name: "Azure", icon: Azure },
-      { name: "Firebase", icon: Firebase },
-      { name: "Cursor AI", icon: Cursor_AI },
-      { name: "Docker", icon: DockerIcon },
-      { name: "Render", icon: RenderIcon }
-    ],
-  },
-];
+const skillsData = {
+  Frontend:        { icon: Code2,     accentFrom: "#2DD4BF", accentTo: "#60A5FA", title: "Frontend",        tagline: "Interfaces that feel fast and look sharp",              skills: [{ name: "React.js", level: "Advanced" },{ name: "Next.js", level: "Advanced" },{ name: "TypeScript", level: "Intermediate" },{ name: "JavaScript ES6+", level: "Advanced" },{ name: "Tailwind CSS", level: "Advanced" },{ name: "HTML5 / CSS3", level: "Advanced" },{ name: "Redux Toolkit", level: "Intermediate" },{ name: "React Hooks", level: "Advanced" }], projects: "10+" },
+  Backend:         { icon: Server,    accentFrom: "#8B5CF6", accentTo: "#EC4899", title: "Backend",         tagline: "APIs built to scale, secured to ship",                  skills: [{ name: "Node.js", level: "Advanced" },{ name: "Express.js", level: "Advanced" },{ name: "REST API Design", level: "Advanced" },{ name: "JWT Authentication", level: "Advanced" },{ name: "RBAC", level: "Intermediate" },{ name: "Middleware Architecture", level: "Advanced" },{ name: "API Rate Limiting", level: "Intermediate" },{ name: "Input Validation", level: "Advanced" }], projects: "8+" },
+  "AI & Payments": { icon: Bot,       accentFrom: "#F59E0B", accentTo: "#EF4444", title: "AI & Payments",   tagline: "LLMs and gateways wired into production",               skills: [{ name: "Gemini API", level: "Intermediate" },{ name: "OpenAI API", level: "Intermediate" },{ name: "LLM Integration", level: "Intermediate" },{ name: "Razorpay", level: "Advanced" },{ name: "Cloudinary", level: "Advanced" },{ name: "Nodemailer", level: "Advanced" },{ name: "OAuth 2.0", level: "Advanced" }], projects: "5+" },
+  Database:        { icon: Database,  accentFrom: "#10B981", accentTo: "#2DD4BF", title: "Database",        tagline: "Schema design and queries that don't flinch",           skills: [{ name: "MongoDB", level: "Advanced" },{ name: "PostgreSQL", level: "Intermediate" },{ name: "SQL", level: "Advanced" },{ name: "Redis", level: "Intermediate" },{ name: "Schema Design", level: "Advanced" },{ name: "Query Optimization", level: "Advanced" }], projects: "6+" },
+  "Tools & DevOps":{ icon: Wrench,    accentFrom: "#6366F1", accentTo: "#8B5CF6", title: "Tools & DevOps",  tagline: "From commit to deployment without friction",            skills: [{ name: "Git", level: "Advanced" },{ name: "GitHub Actions", level: "Intermediate" },{ name: "Docker", level: "Intermediate" },{ name: "Azure", level: "Intermediate" },{ name: "Vercel / Render", level: "Advanced" },{ name: "Postman", level: "Advanced" },{ name: "VS Code", level: "Advanced" },{ name: "Firebase", level: "Intermediate" }], projects: "12+" },
+};
+const levelDots = { Advanced: 3, Intermediate: 2, Beginner: 1 };
 
 const Skills = () => {
+  const [active, setActive] = useState("Frontend");
+  const categories = Object.keys(skillsData);
+  const current = skillsData[active];
+  const Icon = current.icon;
+
   return (
-    <section id="skills" className="bg-richblack-900 text-white py-20">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        {/* Section Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-4"
-        >
-          SKILLS
-        </motion.h2>
+    <section id="skills" className="min-h-screen w-full text-white py-24 relative">
+      <style>{`
+        .sk-tab { border: 1px solid rgba(255,255,255,0.1); color: #94A3B8; background: transparent; transition: all .2s; }
+        .sk-tab:hover { color: #E2E8F0; border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.04); }
+        .sk-tab-active { color: #0B0E1A !important; border-color: transparent !important; }
+        .sk-chip { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); transition: border-color .2s, background .2s; }
+        .sk-chip:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); }
+        .sk-dot { width: 6px; height: 6px; border-radius: 9999px; }
+        .sk-dot-empty { background: rgba(255,255,255,0.15) !important; }
+        .sk-fade { opacity: 0; transform: translateY(10px); animation: sk-up .45s ease-out forwards; }
+        @keyframes sk-up { to { opacity: 1; transform: none; } }
+        .sk-d1{animation-delay:.05s}.sk-d2{animation-delay:.12s}.sk-d3{animation-delay:.22s}.sk-d4{animation-delay:.32s}
+        @media (prefers-reduced-motion: reduce) { .sk-fade { animation: none !important; opacity: 1 !important; transform: none !important; } }
+      `}</style>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center text-gray-400 mb-12"
-        >
-          A showcase of my technical skills and expertise honed through real-world projects and hands-on experience.
-        </motion.p>
+      {/* Accent glow shifts with active tab */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] rounded-full blur-3xl pointer-events-none transition-all duration-700"
+           style={{ background: `radial-gradient(circle, ${current.accentFrom}14, transparent 70%)` }} />
 
-        {/* Skills Grid */}
-        <div className="space-y-12">
-          {[
-            "Programming Languages",
-            "Frontend",
-            "Backend",
-            "Tools",
-            "Core Concepts",
-            "Other Skills",
-          ].map((sectionName, sectionIndex) => {
-            const section = skills.find((s) => s.category === sectionName);
-            if (!section) return null;
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
+        {/* Header */}
+        <div className="sk-fade sk-d1 mb-10 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-sm font-body"
+               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: current.accentFrom }}>
+            <Sparkles size={13} /><span>Technical Skills</span>
+          </div>
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl tracking-tight mb-3">What I Build With</h2>
+          <p className="font-body text-slate-400 text-lg max-w-3xl">Tools I reach for daily — picked up through shipping real projects, not just tutorials.</p>
+        </div>
 
+        {/* Tabs */}
+        <div className="sk-fade sk-d2 flex items-center justify-center flex-wrap gap-2 mb-10">
+          {categories.map((cat) => {
+            const d = skillsData[cat]; const CatIcon = d.icon; const isActive = cat === active;
             return (
-              <motion.div
-                key={section.category}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
-              >
-                <h3 className="text-3xl md:text-4xl font-extrabold mb-6 text-[#f1fffd] tracking-wide">
-                  {section.category}
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {section.items.map((item, i) => (
-                    <motion.div
-                      key={`${section.category}-${i}`}
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: i * 0.05 }}
-                      className="group bg-[#0f171f] border border-[#1f3f57] rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-[0_12px_30px_rgba(0,95,135,0.35)] hover:shadow-[0_18px_40px_rgba(0,173,198,0.45)] transition-all"
-                    >
-                      {item.icon ? (
-                        <img
-                          src={item.icon}
-                          alt={item.name}
-                          className="w-16 h-16 md:w-20 md:h-20 object-contain mb-4"
-                        />
-                      ) : (
-                        <FaReact className="w-16 h-16 md:w-20 md:h-20 text-[#61dafb] mb-4" />
-                      )}
-
-                      <p className="text-lg md:text-xl font-semibold text-[#f1fcff]">{item.name}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              <button key={cat} onClick={() => setActive(cat)}
+                className={`sk-tab${isActive ? " sk-tab-active" : ""} font-body inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold`}
+                style={isActive ? { background: `linear-gradient(135deg, ${d.accentFrom}, ${d.accentTo})` } : {}}>
+                <CatIcon size={14} />{cat}
+              </button>
             );
           })}
+        </div>
+
+        {/* Card */}
+        <div className="sk-fade sk-d3 rounded-3xl p-8 md:p-10"
+             style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}>
+          {/* Card header */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
+            <div className="flex items-start gap-5">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                   style={{ background: `linear-gradient(135deg, ${current.accentFrom}22, ${current.accentTo}22)`, border: `1px solid ${current.accentFrom}33` }}>
+                <Icon size={22} style={{ color: current.accentFrom }} />
+              </div>
+              <div>
+                <div className="h-0.5 w-10 rounded-full mb-2" style={{ background: `linear-gradient(90deg, ${current.accentFrom}, ${current.accentTo})` }} />
+                <h3 className="font-display font-extrabold text-2xl md:text-3xl mb-1">{current.title}</h3>
+                <p className="font-body text-slate-400 text-sm">{current.tagline}</p>
+              </div>
+            </div>
+            <div className="flex-shrink-0 self-start font-body text-sm font-semibold px-4 py-2 rounded-full"
+                 style={{ background: `linear-gradient(135deg, ${current.accentFrom}18, ${current.accentTo}18)`, border: `1px solid ${current.accentFrom}33`, color: current.accentFrom }}>
+              {current.projects} Projects
+            </div>
+          </div>
+
+          {/* Skills grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            {current.skills.map((skill) => {
+              const filled = levelDots[skill.level] ?? 2;
+              return (
+                <div key={skill.name} className="sk-chip rounded-xl px-4 py-3 flex items-center justify-between gap-2">
+                  <span className="font-body text-sm font-medium text-slate-200 truncate">{skill.name}</span>
+                  <span className="flex items-center gap-1 flex-shrink-0">
+                    {[0,1,2].map(d => (
+                      <span key={d} className={`sk-dot ${d < filled ? "" : "sk-dot-empty"}`}
+                            style={d < filled ? { background: current.accentFrom } : {}} />
+                    ))}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Footer */}
+          <div className="flex items-center justify-between pt-6 border-t border-white/[0.07]">
+            <div className="font-body flex items-center gap-6 text-sm text-slate-400">
+              <span><span className="font-semibold" style={{ color: current.accentFrom }}>{current.skills.length}</span> skills listed</span>
+              <span><span className="font-semibold" style={{ color: current.accentFrom }}>{current.projects}</span> projects shipped</span>
+            </div>
+            <a href="#projects" className="font-body inline-flex items-center gap-2 text-sm font-semibold hover:opacity-80 transition-opacity" style={{ color: current.accentFrom }}>
+              See projects <ArrowRight size={14} />
+            </a>
+          </div>
+        </div>
+
+        {/* Pagination dots */}
+        <div className="sk-fade sk-d4 flex justify-center gap-2 mt-8">
+          {categories.map((cat) => (
+            <button key={cat} onClick={() => setActive(cat)} className="h-1.5 rounded-full transition-all duration-300"
+                    style={{ width: cat === active ? "2rem" : "0.5rem", background: cat === active ? current.accentFrom : "rgba(255,255,255,0.15)" }} />
+          ))}
         </div>
       </div>
     </section>

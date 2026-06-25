@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaEnvelope, FaLinkedin, FaGithubSquare, FaPhone } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaGithubSquare } from "react-icons/fa";
 import { apiConnector } from "../services/apiConnector";
 import { contactusEndpoint } from "../services/api";
 import { CountryCode } from "../data/CountryCode";
 import { motion } from "framer-motion";
+import { Sparkles, ChevronDown, Search } from "lucide-react";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -13,8 +14,81 @@ const Contact = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitSuccessful },
   } = useForm();
+
+  /* ── Country code: name + code + search logic (UI/layout unchanged) ── */
+  const [dialCode, setDialCode]       = useState(CountryCode[0]); // same default the native <select> used (first item)
+  const [ccOpen, setCcOpen]           = useState(false);
+  const [ccQuery, setCcQuery]         = useState("");
+  const [ccHighlight, setCcHighlight] = useState(0);
+
+  const ccContainerRef = useRef(null);
+  const ccSearchRef    = useRef(null);
+
+  // Register a hidden field so "CountryCode" still lands in the submitted
+  // form data exactly like before — just set via setValue() now instead
+  // of the browser's native <select> value.
+  useEffect(() => {
+    register("CountryCode");
+    setValue("CountryCode", dialCode.code);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Typing filters the list by country name OR code, so matches are the
+  // only ones shown — effectively "shown first" instead of scrolling
+  const filteredCountries = useMemo(() => {
+    const q = ccQuery.trim().toLowerCase().replace("+", "");
+    if (!q) return CountryCode;
+    return CountryCode.filter(
+      (c) =>
+        c.country.toLowerCase().includes(q) ||
+        c.code.replace("+", "").includes(q)
+    );
+  }, [ccQuery]);
+
+  useEffect(() => setCcHighlight(0), [ccQuery, ccOpen]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const onClick = (e) => {
+      if (ccContainerRef.current && !ccContainerRef.current.contains(e.target)) {
+        setCcOpen(false);
+        setCcQuery("");
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  // Autofocus the search box when opened
+  useEffect(() => {
+    if (ccOpen) ccSearchRef.current?.focus();
+  }, [ccOpen]);
+
+  const pickCountry = (country) => {
+    setDialCode(country);
+    setValue("CountryCode", country.code);
+    setCcOpen(false);
+    setCcQuery("");
+  };
+
+  const onCcKeyDown = (e) => {
+    if (e.key === "Escape") {
+      setCcOpen(false);
+      setCcQuery("");
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setCcHighlight((h) => Math.min(h + 1, filteredCountries.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setCcHighlight((h) => Math.max(h - 1, 0));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (filteredCountries[ccHighlight]) pickCountry(filteredCountries[ccHighlight]);
+    }
+  };
 
   const submitContactForm = async (data) => {
     try {
@@ -22,12 +96,11 @@ const Contact = () => {
       const res = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data, {
         "Content-Type": "application/json",
       });
-      console.log(res);
-      
-      // Check if backend indicates success
       if (res.data?.success) {
         toast.success(res.data.message || "Message sent successfully!");
-        reset(); // optionally reset form here instead of useEffect
+        reset();
+        setDialCode(CountryCode[0]);
+        setValue("CountryCode", CountryCode[0].code);
       } else {
         toast.error(res.data?.message || "Something went wrong. Please try again.");
       }
@@ -43,239 +116,274 @@ const Contact = () => {
     if (isSubmitSuccessful) reset();
   }, [isSubmitSuccessful, reset]);
 
-  return (
-    <section id="contact" className="bg-black text-white py-16 sm:py-20 px-4 sm:px-6 md:px-16 lg:px-24 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob"></div>
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-2000"></div>
-      </div>
+  /* ── Shared input styles ────────────────────────────────────────────── */
+  const inputBase = {
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    color: "#fff",
+    borderRadius: "8px",
+    padding: "12px 16px",
+    width: "100%",
+    fontSize: "14px",
+    outline: "none",
+    transition: "border-color 0.2s",
+  };
+  /* Subtle teal border on focus — no glow/shadow */
+  const onFocus  = e => { e.target.style.borderColor = "rgba(45,212,191,0.45)"; };
+  const onBlur   = e => { e.target.style.borderColor = "rgba(255,255,255,0.12)"; };
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header Section */}
+  return (
+    <section
+      id="contact"
+      className="text-white py-20 px-4 sm:px-6 md:px-16 lg:px-24"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <div className="max-w-6xl mx-auto">
+
+        {/* ── Header ──────────────────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-14"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
-            Get in <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Touch</span>
+          <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-teal-300 mb-5"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            <Sparkles size={13} />
+            Get in Touch
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight"
+              style={{ fontFamily: "'Manrope', sans-serif" }}>
+            Let's{" "}
+            <span style={{
+              background: "linear-gradient(135deg, #2DD4BF, #8B5CF6)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>
+              Connect
+            </span>
           </h2>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Have an exciting project or opportunity? I'd love to hear from you. Let's create something amazing together.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Left: Info Section */}
+
+          {/* ── Left: Info cards ──────────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-8 flex flex-col justify-between"
+            className="space-y-6 flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-white">Let's Connect</h3>
-              <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
-                Reach out through the form or connect with me directly on these platforms. I'm always open to new opportunities and collaborations.
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-white"
+                  style={{ fontFamily: "'Manrope', sans-serif" }}>
+                Reach Out Directly
+              </h3>
+              <p className="text-slate-400 text-base leading-relaxed">
+                Connect through any of these platforms. I'm always open to new opportunities and collaborations.
               </p>
             </div>
 
-            {/* Contact Cards */}
-            <div className="space-y-4">
-              {/* Email Card */}
-              <motion.div
-                whileHover={{ x: 8, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
-                className="flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/50 group-hover:scale-110 transition-transform">
-                  <FaEnvelope className="text-white text-2xl" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email</p>
-                  <a
-                    href="mailto:mdakram12022002@gmail.com"
-                    className="text-white hover:text-blue-400 transition-colors break-all text-sm sm:text-base font-semibold"
-                  >
-                    mdakram12022002@gmail.com
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* LinkedIn Card */}
-              <motion.div
-                whileHover={{ x: 8, backgroundColor: "rgba(37, 99, 235, 0.1)" }}
-                className="flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 hover:border-blue-400 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-lg shadow-blue-600/50 group-hover:scale-110 transition-transform">
-                  <FaLinkedin className="text-white text-2xl" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">LinkedIn</p>
-                  <a
-                    href="https://www.linkedin.com/in/mdakram2002"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-blue-400 transition-colors text-base font-semibold"
-                  >
-                    Connect With Me
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* GitHub Card */}
-              <motion.div
-                whileHover={{ x: 8, backgroundColor: "rgba(75, 85, 99, 0.1)" }}
-                className="flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 hover:border-gray-400 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-gray-600 to-gray-500 flex items-center justify-center shadow-lg shadow-gray-600/50 group-hover:scale-110 transition-transform">
-                  <FaGithubSquare className="text-white text-2xl" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">GitHub</p>
-                  <a
-                    href="https://github.com/mdakram2002"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-gray-300 transition-colors text-base font-semibold"
-                  >
-                    View My Projects
-                  </a>
-                </div>
-              </motion.div>
+            <div className="space-y-3">
+              {[
+                { icon: FaEnvelope,     label: "Email",    display: "mdakram12022002@gmail.com",        href: "mailto:mdakram12022002@gmail.com",          from: "#2DD4BF", to: "#60A5FA" },
+                { icon: FaLinkedin,     label: "LinkedIn", display: "Connect With Me",                   href: "https://www.linkedin.com/in/mdakram2002",   from: "#8B5CF6", to: "#EC4899" },
+                { icon: FaGithubSquare, label: "GitHub",   display: "View My Projects",                  href: "https://github.com/mdakram2002",            from: "#6366F1", to: "#8B5CF6" },
+              ].map(({ icon: Icon, label, display, href, from, to }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-4 p-4 rounded-xl group transition-all duration-200"
+                  style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.08)" }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = `${from}44`}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"}
+                >
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
+                       style={{ background: `linear-gradient(135deg, ${from}22, ${to}22)`, border: `1px solid ${from}33` }}>
+                    <Icon style={{ color: from, fontSize: "18px" }} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-0.5">{label}</p>
+                    <span className="text-slate-200 text-sm font-semibold break-all">{display}</span>
+                  </div>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
-          {/* Right: Contact Form */}
+          {/* ── Right: Form ───────────────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative group"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500 group-hover:duration-200"></div>
-            <div className="relative bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 p-6 sm:p-8 rounded-2xl shadow-2xl">
+            <div className="p-6 sm:p-8 rounded-2xl"
+                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(12px)" }}>
               <form onSubmit={handleSubmit(submitContactForm)} className="space-y-5">
-                {/* Name Fields */}
+
+                {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {["firstName", "lastName"].map((field, idx) => (
-                    <motion.div key={idx} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }}>
-                      <label htmlFor={field} className="text-sm font-semibold text-gray-300 block mb-2">
-                        {field === "firstName" ? "First Name" : "Last Name"} <span className="text-red-500">*</span>
+                  {[
+                    { field: "firstName", label: "First Name", placeholder: "Akram" },
+                    { field: "lastName",  label: "Last Name",  placeholder: "Shaikh" },
+                  ].map(({ field, label, placeholder }) => (
+                    <div key={field}>
+                      <label htmlFor={field} className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                        {label} <span className="text-red-400">*</span>
                       </label>
                       <input
                         id={field}
-                        placeholder={field === "firstName" ? "Akram" : "Shaikh"}
-                        className="w-full px-4 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
-                        {...register(field, {
-                          required: `${field.replace(/^\w/, (c) => c.toUpperCase())} is required`,
-                        })}
+                        placeholder={placeholder}
+                        style={inputBase}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        {...register(field, { required: `${label} is required` })}
                       />
                       {errors[field] && (
-                        <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
-                          <span className="text-red-500">•</span>
-                          {errors[field]?.message}
+                        <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                          <span>•</span>{errors[field]?.message}
                         </p>
                       )}
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
                 {/* Email */}
-                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                  <label htmlFor="email" className="text-sm font-semibold text-gray-300 block mb-2">
-                    Email Address <span className="text-red-500">*</span>
+                <div>
+                  <label htmlFor="email" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                    Email Address <span className="text-red-400">*</span>
                   </label>
                   <input
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    className="w-full px-4 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                    id="email" type="email" placeholder="you@example.com"
+                    style={inputBase} onFocus={onFocus} onBlur={onBlur}
                     {...register("email", { required: "Email is required" })}
                   />
-                  {errors.email && (
-                    <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
-                      <span className="text-red-500">•</span>
-                      {errors.email.message}
-                    </p>
-                  )}
-                </motion.div>
+                  {errors.email && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><span>•</span>{errors.email.message}</p>}
+                </div>
 
-                {/* Phone */}
-                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                  <label htmlFor="contactNumber" className="text-sm font-semibold text-gray-300 block mb-2">
-                    Phone Number <span className="text-red-500">*</span>
+                {/* Phone — OPTIONAL */}
+                <div>
+                  <label htmlFor="contactNumber" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                    Phone Number <span className="text-slate-600">(optional)</span>
                   </label>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <select
-                      className="w-full sm:w-[110px] flex-shrink-0 px-3 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                      {...register("CountryCode", { required: true })}
-                    >
-                      {CountryCode.map((c, i) => (
-                        <option key={i} value={c.code}>
-                          {c.code}
-                        </option>
-                      ))}
-                    </select>
+
+                    {/* Country code — searchable by name, shows name + code in the list,
+                        same footprint (110px / inputBase look) as the old native <select> */}
+                    <div ref={ccContainerRef} className="relative" style={{ width: "110px", flexShrink: 0 }}>
+                      <button
+                        type="button"
+                        onClick={() => setCcOpen(o => !o)}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        style={{ ...inputBase, width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer" }}
+                      >
+                        <span>{dialCode.code}</span>
+                        <ChevronDown size={14} style={{ flexShrink: 0, transform: ccOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
+                      </button>
+
+                      {ccOpen && (
+                        <div
+                          className="absolute z-50 mt-2 rounded-lg overflow-hidden"
+                          style={{ width: "240px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 20px 40px -10px rgba(0,0,0,0.6)" }}
+                        >
+                          <div style={{ padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+                            <div className="relative">
+                              <Search size={13} style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#64748B" }} />
+                              <input
+                                ref={ccSearchRef}
+                                value={ccQuery}
+                                onChange={(e) => setCcQuery(e.target.value)}
+                                onKeyDown={onCcKeyDown}
+                                placeholder="Search country or code…"
+                                style={{ ...inputBase, padding: "8px 10px 8px 30px", fontSize: "13px" }}
+                              />
+                            </div>
+                          </div>
+
+                          <ul role="listbox" style={{ maxHeight: "220px", overflowY: "auto", padding: "4px 0" }}>
+                            {filteredCountries.length === 0 && (
+                              <li style={{ padding: "10px 14px", fontSize: "13px", color: "#64748B" }}>No matches found</li>
+                            )}
+                            {filteredCountries.map((c, i) => {
+                              const isSelected = c.code === dialCode.code && c.country === dialCode.country;
+                              const isHighlighted = i === ccHighlight;
+                              return (
+                                <li
+                                  key={c.country}
+                                  role="option"
+                                  aria-selected={isSelected}
+                                  onMouseEnter={() => setCcHighlight(i)}
+                                  onClick={() => pickCountry(c)}
+                                  style={{
+                                    display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px",
+                                    padding: "9px 14px", fontSize: "13px", cursor: "pointer",
+                                    color: isSelected ? "#5EEAD4" : "#CBD5E1",
+                                    background: isHighlighted ? "rgba(255,255,255,0.06)" : "transparent",
+                                  }}
+                                >
+                                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.country}</span>
+                                  <span style={{ flexShrink: 0, color: "#64748B" }}>{c.code}</span>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
 
                     <input
-                      id="contactNumber"
-                      type="tel"
-                      placeholder="1234567890"
-                      className="w-full px-4 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                      id="contactNumber" type="tel" placeholder="1234567890"
+                      style={{ ...inputBase, width: "100%" }}
+                      onFocus={onFocus} onBlur={onBlur}
                       {...register("contactNumber", {
-                        required: "Phone number is required",
                         minLength: { value: 8, message: "Too short" },
                         maxLength: { value: 10, message: "Too long" },
                       })}
                     />
                   </div>
-                  {errors.contactNumber && (
-                    <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
-                      <span className="text-red-500">•</span>
-                      {errors.contactNumber.message}
-                    </p>
-                  )}
-                </motion.div>
+                  {errors.contactNumber && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><span>•</span>{errors.contactNumber.message}</p>}
+                </div>
 
                 {/* Message */}
-                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                  <label htmlFor="message" className="text-sm font-semibold text-gray-300 block mb-2">
-                    Message <span className="text-red-500">*</span>
+                <div>
+                  <label htmlFor="message" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                    Message <span className="text-red-400">*</span>
                   </label>
                   <textarea
-                    id="message"
-                    rows="5"
+                    id="message" rows="4"
                     placeholder="Tell me about your project or opportunity..."
-                    className="w-full px-4 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                    style={{ ...inputBase, resize: "none" }}
+                    onFocus={onFocus} onBlur={onBlur}
                     {...register("message", { required: "Message is required" })}
                   />
-                  {errors.message && (
-                    <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
-                      <span className="text-red-500">•</span>
-                      {errors.message.message}
-                    </p>
-                  )}
-                </motion.div>
+                  {errors.message && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><span>•</span>{errors.message.message}</p>}
+                </div>
 
-                <motion.button
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                {/* Submit */}
+                <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 mt-2 font-semibold text-base bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 font-semibold text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ background: "linear-gradient(135deg, #2DD4BF, #8B5CF6)", color: "#0B0E1A" }}
+                  onMouseEnter={e => !loading && (e.currentTarget.style.filter = "brightness(1.08)")}
+                  onMouseLeave={e => (e.currentTarget.style.filter = "none")}
                 >
                   {loading ? (
                     <span className="flex items-center justify-center gap-2">
-                      <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                      Sending...
+                      <span className="inline-block w-4 h-4 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
+                      Sending…
                     </span>
-                  ) : (
-                    "Send Message"
-                  )}
-                </motion.button>
+                  ) : "Send Message"}
+                </button>
+
               </form>
             </div>
           </motion.div>

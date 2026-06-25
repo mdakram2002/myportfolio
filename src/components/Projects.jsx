@@ -1,4 +1,4 @@
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
 import Dr_Maya_Website from "../assets/Dr_Maya.png";
 import Mini_Event_Platform from "../assets/event.png";
 import StudyPoint from "../assets/banner.png";
@@ -10,158 +10,332 @@ const projects = [
     id: 1,
     name: "KnowBase",
     subtitle: "AI Knowledge Management Platform",
+    accentFrom: "#2DD4BF",
+    accentTo: "#60A5FA",
     details: [
-      "Spearheaded the development of a full-stack AI knowledge platform using Next.js, Node.js, Express, and MongoDB, designing a modular architecture that reduced feature development time by 21% and supported 5+ core modules.",
-      "Deployed 8+ RESTful APIs with JWT authentication, rate limiting, and input validation, enabling CRUD operations and integrating Google Gemini AI for automated text summarization and semantic search across 1,000+ documents.",
-      "Optimized platform performance by implementing MongoDB text indexes and batch processing pipelines, reducing search latency by 30% and ensuring relevance scoring for 95% of user queries."
+      "Built full-stack AI platform with modular service-layer architecture, integrating LLM APIs (Gemini) for automated summarization and semantic search across 1,000+ documents. Leveraged MongoDB text indexes and batch processing pipelines, reducing search latency by 30% and achieving 95% relevance scoring.",
+      "Deployed 8+ RESTful APIs with JWT authentication, rate limiting, and input validation. Designed modular architecture supporting 5+ core modules, reducing feature development time by 21% and enabling rapid iteration.",
     ],
-    technologies: "Next.js 14, React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Google Gemini API",
+    tech: ["Next.js 14", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "JWT", "Vercel"],
     image: Knowbase,
     github: "https://github.com/mdakram2002/knowbase-ai",
-    live: "https://knowbase-ai-client.vercel.app/"
+    live: "https://knowbase-ai-client.vercel.app/",
   },
   {
     id: 2,
     name: "StudyPoint",
     subtitle: "EdTech Application",
+    accentFrom: "#8B5CF6",
+    accentTo: "#EC4899",
     details: [
-      "Engineered an EdTech platform using React.js, Node.js, Express, and MongoDB following MVC architecture with Redux management, enabling instructors to create course content and students to enroll 100+ user base with progress tracking.",
-      "Developed 19+ RESTful APIs with JWT authentication, OTP, and role-based access control (RBAC); integrated Razorpay for payments, Cloudinary for video uploads, and Nodemailer for enrollment confirmations and password resets.",
-      "Deployed to Netlify with GitHub Actions CI/CD pipeline for zero-downtime updates; configured Redux slices for state management and optimized payment flow, reducing checkout steps from 5 to 3 and improving enrollment completion rate."
+      "Delivered full-featured EdTech platform following MVC architecture with Redux state management. Integrated Razorpay for payments, Cloudinary for video uploads, and Nodemailer for automated confirmations — reducing checkout steps from 5 to 3, boosting signups and supporting 100+ users.",
+      "Designed 19+ secure RESTful APIs with JWT, OTP, RBAC authentication. Deployed frontend to Netlify and backend to Azure App Service using Docker with CI/CD via GitHub Actions for zero-downtime updates. Optimized payment flow using React Hooks, boosting conversion rates.",
     ],
-    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB, Redux Toolkit, JWT Auth, Razorpay, Cloudinary, Nodemailer, Netlify",
+    tech: ["React", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "JWT + OTP + RBAC", "Razorpay", "Cloudinary", "Nodemailer", "Docker", "Azure App Service", "GitHub Actions CI/CD", "Netlify"],
     image: StudyPoint,
     github: "https://github.com/mdakram2002/Study_Point",
-    live: "https://studypointin.netlify.app/"
+    live: "https://studypointin.netlify.app/",
   },
   {
     id: 3,
     name: "DSA AI Assistant",
-    subtitle: "Chatbot Application",
+    subtitle: "AI-Powered DSA Chatbot",
+    accentFrom: "#F59E0B",
+    accentTo: "#EF4444",
     details: [
-      "Created an AI platform using React, Node.js, Express, and Gemini API, unifying DSA resources into a single system.",
-      "Delivered structured explanations with complexity analysis, formatted code examples, and interview-focused tips eliminating the need to juggle multiple sources (YouTube, LeetCode, textbooks).",
-      "Developed guest authentication (optional Google OAuth), persistent multi-session chat history, and real-time Markdown with syntax highlighting; enabled switching between 3+ concurrent chats, reducing login-to-learning friction by 60%."
+      "Engineered AI-powered DSA assistant using Gemini API that delivers structured explanations with complexity analysis, formatted code examples, and interview-focused tips — eliminating the need to juggle multiple sources (YouTube, LeetCode, textbooks) and reducing login-to-learning friction by 60%.",
+      "Implemented guest authentication with optional Google OAuth, multi-session chat history, and real-time Markdown with syntax highlighting. Enabled switching between 3+ concurrent chats, creating an all-in-one learning environment.",
     ],
-    technologies: "React, Tailwind CSS, Node.js, Express.js, MongoDB Atlas, Google OAuth 2.0, JWT, Gemini API, Vercel",
+    tech: ["React", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "Google OAuth 2.0", "Markdown", "Vercel"],
     image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
-    live: "https://dsa-chatbot-six.vercel.app/"
+    live: "https://dsa-chatbot-six.vercel.app/",
   },
   {
-  id: 4,
-  name: "Dr. Maya Reynolds – Therapy Homepage",
-  subtitle: "Squarespace template clone + redesign",
-  details: [
-    "Cloned the Lilac Squarespace template homepage with pixel-perfect layout, responsive grid system, and Tailwind CSS utilities to ensure consistent spacing and hierarchy across devices.",
-    "Redesigned the theme with a calming, professional color palette (primary, secondary, accent) while maintaining WCAG-compliant contrast, warm typography, and glassmorphism UI effects.",
-    "Rewrote all copy for Dr. Maya Reynolds (imaginary therapist) – headlines, service descriptions, and CTAs – using location-based SEO keywords (Santa Monica, CA) and a warm, human therapeutic tone.",
-    "Added a custom 'Our Office' section (not in original template) featuring real office imagery, supportive copy about safety and privacy, and full visual/typographic consistency with the rest of the site.",
-  ],
-  technologies: "Next.js 14, Tailwind CSS, Vercel",
-  image: Dr_Maya_Website,
-  github: "https://github.com/mdakram2002/dr-maya-therapy",
-  live: "https://dr-maya-therapy-chi.vercel.app",
-},
-{
-  id: 5,
-  name: "Mini Event Platform",
-  subtitle: "Full‑stack MERN event management with dark mode",
-  details: [
-    "Built a complete event management platform using MERN stack (MongoDB, Express, React, Node.js) with JWT authentication, role‑based access, Google/GitHub OAuth, and bcrypt password hashing.",
-    "Implemented full CRUD for events – rich creation with Cloudinary image upload, markdown descriptions, real‑time RSVP system, capacity enforcement using MongoDB transactions, and visual fill indicators.",
-    "Added seamless dark/light mode, responsive mobile‑first design, search/filtering by title or location, personal dashboard with event statistics, and separate tabs for created vs. attending events.",
-    "Deployed frontend to Vercel, backend to Railway, with API rate limiting, CORS configuration, error handling, and toast notifications for instant user feedback.",
-  ],
-  technologies: "MERN (MongoDB, Express, React, Node.js), Tailwind CSS, Cloudinary, JWT, Vercel, Railway",
-  image: Mini_Event_Platform,
-  github: "https://github.com/mdakram2002/mini-event-platform",
-  live: "https://mini-event-platform-ten.vercel.app",
-}
+    id: 4,
+    name: "Dr. Maya Reynolds",
+    subtitle: "Therapy Homepage — Squarespace Redesign",
+    accentFrom: "#10B981",
+    accentTo: "#2DD4BF",
+    details: [
+      "Cloned the Lilac Squarespace template homepage with pixel-perfect layout, responsive grid system, and Tailwind CSS utilities to ensure consistent spacing and hierarchy across devices.",
+      "Redesigned the theme with a calming, professional color palette while maintaining WCAG-compliant contrast, warm typography, and glassmorphism UI effects.",
+      "Added a custom 'Our Office' section featuring real office imagery, supportive copy about safety and privacy, and full visual/typographic consistency with the rest of the site.",
+    ],
+    tech: ["Next.js 14", "Tailwind CSS", "Vercel"],
+    image: Dr_Maya_Website,
+    github: "https://github.com/mdakram2002/dr-maya-therapy",
+    live: "https://dr-maya-therapy-chi.vercel.app",
+  },
+  {
+    id: 5,
+    name: "Mini Event Platform",
+    subtitle: "Full-stack MERN Event Management",
+    accentFrom: "#6366F1",
+    accentTo: "#8B5CF6",
+    details: [
+      "Built a complete event management platform using MERN stack with JWT authentication, role-based access, Google/GitHub OAuth, and bcrypt password hashing.",
+      "Implemented full CRUD for events — rich creation with Cloudinary image upload, markdown descriptions, real-time RSVP system, capacity enforcement using MongoDB transactions, and visual fill indicators.",
+      "Deployed frontend to Vercel, backend to Railway, with API rate limiting, CORS configuration, error handling, and toast notifications for instant user feedback.",
+    ],
+    tech: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "Cloudinary", "JWT", "Vercel"],
+    image: Mini_Event_Platform,
+    github: "https://github.com/mdakram2002/mini-event-platform",
+    live: "https://mini-event-platform-ten.vercel.app",
+  },
 ];
 
 const Projects = () => {
-  const featured = projects[0];
-
   return (
-    <section id="project" className="bg-black text-white py-20 overflow-x-hidden">
-      <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-24 max-w-full">
-        <h2 className="text-4xl font-bold text-center mb-12">PROJECTS</h2>
+    <section
+      id="projects"
+      className="pj-root min-h-screen w-full bg-slate-950 text-white py-20 overflow-x-hidden relative"
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
 
-        <div className="space-y-12">
+        .pj-display { font-family: 'Manrope', sans-serif; }
+        .pj-body    { font-family: 'Inter', sans-serif; }
+
+        .pj-grid {
+          background-image:
+            linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+          background-size: 56px 56px;
+          mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.5) 80%, transparent);
+        }
+
+        .pj-pill {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* project card */
+        .pj-card {
+          border: 1px solid rgba(255,255,255,0.08);
+          background: rgba(255,255,255,0.025);
+          backdrop-filter: blur(12px);
+          transition: border-color .35s, transform .3s;
+        }
+        .pj-card:hover { transform: translateY(-3px); }
+
+        /* image container — fixed height, fills fully */
+        .pj-img-wrap {
+          position: relative;
+          overflow: hidden;
+          height: 220px;
+          flex-shrink: 0;
+        }
+        @media (min-width: 1024px) {
+          .pj-img-wrap {
+            height: 100%;
+            min-height: 240px;
+            max-height: 320px;
+          }
+        }
+        .pj-img-wrap img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
+          transition: transform .5s ease, filter .4s ease;
+        }
+        .pj-card:hover .pj-img-wrap img { transform: scale(1.04); filter: brightness(0.45); }
+
+        /* hover overlay */
+        .pj-overlay {
+          position: absolute; inset: 0;
+          display: flex; align-items: center; justify-content: center;
+          opacity: 0; transition: opacity .3s;
+        }
+        .pj-card:hover .pj-overlay { opacity: 1; }
+
+        /* live button */
+        .pj-live-btn {
+          width: 44px; height: 44px; border-radius: 50%;
+          background: rgba(255,255,255,0.15);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,0.3);
+          display: flex; align-items: center; justify-content: center;
+          color: #fff; transition: background .2s, transform .2s;
+        }
+        .pj-live-btn:hover { background: rgba(255,255,255,0.28); transform: scale(1.1); }
+
+        /* bullet */
+        .pj-bullet {
+          width: 5px; height: 5px; border-radius: 50%;
+          flex-shrink: 0; margin-top: 7px;
+        }
+
+        /* tech chip */
+        .pj-chip {
+          border-radius: 999px;
+          padding: 3px 10px;
+          font-size: 11px;
+          font-weight: 600;
+          border: 1px solid;
+        }
+
+        /* github btn */
+        .pj-gh-btn {
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          transition: background .2s, border-color .2s;
+        }
+        .pj-gh-btn:hover {
+          background: rgba(255,255,255,0.12);
+          border-color: rgba(255,255,255,0.22);
+        }
+
+        /* index watermark */
+        .pj-index {
+          font-family: 'Manrope', sans-serif;
+          font-weight: 800;
+          font-size: 56px;
+          line-height: 1;
+          position: absolute;
+          top: -10px; right: 16px;
+          pointer-events: none;
+          user-select: none;
+        }
+        @media (max-width: 1024px) {
+          .pj-index { font-size: 40px; top: -6px; right: 12px; }
+        }
+      `}</style>
+
+      {/* ambient glows */}
+      <div className="absolute -top-20 right-0 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 -left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 pj-grid pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+
+        {/* Section header */}
+        <div className="mb-12">
+          <div className="pj-pill inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 text-sm pj-body text-teal-300">
+            <Sparkles size={13} />
+            <span>Selected Work</span>
+          </div>
+          <h2 className="pj-display font-extrabold text-4xl md:text-5xl tracking-tight mb-2">
+            Things I've Built
+          </h2>
+          <p className="pj-body text-slate-400 text-base max-w-xl">
+            End-to-end projects — from database schema to deployed UI, each shipped to production.
+          </p>
+        </div>
+
+        {/* Project list */}
+        <div className="space-y-7">
           {projects.map((project, idx) => (
             <div
               key={project.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch rounded-3xl border border-gray-800 bg-gradient-to-br from-slate-900 via-gray-950 to-black overflow-hidden shadow-2xl"
+              className="pj-card rounded-2xl overflow-hidden"
             >
-              {/* Image Section with Hover Overlay */}
-              <div className="relative w-full h-full min-h-80 bg-black overflow-hidden group rounded-l-3xl">
-                <div className="relative w-full h-full aspect-[16/9] sm:aspect-[4/3] md:aspect-auto">
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-full object-contain object-center transition-all duration-500 group-hover:blur-sm"
-                  />
-                </div>
+              <div className={`grid grid-cols-1 lg:grid-cols-[2fr_3fr] items-stretch ${idx % 2 !== 0 ? "lg:[direction:rtl]" : ""}`}>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
-                    aria-label="View live project"
-                  >
-                    <ExternalLink className="w-7 h-7" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Content Section */}
-              <div className="flex flex-col justify-between p-4 md:p-6 lg:p-8">
-                {/* Title with GitHub link in top-right */}
-                <div>
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-fuchsia-400 leading-tight">
-                      {project.name}
-                    </h3>
+                {/* Image */}
+                <div className="pj-img-wrap bg-slate-900" style={{ direction: "ltr" }}>
+                  <img src={project.image} alt={project.name} />
+                  <div className="pj-overlay">
                     <a
-                      href={project.github}
+                      href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 transition flex-shrink-0 mt-1"
-                      aria-label="View GitHub repository"
+                      className="pj-live-btn"
+                      aria-label={`View ${project.name} live`}
                     >
-                      <Github className="w-5 h-5 text-white" />
+                      <ExternalLink size={18} />
                     </a>
                   </div>
-
-                  <p className="text-sm sm:text-base text-gray-400 mb-4">{project.subtitle}</p>
-
-                  {/* Details - Made text smaller */}
-                  <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 text-xs sm:text-sm">
-                    {project.details.map((detail, lineIdx) => (
-                      <li key={lineIdx} className="line-clamp-2">{detail}</li>
-                    ))}
-                  </ul>
                 </div>
 
-                {/* Tech Stack */}
-                <div>
-                  <p className="text-gray-400 text-xs mb-4">
-                    <span className="font-semibold text-gray-300">Tech Stack:</span> {project.technologies}
-                  </p>
+                {/* Content */}
+                <div className="flex flex-col justify-between p-5 md:p-7 relative" style={{ direction: "ltr" }}>
 
-                  {/* View Project Button - for direct access */}
-                  {/* <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold hover:opacity-90 transition"
+                  {/* Watermark index */}
+                  <span
+                    className="pj-index"
+                    style={{ color: `${project.accentFrom}14` }}
                   >
-                    View Project
-                  </a> */}
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+
+                  <div>
+                    {/* Title row */}
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <div>
+                        <div
+                          className="h-0.5 w-7 rounded-full mb-2.5"
+                          style={{ background: `linear-gradient(90deg, ${project.accentFrom}, ${project.accentTo})` }}
+                        />
+                        <h3
+                          className="pj-display font-extrabold text-xl sm:text-2xl leading-tight"
+                          style={{
+                            background: `linear-gradient(135deg, ${project.accentFrom}, ${project.accentTo})`,
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                          }}
+                        >
+                          {project.name}
+                        </h3>
+                        <p className="pj-body text-xs text-slate-400 mt-0.5">{project.subtitle}</p>
+                      </div>
+
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View on GitHub"
+                        className="pj-gh-btn flex-shrink-0 p-2 rounded-lg mt-0.5"
+                      >
+                        <Github size={16} className="text-slate-300" />
+                      </a>
+                    </div>
+
+                    {/* Bullets */}
+                    <ul className="mt-3.5 space-y-2 mb-4">
+                      {project.details.map((d, dIdx) => (
+                        <li key={dIdx} className="flex items-start gap-2.5 pj-body text-xs text-slate-300 leading-relaxed">
+                          <span
+                            className="pj-bullet"
+                            style={{ background: `linear-gradient(135deg, ${project.accentFrom}, ${project.accentTo})` }}
+                          />
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="flex flex-col gap-3 pt-4 border-t border-white/[0.07]">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="pj-chip pj-body"
+                          style={{
+                            background: `${project.accentFrom}10`,
+                            borderColor: `${project.accentFrom}30`,
+                            color: project.accentFrom,
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pj-body inline-flex items-center gap-1.5 text-xs font-semibold w-fit transition-opacity hover:opacity-75"
+                      style={{ color: project.accentFrom }}
+                    >
+                      View live project <ArrowRight size={12} />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -171,4 +345,5 @@ const Projects = () => {
     </section>
   );
 };
+
 export default Projects;

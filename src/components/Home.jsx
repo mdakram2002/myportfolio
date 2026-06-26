@@ -1,5 +1,6 @@
 import { Sparkles, ArrowRight } from "lucide-react";
 import { NAV_HEIGHT } from "./Navbar";
+import PortfolioAI from "./PortfolioAI";
 
 const stats = [
   { value: "2+",   label: "Years building web apps" },
@@ -45,7 +46,7 @@ const Home = () => {
       `}</style>
 
       {/* pt-7 (28px) — was pt-20 (80px); ~65% smaller gap below the fixed navbar */}
-      <main className="max-w-7xl mx-auto px-6 md:px-10 pt-7 pb-10">
+      <main className="max-w-7xl mx-auto px-6 md:px-10 pt-5 pb-24">
         <div className="max-w-3xl">
 
           <div
@@ -102,6 +103,9 @@ const Home = () => {
           ))}
         </div>
       </main>
+
+      {/* Floating AI assistant — portals itself to document.body, open by default */}
+      <PortfolioAI />
     </div>
   );
 };

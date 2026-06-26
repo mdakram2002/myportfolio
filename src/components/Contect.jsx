@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaEnvelope, FaLinkedin, FaGithubSquare } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaGithubSquare, FaMapMarkerAlt } from "react-icons/fa";
 import { apiConnector } from "../services/apiConnector";
 import { contactusEndpoint } from "../services/api";
 import { CountryCode } from "../data/CountryCode";
 import { motion } from "framer-motion";
 import { Sparkles, ChevronDown, Search } from "lucide-react";
+import ProfilePhoto from "../assets/profile.jpeg";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -132,6 +133,14 @@ const Contact = () => {
   const onFocus  = e => { e.target.style.borderColor = "rgba(45,212,191,0.45)"; };
   const onBlur   = e => { e.target.style.borderColor = "rgba(255,255,255,0.12)"; };
 
+  /* ── Left column data: contact links + static info cards ────────────── */
+  const infoCards = [
+    { icon: FaEnvelope,     label: "Email",    value: "mdakram12022002@gmail.com",            href: "mailto:mdakram12022002@gmail.com",        from: "#2DD4BF", to: "#60A5FA" },
+    { icon: FaLinkedin,     label: "LinkedIn", value: "Connect with me",                       href: "https://www.linkedin.com/in/mdakram2002", from: "#8B5CF6", to: "#EC4899" },
+    { icon: FaGithubSquare, label: "GitHub",   value: "View my projects",                      href: "https://github.com/mdakram2002",          from: "#6366F1", to: "#8B5CF6" },
+    { icon: FaMapMarkerAlt, label: "Location", value: "India — open to remote opportunities",  href: null,                                       from: "#F59E0B", to: "#F97316" },
+  ];
+
   return (
     <section
       id="contact"
@@ -154,13 +163,13 @@ const Contact = () => {
           </span>
           <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight"
               style={{ fontFamily: "'Manrope', sans-serif" }}>
-            Let's{" "}
+            Hire{" "}
             <span style={{
               background: "linear-gradient(135deg, #2DD4BF, #8B5CF6)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>
-              Connect
+              Me
             </span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -170,55 +179,90 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
-          {/* ── Left: Info cards ──────────────────────────────────────── */}
+          {/* ── Left: Profile card + info cards (redesigned) ───────────── */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6 flex flex-col justify-between"
+            className="space-y-4"
           >
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-white"
-                  style={{ fontFamily: "'Manrope', sans-serif" }}>
-                Reach Out Directly
-              </h3>
-              <p className="text-slate-400 text-base leading-relaxed">
-                Connect through any of these platforms. I'm always open to new opportunities and collaborations.
-              </p>
+            {/* Profile card — photo, "available for hire" badge, name, blurb */}
+            <div
+              className="flex items-center gap-5 p-5 rounded-2xl"
+              style={{
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(45,212,191,0.25)",
+                boxShadow: "0 0 24px rgba(45,212,191,0.10)",
+              }}
+            >
+              <div className="relative flex-shrink-0">
+                <img
+                  src={ProfilePhoto}
+                  alt="Mohammad Akram"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover"
+                  style={{ border: "1px solid rgba(45,212,191,0.35)" }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.nextSibling.style.display = "flex";
+                  }}
+                />
+                {/* Fallback avatar shown only if ProfilePhoto fails to load */}
+                <div
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl items-center justify-center text-2xl font-extrabold"
+                  style={{ display: "none", background: "linear-gradient(135deg, #2DD4BF, #8B5CF6)", color: "#0B0E1A" }}
+                >
+                  MA
+                </div>
+              </div>
+
+              <div className="min-w-0">
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#2DD4BF" }}>
+                  Available for Hire
+                </p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1" style={{ fontFamily: "'Manrope', sans-serif" }}>
+                  Mohammad Akram
+                </h3>
+                <p className="text-slate-400 text-sm leading-snug">
+                  Full-stack developer focused on scalable web apps, backend systems, and CI/CD-driven delivery.
+                </p>
+              </div>
             </div>
 
+            {/* Info cards */}
             <div className="space-y-3">
-              {[
-                { icon: FaEnvelope,     label: "Email",    display: "mdakram12022002@gmail.com",        href: "mailto:mdakram12022002@gmail.com",          from: "#2DD4BF", to: "#60A5FA" },
-                { icon: FaLinkedin,     label: "LinkedIn", display: "Connect With Me",                   href: "https://www.linkedin.com/in/mdakram2002",   from: "#8B5CF6", to: "#EC4899" },
-                { icon: FaGithubSquare, label: "GitHub",   display: "View My Projects",                  href: "https://github.com/mdakram2002",            from: "#6366F1", to: "#8B5CF6" },
-              ].map(({ icon: Icon, label, display, href, from, to }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center gap-4 p-4 rounded-xl group transition-all duration-200"
-                  style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.08)" }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = `${from}44`}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"}
-                >
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
-                       style={{ background: `linear-gradient(135deg, ${from}22, ${to}22)`, border: `1px solid ${from}33` }}>
-                    <Icon style={{ color: from, fontSize: "18px" }} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-0.5">{label}</p>
-                    <span className="text-slate-200 text-sm font-semibold break-all">{display}</span>
-                  </div>
-                </motion.a>
-              ))}
+              {infoCards.map(({ icon: Icon, label, value, href, from, to }) => {
+                const CardTag = href ? motion.a : motion.div;
+                const linkProps = href
+                  ? { href, target: href.startsWith("http") ? "_blank" : undefined, rel: "noopener noreferrer" }
+                  : {};
+                return (
+                  <CardTag
+                    key={label}
+                    {...linkProps}
+                    whileHover={href ? { x: 5 } : {}}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-4 p-4 rounded-xl group transition-all duration-200"
+                    style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.08)" }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = `${from}44`}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"}
+                  >
+                    <div
+                      className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
+                      style={{ background: `linear-gradient(135deg, ${from}22, ${to}22)`, border: `1px solid ${from}33` }}
+                    >
+                      <Icon style={{ color: from, fontSize: "18px" }} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-0.5">{label}</p>
+                      <span className="text-slate-200 text-sm font-semibold break-words">{value}</span>
+                    </div>
+                  </CardTag>
+                );
+              })}
             </div>
           </motion.div>
 
-          {/* ── Right: Form ───────────────────────────────────────────── */}
+          {/* ── Right: Form (unchanged — design, layout, and logic intact) ── */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}

@@ -8,7 +8,7 @@ exports.contact = async (req, res) => {
     try {
         const { firstName, lastName, email, contactNumber, message } = req.body;
 
-        if (!firstName || !lastName || !email || contactNumber || !message) {
+        if (!firstName || !lastName || !email || !contactNumber || !message) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required.",

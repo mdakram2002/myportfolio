@@ -3,18 +3,17 @@ import { createPortal } from "react-dom";
 import { FileText, Menu, X } from "lucide-react";
 import Resume from "../assets/Mohammad_Akram.pdf";
 
-// Exported so Home (and any other section) can offset its top padding
-// by exactly the navbar's height, since the navbar is position:fixed
-// and sits outside the normal document flow.
-export const NAV_HEIGHT = 80;
+// Exported so Home (and any other section) can offset its top padding.
+// The navbar now floats with a top margin instead of sitting flush
+// against the edge, so this accounts for that offset + the pill height.
+export const NAV_HEIGHT = 96;
 
 const navLinks = [
-  { label: "About",       href: "#home" },
-  { label: "Skills",     href: "#skills" },
+  { label: "Home",       href: "#home" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects",   href: "#projects" },
   { label: "Education",  href: "#education" },
-  { label: "Contact",    href: "#contact" },
+  { label: "Projects",   href: "#projects" },
+  { label: "Skills",     href: "#skills" },
 ];
 
 const Navbar = () => {
@@ -27,7 +26,7 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
-  // Smooth scroll to a section, accounting for the fixed navbar's height
+  // Smooth scroll to a section, accounting for the floating navbar's height
   const scrollTo = (e, href) => {
     e.preventDefault();
     setMenuOpen(false);
@@ -59,123 +58,177 @@ const Navbar = () => {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
-        .ahn-display { font-family: 'Manrope', sans-serif; }
-        .ahn-body    { font-family: 'Inter', sans-serif; }
+        .ahn-body { font-family: 'Inter', sans-serif; }
 
-        /* Fixed navbar — pinned directly to the viewport via document.body portal,
-           so no parent's transform/filter/overflow can ever drag it along on scroll */
+        /* Small decorative handle floating just above the pill */
+        .ahn-handle {
+          position: fixed;
+          top: 8px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 9999;
+          width: 36px;
+          height: 4px;
+          border-radius: 999px;
+          background: rgba(255,255,255,0.22);
+        }
+
+        /* The floating, centered pill navbar — glass background, not full-width */
         .ahn-navbar {
           position: fixed;
-          top: 0; left: 0; right: 0;
-          height: 80px;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
           z-index: 9999;
-          background-color: #020817;
-          border-bottom: 1px solid rgba(255,255,255,0.07);
           display: flex;
           align-items: center;
+          gap: 10px;
+          padding: 8px 10px 8px 8px;
+          border-radius: 999px;
+          background: rgba(15, 23, 42, 0.55);
+          border: 1px solid rgba(255,255,255,0.08);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.35);
         }
+
+        .ahn-links { align-items: center; gap: 2px; }
 
         .ahn-nav-link {
-          color: #94A3B8;
-          transition: color .2s, background .2s;
-          border-radius: 999px;
-          padding: 8px 16px;
+          color: #CBD5E1;
           font-size: 14px;
           font-weight: 500;
+          padding: 10px 18px;
+          border-radius: 999px;
           white-space: nowrap;
+          transition: color .2s, background .2s;
         }
-        .ahn-nav-link:hover { color: #F1F5F9; background: rgba(255,255,255,0.05); }
-        .ahn-nav-active     { color: #0B0E1A !important; background: linear-gradient(135deg,#2DD4BF,#8B5CF6) !important; }
+        .ahn-nav-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        /* Active state — existing teal→violet brand gradient, dialed down to
+           the same low opacity/weight as the muted pill in the reference image */
+        .ahn-nav-active {
+          color: #fff !important;
+          background: linear-gradient(135deg, rgba(45,212,191,0.35), rgba(139,92,246,0.35)) !important;
+        }
 
-        .ahn-resume {
-          border: 1px solid rgba(255,255,255,0.18);
-          color: #E2E8F0;
-          padding: 10px 20px;
-          border-radius: 999px;
-          font-size: 14px;
-          font-weight: 500;
+        /* Circular resume button — replaces the dark/light toggle slot */
+        .ahn-resume-circle {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(241,245,249,0.92);
+          color: #0B0E1A;
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          transition: background .2s, border-color .2s;
-          cursor: pointer;
-          text-decoration: none;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: transform .2s, background .2s;
         }
-        .ahn-resume:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.32); }
+        .ahn-resume-circle:hover { background: #fff; transform: scale(1.06); }
+
+        /* "Hire Me" pill — sits slightly taller than the bar, same pop-out feel as the reference */
+        .ahn-hire {
+          background: #fff;
+          color: #0B0E1A;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 14px 22px;
+          border-radius: 999px;
+          display: inline-flex;
+          align-items: center;
+          white-space: nowrap;
+          margin: -6px 0;
+          transition: transform .2s, filter .2s;
+        }
+        .ahn-hire:hover { filter: brightness(0.96); transform: scale(1.03); }
+
+        /* Mobile hamburger toggle (sits inside the pill in place of the link row) */
+        .ahn-burger {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          color: #CBD5E1;
+          transition: background .2s, color .2s;
+        }
+        .ahn-burger:hover { background: rgba(255,255,255,0.06); color: #fff; }
 
         .ahn-mobile-menu {
           position: fixed;
-          top: 80px; left: 0; right: 0;
+          top: 84px;
+          left: 50%;
+          transform: translateX(-50%);
           z-index: 9998;
-          background: #020817;
-          border-bottom: 1px solid rgba(255,255,255,0.07);
-          padding: 16px 24px 20px;
+          width: 220px;
+          background: rgba(15, 23, 42, 0.92);
+          border: 1px solid rgba(255,255,255,0.1);
+          backdrop-filter: blur(16px);
+          border-radius: 16px;
+          padding: 10px;
           display: flex;
           flex-direction: column;
           gap: 4px;
+          box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
         }
         .ahn-mobile-link {
-          padding: 10px 16px;
+          padding: 10px 14px;
           border-radius: 10px;
-          color: #94A3B8;
-          font-size: 15px;
+          color: #CBD5E1;
+          font-size: 14px;
           font-weight: 500;
+          text-align: center;
           transition: color .15s, background .15s;
         }
-        .ahn-mobile-link:hover { color: #F1F5F9; background: rgba(255,255,255,0.05); }
-        .ahn-mobile-active { color: #0B0E1A !important; background: linear-gradient(135deg,#2DD4BF,#8B5CF6) !important; }
+        .ahn-mobile-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .ahn-mobile-active {
+          color: #fff !important;
+          background: linear-gradient(135deg, rgba(45,212,191,0.35), rgba(139,92,246,0.35)) !important;
+        }
       `}</style>
 
+      <div className="ahn-handle" />
+
       <header className="ahn-navbar">
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
-
-          <a href="#home" onClick={(e) => scrollTo(e, "#home")} className="flex items-center gap-3 no-underline">
-            <div className="ahn-display w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-violet-500 flex items-center justify-center text-slate-950 font-extrabold text-sm flex-shrink-0">
-              MA
-            </div>
-            <div className="leading-tight">
-              <p className="ahn-display font-bold text-sm text-white">Mohammad Akram</p>
-              <p className="ahn-body text-xs text-slate-400">Full Stack Engineer</p>
-            </div>
-          </a>
-
-          <nav
-            className="hidden md:flex items-center gap-0.5 rounded-full px-1.5 py-1.5"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}
-          >
-            {navLinks.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                onClick={(e) => scrollTo(e, href)}
-                className={`ahn-body ahn-nav-link ${active === href.replace("#", "") ? "ahn-nav-active" : ""}`}
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            {/* Uses the imported PDF module (Resume), not a raw string path —
-                the bundler resolves this to the correct hashed asset URL. */}
+        {/* Desktop links */}
+        <nav className="ahn-links hidden md:flex items-center">
+          {navLinks.map(({ label, href }) => (
             <a
-              href={Resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ahn-resume ahn-body"
+              key={label}
+              href={href}
+              onClick={(e) => scrollTo(e, href)}
+              className={`ahn-body ahn-nav-link ${active === href.replace("#", "") ? "ahn-nav-active" : ""}`}
             >
-              <FileText size={15} /> Resume
+              {label}
             </a>
+          ))}
+        </nav>
 
-            <button
-              className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
-              onClick={() => setMenuOpen((o) => !o)}
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
-        </div>
+        {/* Mobile hamburger (replaces the link row on small screens) */}
+        <button
+          className="ahn-burger inline-flex items-center justify-center md:hidden"
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        {/* Resume — replaces the dark/light mode toggle */}
+        <a
+          href={Resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ahn-resume-circle"
+          aria-label="Download résumé"
+        >
+          <FileText size={17} />
+        </a>
+
+        <a
+          href="#contact"
+          onClick={(e) => scrollTo(e, "#contact")}
+          className="ahn-hire ahn-body"
+        >
+          Hire Me
+        </a>
       </header>
 
       {menuOpen && (
@@ -190,27 +243,14 @@ const Navbar = () => {
               {label}
             </a>
           ))}
-          <a
-            href={Resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ahn-resume ahn-body mt-2 justify-center"
-          >
-            <FileText size={15} /> Resume
-          </a>
         </div>
       )}
     </>
   );
 
   // Render straight into <body>, bypassing wherever <Navbar /> happens to
-  // sit in the component tree. This is the fix: if any parent wrapper in
-  // the app (a page-transition div, an AOS/Framer Motion container, an
-  // "overflow-x-hidden" shell, etc.) has a transform/filter/perspective
-  // style, the browser makes THAT element the positioning context for any
-  // position:fixed descendant — so the navbar ends up "fixed" to that
-  // moving wrapper instead of the real viewport, and appears to scroll.
-  // Portalling to document.body sidesteps that entirely.
+  // sit in the component tree, so no parent's transform/filter/overflow
+  // can ever interfere with this fixed positioning.
   if (!mounted) return null;
   return createPortal(navbarUI, document.body);
 };

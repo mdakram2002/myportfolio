@@ -1,11 +1,11 @@
 import { useState } from "react";
 import {
-  Code2, Server, Database, Bot, CreditCard, Wrench, FileCode2,
+  Code2, Server, Database, Bot, Wrench, FileCode2,
   ArrowRight, Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// 7 categories total. Only 3 are ever visible as cards at once (see `slots` state below).
+// 6 categories total. Only 3 are ever visible as cards at once (see `slots` state below).
 const skillsData = {
   Frontend: {
     icon: Code2, accentFrom: "#2DD4BF", accentTo: "#60A5FA",
@@ -25,9 +25,9 @@ const skillsData = {
     skills: ["MongoDB", "PostgreSQL", "SQL", "Redis", "Schema Design", "Query Optimization", "Firebase"],
     projects: "6+",
   },
-  "AI Payment": {
+  "AI & Payments": {
     icon: Bot, accentFrom: "#F59E0B", accentTo: "#EF4444",
-    tagline: "LLMs, Gateways and uploads wired into real product flows",
+    tagline: "LLMs, gateways and uploads wired into real product flows",
     skills: ["Gemini API", "OpenAI API", "LLM Integration", "Razorpay", "Cloudinary", "Nodemailer"],
     projects: "4+",
   },
@@ -68,7 +68,6 @@ const Skills = () => {
       <style>{`
         .sk-tab { border: 1px solid rgba(255,255,255,0.1); color: #94A3B8; background: transparent; transition: all .2s; }
         .sk-tab:hover { color: #E2E8F0; border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.04); }
-        .sk-tab-active { color: #0B0E1A !important; border-color: transparent !important; }
 
         .sk-card { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.025); backdrop-filter: blur(12px); }
         .sk-chip { border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.03); color: #CBD5E1; transition: border-color .2s, background .2s; }
@@ -94,11 +93,11 @@ const Skills = () => {
           </div>
           <h2 className="font-display font-extrabold text-4xl md:text-5xl tracking-tight mb-3">What I Build With</h2>
           <p className="font-body text-slate-400 text-lg max-w-3xl">
-            7 areas, 3 cards on screen at a time — click any tab below to swap it into view.
+            6 areas, 3 cards on screen at a time — click any tab below to swap it into view.
           </p>
         </div>
 
-        {/* Tabs — all 7 categories; the 3 currently shown as cards are highlighted */}
+        {/* Tabs — all categories; the 3 currently shown as cards are highlighted with a soft tint, not a solid fill */}
         <div className="sk-fade sk-d2 flex items-center justify-center flex-wrap gap-2 mb-10">
           {ALL_CATEGORIES.map((cat) => {
             const d = skillsData[cat];
@@ -108,8 +107,12 @@ const Skills = () => {
               <button
                 key={cat}
                 onClick={() => selectCategory(cat)}
-                className={`sk-tab${isVisible ? " sk-tab-active" : ""} font-body inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold`}
-                style={isVisible ? { background: `linear-gradient(135deg, ${d.accentFrom}, ${d.accentTo})` } : {}}
+                className="sk-tab font-body inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold"
+                style={isVisible ? {
+                  background: `linear-gradient(135deg, ${d.accentFrom}26, ${d.accentTo}26)`,
+                  borderColor: `${d.accentFrom}4D`,
+                  color: d.accentFrom,
+                } : {}}
               >
                 <CatIcon size={14} />{cat}
               </button>
@@ -132,11 +135,11 @@ const Skills = () => {
                   exit={{ opacity: 0, scale: 0.92 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   className="sk-card rounded-3xl p-6 md:p-7 flex flex-col"
-                  style={{ borderColor: `${d.accentFrom}40`, boxShadow: `0 0 40px -10px ${d.accentFrom}33` }}
+                  style={{ borderColor: `${d.accentFrom}33`, boxShadow: `0 0 40px -10px ${d.accentFrom}1A` }}
                 >
                   <div className="flex items-start gap-4 mb-5">
                     <div className="w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0"
-                         style={{ background: `linear-gradient(135deg, ${d.accentFrom}22, ${d.accentTo}22)`, border: `1px solid ${d.accentFrom}40` }}>
+                         style={{ background: `linear-gradient(135deg, ${d.accentFrom}1A, ${d.accentTo}1A)`, border: `1px solid ${d.accentFrom}33` }}>
                       <Icon size={20} style={{ color: d.accentFrom }} />
                     </div>
                     <div>
@@ -156,7 +159,7 @@ const Skills = () => {
                   <div className="mt-auto pt-4 flex items-center justify-between border-t border-white/[0.07]">
                     <span className="font-body text-xs text-slate-500">{d.skills.length} skills</span>
                     <span className="font-body text-xs font-semibold px-3 py-1 rounded-full"
-                          style={{ background: `${d.accentFrom}18`, border: `1px solid ${d.accentFrom}33`, color: d.accentFrom }}>
+                          style={{ background: `${d.accentFrom}14`, border: `1px solid ${d.accentFrom}2E`, color: d.accentFrom }}>
                       {d.projects} projects
                     </span>
                   </div>

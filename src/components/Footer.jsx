@@ -9,13 +9,13 @@ const navigationLinks = [
     { label:"Education",  href:"#education" },
     { label:"Contact",    href:"#contact" },
 ];
-const socialLinks = [
-    { icon:FaTwitter,   href:"https://twitter.com/mdakram2002_",            label:"Twitter" },
-    { icon:FaLinkedin,  href:"https://www.linkedin.com/in/mdakram2002",     label:"LinkedIn" },
-    { icon:FaGithub,    href:"https://github.com/mdakram2002",              label:"GitHub" },
-    { icon:FaInstagram, href:"https://www.instagram.com/mdakram2002_",      label:"Instagram" },
-    { icon:FaYoutube,   href:"https://www.youtube.com/@iamakramshaikh",     label:"YouTube" },
-];
+// const socialLinks = [
+//     { icon:FaTwitter,   href:"https://twitter.com/mdakram2002_",            label:"Twitter" },
+//     { icon:FaLinkedin,  href:"https://www.linkedin.com/in/mdakram2002",     label:"LinkedIn" },
+//     { icon:FaGithub,    href:"https://github.com/mdakram2002",              label:"GitHub" },
+//     { icon:FaInstagram, href:"https://www.instagram.com/mdakram2002_",      label:"Instagram" },
+//     { icon:FaYoutube,   href:"https://www.youtube.com/@iamakramshaikh",     label:"YouTube" },
+// ];
 
 const Footer = () => (
     <footer className="text-white py-16 sm:py-20 px-4 sm:px-6 md:px-16 lg:px-24 relative" style={{ borderTop:"1px solid rgba(255,255,255,0.08)" }}>
@@ -62,8 +62,8 @@ const Footer = () => (
             <div className="h-px mb-8" style={{ background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)" }} />
 
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} transition={{ duration:0.5, delay:0.3 }}
-                        className="flex flex-col items-center gap-6">
-                <div className="flex justify-center gap-3 flex-wrap">
+                        className="flex flex-col items-center">
+                {/* <div className="flex justify-center gap-3 flex-wrap">
                     {socialLinks.map((social, idx) => {
                         const Icon = social.icon;
                         return (
@@ -77,7 +77,7 @@ const Footer = () => (
                             </motion.a>
                         );
                     })}
-                </div>
+                </div> */}
                 <div className="text-center">
                     <p className="text-slate-500 text-sm">© {new Date().getFullYear()} <span className="font-semibold text-slate-300">Mohammad Akram</span>. All rights reserved.</p>
                     <p className="text-slate-600 text-xs mt-1.5">Built with <span className="text-teal-400">❤</span> &amp; lots of ☕</p>

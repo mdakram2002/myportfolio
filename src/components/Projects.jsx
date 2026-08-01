@@ -8,21 +8,6 @@ import Knowbase from "../assets/knowbase.png";
 const projects = [
   {
     id: 1,
-    name: "KnowBase",
-    subtitle: "AI Knowledge Management Platform",
-    accentFrom: "#2DD4BF",
-    accentTo: "#60A5FA",
-    details: [
-      "Built full-stack AI platform with modular service-layer architecture, integrating LLM APIs (Gemini) for automated summarization and semantic search across 1,000+ documents. Leveraged MongoDB text indexes and batch processing pipelines, reducing search latency by 30% and achieving 95% relevance scoring.",
-      "Deployed 8+ RESTful APIs with JWT authentication, rate limiting, and input validation. Designed modular architecture supporting 5+ core modules, reducing feature development time by 21% and enabling rapid iteration.",
-    ],
-    tech: ["Next.js 14", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "JWT", "Vercel"],
-    image: Knowbase,
-    github: "https://github.com/mdakram2002/knowbase-ai",
-    live: "https://knowbase-ai-client.vercel.app/",
-  },
-  {
-    id: 2,
     name: "StudyPoint",
     subtitle: "EdTech Application",
     accentFrom: "#8B5CF6",
@@ -37,7 +22,37 @@ const projects = [
     live: "https://studypointin.netlify.app/",
   },
   {
+    id: 2,
+    name: "KnowBase",
+    subtitle: "AI Knowledge Management Platform",
+    accentFrom: "#2DD4BF",
+    accentTo: "#60A5FA",
+    details: [
+      "Built full-stack AI platform with modular service-layer architecture, integrating LLM APIs (Gemini) for automated summarization and semantic search across 1,000+ documents. Leveraged MongoDB text indexes and batch processing pipelines, reducing search latency by 30% and achieving 95% relevance scoring.",
+      "Deployed 8+ RESTful APIs with JWT authentication, rate limiting, and input validation. Designed modular architecture supporting 5+ core modules, reducing feature development time by 21% and enabling rapid iteration.",
+    ],
+    tech: ["Next.js 14", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "JWT", "Vercel"],
+    image: Knowbase,
+    github: "https://github.com/mdakram2002/knowbase-ai",
+    live: "https://knowbase-ai-client.vercel.app/",
+  },
+  {
     id: 3,
+    name: "AI-First Healthcare CRM",
+    subtitle: "React, Redux, FastAPI, LangGraph, PostgreSQL (pgvector), Docker",
+    accentFrom: "#22C55E",
+    accentTo: "#06B6D4",
+    details: [
+      "Engineered a LangGraph state machine with 8 Pydantic-validated tools for entity extraction, voice-note summarization, and semantic follow-up suggestions that convert unstructured rep input into structured CRM fields via Groq-hosted LLMs, powering 5+ core screens including HCP profiles and manager dashboards.",
+      "Designed a secure FastAPI backend with JWT, RBAC for rep/manager/guest roles, and audit logging for compliance, plus a pgvector-powered RAG pipeline for grounded AI responses; built the React/Redux frontend and deployed it with Docker and GitHub Actions CI/CD on Azure with health checks.",
+    ],
+    tech: ["React", "Redux", "FastAPI", "LangGraph", "PostgreSQL (pgvector)", "Docker", "Azure", "GitHub Actions CI/CD", "JWT", "RBAC", "Groq"],
+    image: null,
+    github: "https://github.com/mdakram2002/hcp-crm",
+    live: "https://github.com/mdakram2002/hcp-crm",
+  },
+  {
+    id: 4,
     name: "DSA AI Assistant",
     subtitle: "AI-Powered DSA Chatbot",
     accentFrom: "#F59E0B",
@@ -52,7 +67,7 @@ const projects = [
     live: "https://dsa-chatbot-six.vercel.app/",
   },
   {
-    id: 4,
+    id: 5,
     name: "Dr. Maya Reynolds",
     subtitle: "Therapy Homepage — Squarespace Redesign",
     accentFrom: "#10B981",
@@ -68,7 +83,7 @@ const projects = [
     live: "https://dr-maya-therapy-chi.vercel.app",
   },
   {
-    id: 5,
+    id: 6,
     name: "Mini Event Platform",
     subtitle: "Full-stack MERN Event Management",
     accentFrom: "#6366F1",
@@ -237,18 +252,28 @@ const Projects = () => {
 
                 {/* Image */}
                 <div className="pj-img-wrap bg-slate-900" style={{ direction: "ltr" }}>
-                  <img src={project.image} alt={project.name} />
-                  <div className="pj-overlay">
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pj-live-btn"
-                      aria-label={`View ${project.name} live`}
-                    >
-                      <ExternalLink size={18} />
-                    </a>
-                  </div>
+                  {project.image ? (
+                    <>
+                      <img src={project.image} alt={project.name} />
+                      <div className="pj-overlay">
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pj-live-btn"
+                          aria-label={`View ${project.name} live`}
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-slate-900/80 px-6 text-center">
+                      <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold tracking-wide text-slate-300">
+                        Coming soon
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { GraduationCap, Sparkles } from "lucide-react";
 
 const educationData = [
-    { degree: "Bachelor of Technology in Computer Science – AI & ML", institution: "Technocrats Institute of Technology, Bhopal (M.P.), India", duration: "2022 – 2026", gpa: "GPA: 7.62 / 10", description: "Focused on core concepts of Artificial Intelligence, Machine Learning, Data Structures, and Software Engineering." },
+    { degree: "Bachelor of Technology in Computer Science – AI & ML", institution: "Technocrats Institute of Technology, Bhopal (M.P.), India", duration: "2022 – 2026", gpa: "GPA: 7.67 / 10", description: "Focused on core concepts of Artificial Intelligence, Machine Learning, Data Structures, and Software Engineering." },
     { degree: "Senior Secondary (12th)", institution: "Supaul Senior Secondary School, Supaul, Bihar, India", duration: "2021", gpa: "Percentage: 66.6%" },
     { degree: "High School (10th)",      institution: "Supaul Senior Secondary School, Supaul, Bihar, India", duration: "2019", gpa: "Percentage: 70%" },
 ];

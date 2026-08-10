@@ -20,12 +20,12 @@ const knowledgeBase = [
   {
     id: "looking-for",
     keywords: ["looking for", "seeking", "role", "job", "opportunit", "hire", "available", "what is akram"],
-    answer: "Open to frontend, backend, or full-stack roles — full-time or remote.",
+    answer: "Open to frontend, backend, full-stack, or AI-integrated engineering roles — full-time or remote.",
   },
   {
     id: "tech-stack",
     keywords: ["tech stack", "technolog", "skills", "stack", "tools", "languages"],
-    answer: "MERN (MongoDB, Express, React, Node.js), plus Next.js, TypeScript, Docker, and Azure.",
+    answer: "MERN (MongoDB, Express, React, Node.js) plus Python, FastAPI, TypeScript, LangGraph/LLM integration, Docker, and Azure.",
   },
   {
     id: "experience",
@@ -41,19 +41,19 @@ const knowledgeBase = [
   {
     id: "studypoint",
     keywords: ["studypoint", "edtech", "education platform"],
-    answer: "StudyPoint — an EdTech platform with Razorpay payments and Cloudinary uploads, 19+ secure APIs.",
+    answer: "StudyPoint — an EdTech platform with Razorpay payments, Cloudinary uploads, and 19+ secure JWT/OTP/RBAC-protected APIs.",
     redirect: "projects",
   },
   {
-    id: "dsa-bot",
-    keywords: ["dsa ai", "dsa assistant", "chatbot project"],
-    answer: "DSA AI Assistant — a Gemini-powered chatbot for structured DSA explanations and interview tips.",
+    id: "healthcare-crm",
+    keywords: ["healthcare crm", "hcp", "langgraph", "crm platform"],
+    answer: "Healthcare CRM — a LangGraph + FastAPI platform with pgvector RAG and JWT/RBAC-secured endpoints for reps and managers.",
     redirect: "projects",
   },
   {
     id: "projects",
     keywords: ["project", "built", "show me his work", "portfolio work"],
-    answer: "He's built KnowBase, StudyPoint, and a DSA AI Assistant — taking you to the Projects section.",
+    answer: "He's built KnowBase, StudyPoint, and a Healthcare CRM Platform — taking you to the Projects section.",
     redirect: "projects",
   },
   {
@@ -85,7 +85,7 @@ const knowledgeBase = [
 
 const quickReplies = [
   { label: "What is Akram looking for?", id: "looking-for" },
-  { label: "Tell me about KnowBase", id: "knowbase" },
+  { label: "Tell me about StudyPoint", id: "studypoint" },
   { label: "What's his tech stack?", id: "tech-stack" },
   { label: "Send Akram a message", id: "send-message" },
 ];

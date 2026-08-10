@@ -27,7 +27,7 @@ const Footer = () => (
                         <div className="w-11 h-11 rounded-full bg-gradient-to-br from-teal-400 to-violet-500 flex items-center justify-center text-slate-950 font-extrabold text-sm">MA</div>
                         <div>
                             <p className="font-bold text-base text-white" style={{ fontFamily:"'Manrope',sans-serif" }}>Mohammad Akram</p>
-                            <p className="text-sm text-slate-400">Full Stack & DevOps Engineer</p>
+                            <p className="text-sm text-slate-400">Full Stack & AI Engineer</p>
                         </div>
                     </div>
                     <p className="text-slate-500 text-sm max-w-xs leading-relaxed">Building scalable, production-ready web applications with modern technologies.</p>

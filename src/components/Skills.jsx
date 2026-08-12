@@ -28,7 +28,23 @@ const skillsData = {
   "AI & Payments": {
     icon: Bot, accentFrom: "#F59E0B", accentTo: "#EF4444",
     tagline: "LLMs, gateways and uploads wired into real product flows",
-    skills: ["Gemini API", "OpenAI API", "LLM Integration", "Razorpay", "Cloudinary", "Nodemailer"],
+    skills: [
+    "Generative AI",
+    "RAG Pipelines",
+    "LangGraph",
+    "Agentic AI",
+    "LLM Integration",
+    "Gemini API",
+    "OpenAI API",
+    "Groq API",
+    "pgvector",
+    "Vector Search",
+    "Semantic Search",
+    "AI Automation",
+    "Razorpay",
+    "Cloudinary",
+    "Nodemailer"
+  ],
     projects: "4+",
   },
   DevOps: {

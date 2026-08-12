@@ -1,9 +1,9 @@
 import { Github, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
-import Dr_Maya_Website from "../assets/Dr_Maya.png";
-import Mini_Event_Platform from "../assets/event.png";
+import Harbor from "../assets/harbor.png";
 import StudyPoint from "../assets/banner.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
 import Knowbase from "../assets/knowbase.png";
+import MiniEventPlatform from "../assets/event.png";
 
 const projects = [
   {
@@ -81,21 +81,35 @@ const projects = [
     github: "https://github.com/mdakram2002/dsa_chatbot",
     live: "https://dsa-chatbot-six.vercel.app/",
   },
-  {
-    id: 5,
-    name: "Dr. Maya Reynolds",
-    subtitle: "Therapy Homepage — Squarespace Redesign",
-    accentFrom: "#10B981",
-    accentTo: "#2DD4BF",
-    details: [
-      "Cloned the Lilac Squarespace template homepage with pixel-perfect layout, responsive grid system, and Tailwind CSS utilities to ensure consistent spacing and hierarchy across devices.",
-      "Redesigned the theme with a calming, professional color palette while maintaining WCAG-compliant contrast, warm typography, and glassmorphism UI effects.",
-      "Added a custom 'Our Office' section featuring real office imagery, supportive copy about safety and privacy, and full visual/typographic consistency with the rest of the site.",
+ {
+  id: 5,
+  name: "Harbor Chat",
+  subtitle: "React, Vite, Tailwind CSS, Node.js, Express, Socket.io, MongoDB",
+  accentFrom: "#06B6D4",
+  accentTo: "#8B5CF6",
+  details: [
+    "Built a real-time chat application using React, Vite, Tailwind CSS, Node.js, Express, Socket.io, and MongoDB, enabling instant messaging, persisted chat history, typing indicators, online/offline presence, and message delivery status.",
+    "Designed an MVC-style backend with REST APIs and Socket.io, centralized error handling, Mongoose-based data access, and shared client socket state using custom React hooks. Deployed the frontend on Vercel and backend on Render."
+  ],
+
+  tech: [
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "Node.js",
+    "Express.js",
+    "Socket.io",
+    "MongoDB",
+    "Mongoose",
+    "REST APIs",
+    "MVC Architecture",
+    "React Hooks",
+    "Vercel",
+    "Render"
     ],
-    tech: ["Next.js 14", "Tailwind CSS", "Vercel"],
-    image: Dr_Maya_Website,
-    github: "https://github.com/mdakram2002/dr-maya-therapy",
-    live: "https://dr-maya-therapy-chi.vercel.app",
+    image: Harbor,
+    github: "https://github.com/mdakram2002/chat-app",
+    live: "https://harborchat-app.vercel.app/"
   },
   {
     id: 6,
@@ -109,7 +123,7 @@ const projects = [
       "Deployed frontend to Vercel, backend to Railway, with API rate limiting, CORS configuration, error handling, and toast notifications for instant user feedback.",
     ],
     tech: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "Cloudinary", "JWT", "Vercel"],
-    image: Mini_Event_Platform,
+    image: MiniEventPlatform,
     github: "https://github.com/mdakram2002/mini-event-platform",
     live: "https://mini-event-platform-ten.vercel.app",
   },
@@ -249,7 +263,7 @@ const Projects = () => {
             <span>Selected Work</span>
           </div>
           <h2 className="pj-display font-extrabold text-4xl md:text-5xl tracking-tight mb-2">
-            Things I've Built
+            Things I&apos;ve Built
           </h2>
           <p className="pj-body text-slate-400 text-base max-w-xl">
             End-to-end projects — from database schema to deployed UI, each shipped to production.
@@ -269,8 +283,8 @@ const Projects = () => {
                 <div className="pj-img-wrap bg-slate-900" style={{ direction: "ltr" }}>
                   {project.image ? (
                     <>
-                      <img src={project.image} alt={project.name} />
-                      <div className="pj-overlay">
+                      <img src={project.image} alt={`${project.name} preview`} />
+                      {project.live && <div className="pj-overlay">
                         <a
                           href={project.live}
                           target="_blank"
@@ -280,7 +294,7 @@ const Projects = () => {
                         >
                           <ExternalLink size={18} />
                         </a>
-                      </div>
+                      </div>}
                     </>
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-slate-900/80 px-6 text-center">
@@ -366,7 +380,7 @@ const Projects = () => {
                       ))}
                     </div>
 
-                    <a
+                    {project.live && <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -374,7 +388,7 @@ const Projects = () => {
                       style={{ color: project.accentFrom }}
                     >
                       View live project <ArrowRight size={12} />
-                    </a>
+                    </a>}
                   </div>
                 </div>
               </div>

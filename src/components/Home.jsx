@@ -65,8 +65,9 @@ const Home = () => {
 
           <p className="ahh-fade ahh-d3 ahh-body text-lg text-slate-400 leading-relaxed mb-10 max-w-xl">
             I design and ship Full-Stack applications end to end — responsive front ends, REST API design,
-            secure multi-layer authentication (JWT + OTP + RBAC + OAuth), solid database design,
-            Docker containerization, and CI/CD pipelines deployed on Azure Web App, following an Agile workflow.
+            secure multi-layer authentication (JWT + OTP + RBAC + OAuth), GenAI-powered applications,
+            RAG pipelines, Agentic AI workflows, solid database design, Docker containerization,
+            and CI/CD pipelines deployed on Azure Web App, following an Agile workflow.
           </p>
 
           <div className="ahh-fade ahh-d4 flex flex-wrap gap-4 mb-16">

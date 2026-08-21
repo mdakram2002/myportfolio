@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FileText, Menu, X } from "lucide-react";
-import Resume from "../assets/Mohammad_Akram.pdf";
+// import Resume from "../assets/Mohammad_Akram.pdf";
 
 // Exported so Home (and any other section) can offset its top padding.
 // The navbar now floats with a top margin instead of sitting flush
@@ -213,7 +213,7 @@ const Navbar = () => {
 
         {/* Resume — replaces the dark/light mode toggle */}
         <a
-          href={Resume}
+          // href={Resume}
           target="_blank"
           rel="noopener noreferrer"
           className="ahn-resume-circle"

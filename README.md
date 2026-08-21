@@ -1,4 +1,4 @@
-# Md Akram - Full Stack Engineer Portfolio
+# Mohammad Akram - Full Stack Developer Portfolio
 
 ## Welcome to My Portfolio
 

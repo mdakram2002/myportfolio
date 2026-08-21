@@ -1,11 +1,11 @@
 import { useState } from "react";
 import {
-  Code2, Server, Database, Bot, Wrench, FileCode2,
+  Code2, Server, Database, Bot, Wrench, FileCode2, TestTube2,
   ArrowRight, Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// 6 categories total. Only 3 are ever visible as cards at once (see `slots` state below).
+// 7 categories total. Only 3 are ever visible as cards at once (see `slots` state below).
 const skillsData = {
   Frontend: {
     icon: Code2, accentFrom: "#2DD4BF", accentTo: "#60A5FA",
@@ -18,6 +18,16 @@ const skillsData = {
     tagline: "APIs built to scale, secured to ship",
     skills: ["Node.js", "Express.js", "REST API Design", "JWT Authentication", "RBAC", "OAuth 2.0", "Middleware Architecture", "Input Validation", "Python", "Git", "Postman", "OTP (Email)"],
     projects: "8+",
+  },
+  Testing: {
+    icon: TestTube2, accentFrom: "#F472B6", accentTo: "#FB923C",
+    tagline: "Catching bugs before users do",
+    skills: [
+      "Unit Testing", "API Testing", "Functional Testing", "Regression Testing",
+      "Jest", "React Testing Library", "Postman", "Test Case Design",
+      "Test Data Preparation", "Defect Debugging", "Result Validation", "REST API Validation",
+    ],
+    projects: "10+",
   },
   Database: {
     icon: Database, accentFrom: "#10B981", accentTo: "#2DD4BF",
@@ -62,7 +72,7 @@ const skillsData = {
 };
 
 const ALL_CATEGORIES = Object.keys(skillsData);
-const INITIAL_SLOTS = ["Frontend", "Backend", "Database"]; // 3 visible card slots, to start
+const INITIAL_SLOTS = ["Testing", "Backend", "Frontend"]; // 3 visible card slots, to start — Testing leads
 
 const Skills = () => {
   const [slots, setSlots] = useState(INITIAL_SLOTS);
@@ -107,9 +117,9 @@ const Skills = () => {
                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#2DD4BF" }}>
             <Sparkles size={13} /><span>Technical Skills</span>
           </div>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl tracking-tight mb-3">What I Build With</h2>
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl tracking-tight mb-3">What I Build &amp; Test With</h2>
           <p className="font-body text-slate-400 text-lg max-w-3xl">
-            6 areas, 3 cards on screen at a time — click any tab below to swap it into view.
+            7 areas, 3 cards on screen at a time — click any tab below to swap it into view.
           </p>
         </div>
 

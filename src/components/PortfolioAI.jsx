@@ -20,40 +20,46 @@ const knowledgeBase = [
   {
     id: "looking-for",
     keywords: ["looking for", "seeking", "role", "job", "opportunit", "hire", "available", "what is akram"],
-    answer: "Open to frontend, backend, full-stack, or AI-integrated engineering roles — full-time or remote.",
+    answer: "Open to frontend, backend, full-stack, SDET/QA, or AI-integrated engineering roles — full-time or remote.",
   },
   {
     id: "tech-stack",
     keywords: ["tech stack", "technolog", "skills", "stack", "tools", "languages"],
-    answer: "MERN (MongoDB, Express, React, Node.js) plus Python, FastAPI, TypeScript, LangGraph/LLM integration, Docker, and Azure.",
+    answer: "MERN (MongoDB, Express, React, Node.js) plus Python, FastAPI, TypeScript, LangGraph/LLM integration, Docker, Azure, and testing tools like Jest and Postman.",
+  },
+  {
+    id: "testing",
+    keywords: ["testing", "test engineer", "qa", "sdet", "quality assurance", "jest", "postman", "unit test", "api test"],
+    answer: "He has hands-on testing experience — unit testing (Jest, React Testing Library), API testing (Postman, REST API validation), test data preparation, database checks, defect debugging, and test documentation across all his projects.",
+    redirect: "skills",
   },
   {
     id: "experience",
     keywords: ["experience", "internship", "work history", "diyos", "company", "job history"],
-    answer: "Frontend Engineer Intern at Diyos Infotech (Hyderabad) — built 33+ UI components for an ERP system.",
+    answer: "Frontend Engineer Intern at Diyos Infotech (Hyderabad) — built 33+ UI components for an ERP system, plus performed input validation, test scenarios, and defect validation with the QA team.",
   },
   {
     id: "knowbase",
     keywords: ["knowbase", "knowledge platform", "ai platform"],
-    answer: "KnowBase — an AI knowledge platform with Gemini-powered search across 1,000+ docs, 30% faster search.",
+    answer: "KnowBase — an AI knowledge platform with Gemini-powered search across 1,000+ docs, 30% faster search, and 8+ RESTful APIs tested with Postman.",
     redirect: "projects",
   },
   {
     id: "studypoint",
     keywords: ["studypoint", "edtech", "education platform"],
-    answer: "StudyPoint — an EdTech platform with Razorpay payments, Cloudinary uploads, and 19+ secure JWT/OTP/RBAC-protected APIs.",
+    answer: "StudyPoint — an EdTech platform with Razorpay payments, Cloudinary uploads, and 19+ secure JWT/OTP/RBAC-protected APIs, validated end-to-end using Postman.",
     redirect: "projects",
   },
   {
     id: "healthcare-crm",
     keywords: ["healthcare crm", "hcp", "langgraph", "crm platform"],
-    answer: "Healthcare CRM — a LangGraph + FastAPI platform with pgvector RAG and JWT/RBAC-secured endpoints for reps and managers.",
+    answer: "Healthcare CRM — a LangGraph + FastAPI platform with pgvector RAG and JWT/RBAC-secured endpoints, with backend workflows and API behavior tested for reps and managers.",
     redirect: "projects",
   },
   {
     id: "projects",
     keywords: ["project", "built", "show me his work", "portfolio work"],
-    answer: "He's built KnowBase, StudyPoint, and a Healthcare CRM Platform — taking you to the Projects section.",
+    answer: "He's built and tested KnowBase, StudyPoint, and a Healthcare CRM Platform — taking you to the Projects section.",
     redirect: "projects",
   },
   {
@@ -85,7 +91,7 @@ const knowledgeBase = [
 
 const quickReplies = [
   { label: "What is Akram looking for?", id: "looking-for" },
-  { label: "Tell me about StudyPoint", id: "studypoint" },
+  { label: "What's his testing experience?", id: "testing" },
   { label: "What's his tech stack?", id: "tech-stack" },
   { label: "Send Akram a message", id: "send-message" },
 ];
@@ -102,7 +108,7 @@ const PortfolioAI = () => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const [isOpen, setIsOpen] = useState(true); // open by default
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: "bot",
@@ -112,6 +118,15 @@ const PortfolioAI = () => {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    setMessages([
+      {
+        role: "bot",
+        text: "Hi, I am Akram's portfolio guide. Ask about his projects, technical skills, testing experience, internship, or availability.",
+      },
+    ]);
+  }, []);
 
   const scrollRef = useRef(null);
   useEffect(() => {
@@ -140,7 +155,7 @@ const PortfolioAI = () => {
       const answer = entry ? entry.answer : fallbackAnswer;
       setMessages((m) => [...m, { role: "bot", text: answer }]);
       setIsTyping(false);
-      // Project-related answers redirect to the Projects section (panel stays open)
+      // Project/skills-related answers redirect to the relevant section (panel stays open)
       if (entry?.redirect) {
         setTimeout(() => scrollToSection(entry.redirect), 700);
       }
@@ -364,11 +379,11 @@ const PortfolioAI = () => {
             <div className="pai-avatar"><Sparkles size={18} /></div>
             <div className="pai-titles">
               <div className="pai-title-row">
-                <span className="pai-display pai-title">Portfolio AI</span>
-                <span className="pai-body pai-badge">GEMINI</span>
+                <span className="pai-display pai-title">Portfolio Guide</span>
+                <span className="pai-body pai-badge">QUICK ANSWERS</span>
               </div>
               <div className="pai-body pai-subtitle">
-                <span className="pai-dot" /> AI-powered &middot; knows everything about Akram
+                <span className="pai-dot" /> Answers based on this portfolio
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="pai-close" aria-label="Close assistant">

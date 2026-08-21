@@ -14,7 +14,7 @@ const projects = [
     accentTo: "#EC4899",
     details: [
       "Delivered full-featured EdTech platform following MVC architecture with Redux state management. Integrated Razorpay for payments, Cloudinary for video uploads, and Nodemailer for automated confirmations — reducing checkout steps from 5 to 3, boosting signups and supporting 100+ users.",
-      "Designed 19+ secure RESTful APIs with JWT, OTP, RBAC authentication. Deployed frontend to Netlify and backend to Azure App Service using Docker with CI/CD via GitHub Actions for zero-downtime updates. Optimized payment flow using React Hooks, boosting conversion rates.",
+      "Added Razorpay payments, Cloudinary video uploads, Nodemailer confirmations, and JWT, OTP, and role-based access flows. Deployed the frontend to Netlify and the backend to Azure App Service with Docker and GitHub Actions.",
     ],
     tech: ["React", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "JWT + OTP + RBAC", "Razorpay", "Cloudinary", "Nodemailer", "Docker", "Azure App Service", "GitHub Actions CI/CD", "Netlify"],
     image: StudyPoint,
@@ -29,7 +29,7 @@ const projects = [
     accentTo: "#60A5FA",
     details: [
       "Built full-stack AI platform with modular service-layer architecture, integrating LLM APIs (Gemini) for automated summarization and semantic search across 1,000+ documents. Leveraged MongoDB text indexes and batch processing pipelines, reducing search latency by 30% and achieving 95% relevance scoring.",
-      "Deployed 8+ RESTful APIs with JWT authentication, rate limiting, and input validation. Designed modular architecture supporting 5+ core modules, reducing feature development time by 21% and enabling rapid iteration.",
+      "Implemented MongoDB text indexes, batch processing, JWT authentication, rate limiting, input validation, and REST APIs; deployed the client on Vercel.",
     ],
     tech: ["Next.js 14", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "JWT", "Vercel"],
     image: Knowbase,
@@ -44,8 +44,8 @@ const projects = [
   accentFrom: "#22C55E",
   accentTo: "#06B6D4",
   details: [
-    "Engineered a LangGraph state machine with 8 Pydantic-validated tools for entity extraction, voice-note summarization, and semantic follow-up suggestions, converting unstructured rep input into structured CRM fields using Groq-hosted LLMs across 5+ core screens including HCP profiles and manager dashboards.",
-    "Built a secure FastAPI backend with JWT, RBAC for rep/manager/guest roles, and audit logging, along with a pgvector-powered RAG pipeline for grounded AI responses. Developed the React/Redux frontend and deployed the application using Docker and GitHub Actions CI/CD on Azure with health checks.",
+    "Built a healthcare CRM prototype with React, Redux, FastAPI, LangGraph, and PostgreSQL with pgvector for structured notes and follow-up suggestions.",
+    "Implemented JWT authentication, role-based access, audit logging, and a RAG workflow for grounded responses. The repository is available to review; a public demo is not yet available.",
   ],
   tech: [
     "React",
@@ -74,7 +74,7 @@ const projects = [
     accentTo: "#EF4444",
     details: [
       "Engineered AI-powered DSA assistant using Gemini API that delivers structured explanations with complexity analysis, formatted code examples, and interview-focused tips — eliminating the need to juggle multiple sources (YouTube, LeetCode, textbooks) and reducing login-to-learning friction by 60%.",
-      "Implemented guest authentication with optional Google OAuth, multi-session chat history, and real-time Markdown with syntax highlighting. Enabled switching between 3+ concurrent chats, creating an all-in-one learning environment.",
+      "Implemented guest access, optional Google OAuth, multi-session chat history, Markdown rendering, and syntax highlighting.",
     ],
     tech: ["React", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "Google OAuth 2.0", "Markdown", "Vercel"],
     image: DSA_Chatbot,
@@ -128,6 +128,33 @@ const projects = [
     live: "https://mini-event-platform-ten.vercel.app",
   },
 ];
+
+const projectSummaries = {
+  1: [
+    "Built an EdTech platform with React, Redux Toolkit, Node.js, Express, and MongoDB using an MVC-style backend architecture.",
+    "Added Razorpay payments, Cloudinary uploads, email confirmations, and JWT, OTP, and role-based access flows.",
+  ],
+  2: [
+    "Built a full-stack knowledge-management platform with a modular service layer and Gemini-powered document summarization and search.",
+    "Implemented MongoDB text indexes, batch processing, JWT authentication, rate limiting, input validation, and REST APIs; deployed the client on Vercel.",
+  ],
+  3: [
+    "Built a healthcare CRM prototype with React, Redux, FastAPI, LangGraph, and PostgreSQL with pgvector for structured notes and follow-up suggestions.",
+    "Implemented JWT authentication, role-based access, audit logging, and a RAG workflow for grounded responses. A public demo is not yet available.",
+  ],
+  4: [
+    "Built a Gemini-powered DSA assistant that returns structured explanations, complexity analysis, formatted code examples, and interview-focused tips.",
+    "Implemented guest access, optional Google OAuth, multi-session chat history, Markdown rendering, and syntax highlighting.",
+  ],
+  5: [
+    "Built a real-time chat application with instant messaging, persisted chat history, typing indicators, presence, and delivery status.",
+    "Used React, Socket.io, Express, and MongoDB with REST APIs, centralized error handling, Mongoose data access, and custom React hooks.",
+  ],
+  6: [
+    "Built a MERN event-management platform with JWT authentication, role-based access, Google and GitHub OAuth, and event CRUD.",
+    "Added Cloudinary image uploads, Markdown descriptions, RSVP tracking, capacity enforcement, rate limiting, and deployment on Vercel and Railway.",
+  ],
+};
 
 const Projects = () => {
   return (
@@ -350,7 +377,7 @@ const Projects = () => {
 
                     {/* Bullets */}
                     <ul className="mt-3.5 space-y-2 mb-4">
-                      {project.details.map((d, dIdx) => (
+                      {projectSummaries[project.id].map((d, dIdx) => (
                         <li key={dIdx} className="flex items-start gap-2.5 pj-body text-xs text-slate-300 leading-relaxed">
                           <span
                             className="pj-bullet"

@@ -209,7 +209,7 @@ const Contact = () => {
                   Mohammad Akram
                 </h3>
                 <p className="text-slate-400 text-sm leading-snug">
-                  Full-stack developer focused on scalable web apps, backend systems, and CI/CD-driven delivery.
+                  Full Stack Developer focused on scalable web apps, backend systems, and CI/CD-driven delivery.
                 </p>
               </div>
             </div>

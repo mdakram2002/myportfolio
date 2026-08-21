@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, ExternalLink, Sparkles } from "lucide-react";
+import { MapPin, ExternalLink, Sparkles } from "lucide-react";
 import diyosLogo from "../assets/diyos_technologies_logo.jpg";
 
 const history = [
@@ -9,26 +9,24 @@ const history = [
         role: "ReactJS Developer Intern",
         period: "March 2026 — April 2026",
         location: "Hyderabad, Telangana, India",
-        description: "Building scalable, high-performance frontend features using TypeScript and React.js. Recognized for resolving critical bugs and improving system reliability while collaborating closely with backend teams.",
+        description: "Contributed React and TypeScript features to the FaME ERP system, collaborating with backend and QA teams on forms, API-integrated screens, and bug fixes.",
         skills: ["React.js", "TypeScript", "React Hook Form", "API Integration", "Error Handling"],
         logo: diyosLogo,
         link: "http://qa.diyosfame.com",
         bullets: [
-            "Architected and delivered 33+ production-ready UI components across 6+ core modules (Client Management, Payroll, Invoicing, Reporting) using React.js and TypeScript, implementing complex form validation with real-time error handling for PAN, PF, ESI, and HSN code validations.",
-            "Created responsive AddClient screens with live address mirroring, reducing form completion time by 20%; developed REST API-integrated receipt tables and resolved Inventory Module blank-screen bugs, reducing support tickets by 25% through effective debugging.",
-            "Collaborated with cross-functional backend and QA teams to optimize UI rendering across 70–100% zoom levels, ensuring consistent user experience and saving 1.5 hours of weekly debugging time for the support team.",
-        ],
-        isCurrent: true,
+            "Engineered 33+ production-ready UI components across 6+ core modules using React.js and TypeScript, implementing complex form validation and real-time error handling for PAN, PF, ESI, and HSN codes.",
+            "Integrated REST API-driven workflows and resolved Inventory Module blank-screen bugs, reducing support tickets by 25%; developed responsive AddClient screens that reduced form completion time by 20%.",
+            "Collaborated with backend and QA teams to debug and optimize application behavior across 70–100% zoom levels, ensuring consistent UX and saving 1.5 hours of weekly debugging effort."
+        ]
     },
 ];
 
 const getExperienceStats = () => {
-    const now = new Date();
     let minStart = null, maxEnd = null, projectCount = 0;
     const parseDate = (value) => {
         if (!value) return null;
         const cleaned = value.trim();
-        if (/present/i.test(cleaned)) return now;
+        if (/present/i.test(cleaned)) return new Date();
         const parsed = new Date(cleaned);
         if (!Number.isNaN(parsed.getTime())) return parsed;
         const months = ["january","february","march","april","may","june","july","august","september","october","november","december"];
@@ -40,7 +38,7 @@ const getExperienceStats = () => {
     };
     history.forEach((item) => {
         const parts = item.period?.split("—")?.map(p => p.trim()) ?? [];
-        const start = parseDate(parts[0]), end = parseDate(parts[1] ?? "Present");
+        const start = parseDate(parts[0]), end = parseDate(parts[1] ?? parts[0]);
         if (start && (!minStart || start < minStart)) minStart = start;
         if (end   && (!maxEnd   || end   > maxEnd))   maxEnd   = end;
         projectCount += item.projects ?? 1;
@@ -89,7 +87,7 @@ const Experience = () => {
                         className="relative group">
                         <div className="flex flex-col sm:flex-row gap-6">
                             <div className="flex flex-col items-center shrink-0 pt-1">
-                                <div className={`w-3 h-3 rounded-full ${item.isCurrent ? "ex-dot-current" : ""}`}
+                                <div className="w-3 h-3 rounded-full"
                                      style={{ background:"linear-gradient(135deg,#2DD4BF,#8B5CF6)" }} />
                                 {idx !== history.length - 1 && <div className="ex-line" />}
                             </div>
@@ -118,12 +116,6 @@ const Experience = () => {
                                         </div>
                                         <div className="flex flex-col items-start sm:items-end gap-2 shrink-0">
                                             <span className="font-body text-xs font-semibold text-slate-400 whitespace-nowrap tracking-wide">{item.period}</span>
-                                            {item.isCurrent && (
-                                                <span className="font-body text-xs font-semibold px-3 py-1 rounded-full"
-                                                      style={{ background:"rgba(45,212,191,0.12)", border:"1px solid rgba(45,212,191,0.25)", color:"#2DD4BF" }}>
-                                                    Current
-                                                </span>
-                                            )}
                                         </div>
                                     </div>
                                     <p className="font-body text-sm text-slate-400 mb-5 leading-relaxed">{item.description}</p>
@@ -147,11 +139,11 @@ const Experience = () => {
 
                 {/* Stats strip */}
                 {(() => {
-                    const { yearsExperience, companies, projects } = getExperienceStats();
+                    const { companies, projects } = getExperienceStats();
                     return (
                         <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.6, duration:0.5 }}
                                     className="mt-4 flex flex-wrap border-t border-white/10 pt-8 gap-y-6">
-                            {[{ label:"Years Experience", value:`${yearsExperience}+` },{ label:"Companies", value:`${companies}` },{ label:"Projects", value:`${projects}` }].map((stat, sIdx) => (
+                            {[{ label:"Internship duration", value:"2 months" },{ label:"Companies", value:`${companies}` },{ label:"Roles shown", value:`${projects}` }].map((stat, sIdx) => (
                                 <div key={stat.label} className="flex-1 min-w-[140px] px-6 first:pl-0"
                                      style={{ borderLeft: sIdx !== 0 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
                                     <p className="font-display text-2xl md:text-3xl font-extrabold"

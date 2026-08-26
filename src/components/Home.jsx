@@ -10,9 +10,6 @@ const stats = [
 ];
 
 const Home = () => {
-  // Local smooth-scroll helper for this section's own CTA buttons.
-  // Navbar has its own copy for its own links — kept separate so
-  // Home has no hard dependency on Navbar beyond the NAV_HEIGHT constant.
   const scrollTo = (e, href) => {
     e.preventDefault();
     const id = href.replace("#", "");

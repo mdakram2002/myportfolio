@@ -52,11 +52,9 @@ test.describe('Home Page Tests', () => {
     await expect(projectsButton).toBeVisible();
     await expect(projectsButton).toHaveAttribute('href', '#projects');
     
-    // Test click functionality - wait for navigation or hash change
     await projectsButton.click();
     await page.waitForTimeout(1000);
     
-    // Check if projects section is visible instead of checking URL hash
     const projectsSection = await page.locator('#projects');
     await expect(projectsSection).toBeVisible();
   });
@@ -287,10 +285,10 @@ test.describe('Home Page Tests', () => {
   test('Page has proper semantic structure', async ({ page }) => {
     const mainElement = await page.locator('main');
     await expect(mainElement).toBeVisible();
-    
-    const heading = await page.locator('h1');
+
+    const heading = await page.locator('#home h1');
     await expect(heading).toBeVisible();
-    
+
     const links = await page.locator('a[href^="#"]').all();
     expect(links.length).toBeGreaterThanOrEqual(2);
   });

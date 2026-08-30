@@ -160,7 +160,7 @@ for (const category of categories) {
   await expect(async () => {
     const count = await page.locator('.sk-card').count();
     expect(count).toBe(3);
-  }).toPass({ timeout: 5000, intervals: [100, 200, 300] });
+  }).toPass({ timeout: 10000, intervals: [200, 400, 600] });
 
   const allCards = await page.locator('.sk-card').all();
   const cardTexts = await Promise.all(

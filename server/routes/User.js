@@ -15,11 +15,6 @@ const {
 } = require("../controllers/ResetPassword");
 const { auth } = require("../middlewares/auth");
 
-const {
-    createCourse,
-    showAllCourses,
-    getCoursesDetails,
-} = require("../controllers/Course");
 
 router.post("/login", logIn);
 router.post("/signUp", signUp);
@@ -29,9 +24,5 @@ router.delete("/logOut", logOut);
 
 router.post("/reset-password", resetPassword);
 router.post("/resetPasswordToken", resetPasswordToken);
-
-router.post("/createCourse", createCourse);
-router.get("/showAllCourses", showAllCourses);
-router.get("/getCourseDetails", getCoursesDetails);
 
 module.exports = router;

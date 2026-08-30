@@ -20,10 +20,9 @@ const Contact = () => {
     formState: { errors, isSubmitSuccessful },
   } = useForm();
 
-  /* ── Country code dropdown (unchanged logic) ────────────────────────── */
-  const [dialCode, setDialCode]       = useState(CountryCode[0]);
-  const [ccOpen, setCcOpen]           = useState(false);
-  const [ccQuery, setCcQuery]         = useState("");
+  const [dialCode, setDialCode] = useState(CountryCode[0]);
+  const [ccQuery, setCcQuery]  = useState("");
+  const [ccOpen, setCcOpen]   = useState(false);
   const [ccHighlight, setCcHighlight] = useState(0);
   const ccContainerRef = useRef(null);
   const ccSearchRef    = useRef(null);
@@ -75,7 +74,7 @@ const Contact = () => {
     else if (e.key === "Enter")     { e.preventDefault(); if (filteredCountries[ccHighlight]) pickCountry(filteredCountries[ccHighlight]); }
   };
 
-  /* ── Form submit (unchanged logic) ──────────────────────────────────── */
+
   const submitContactForm = async (data) => {
     try {
       setLoading(true);
@@ -102,7 +101,6 @@ const Contact = () => {
     if (isSubmitSuccessful) reset();
   }, [isSubmitSuccessful, reset]);
 
-  /* ── Shared input styles ────────────────────────────────────────────── */
   const inputBase = {
     background: "rgba(255,255,255,0.05)",
     border: "1px solid rgba(255,255,255,0.12)",
@@ -117,7 +115,6 @@ const Contact = () => {
   const onFocus = (e) => { e.target.style.borderColor = "rgba(45,212,191,0.45)"; };
   const onBlur  = (e) => { e.target.style.borderColor = "rgba(255,255,255,0.12)"; };
 
-  /* ── Left column data ───────────────────────────────────────────────── */
   const socialCards = [
     { icon: FaLinkedin,     label: "LinkedIn", value: "Connect with me",    href: "https://www.linkedin.com/in/mdakram2002", from: "#8B5CF6", to: "#EC4899" },
     { icon: FaGithubSquare, label: "GitHub",   value: "View my projects",   href: "https://github.com/mdakram2002",          from: "#6366F1", to: "#8B5CF6" },
@@ -132,7 +129,6 @@ const Contact = () => {
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* ── Header ──────────────────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -161,10 +157,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-
-          {/* ══════════════════════════════════════════════════════════════
-              LEFT COLUMN
-          ══════════════════════════════════════════════════════════════ */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -272,7 +264,6 @@ const Contact = () => {
                 })}
               </div>
 
-              {/* ── Right half: blurred resume preview + open icon */}
               <a
                 href={RESUME_URL}
                 target="_blank"
@@ -352,9 +343,6 @@ const Contact = () => {
             </div>{/* end two-col split */}
           </motion.div>
 
-          {/* ══════════════════════════════════════════════════════════════
-              RIGHT COLUMN — Form (zero changes from before)
-          ══════════════════════════════════════════════════════════════ */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}

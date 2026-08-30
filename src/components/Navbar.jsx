@@ -3,9 +3,6 @@ import { createPortal } from "react-dom";
 import { FileText, Menu, X } from "lucide-react";
 import Resume from "../assets/Mohammad_Akram.pdf";
 
-// Exported so Home (and any other section) can offset its top padding.
-// The navbar now floats with a top margin instead of sitting flush
-// against the edge, so this accounts for that offset + the pill height.
 export const NAV_HEIGHT = 96;
 
 const navLinks = [
@@ -20,9 +17,7 @@ const Navbar = () => {
   const [active, setActive]     = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Portal-mount guard: document.body only exists on the client,
-  // so we wait one render before portalling (also makes this
-  // safe under Next.js / any SSR setup).
+  
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -248,9 +243,6 @@ const Navbar = () => {
     </>
   );
 
-  // Render straight into <body>, bypassing wherever <Navbar /> happens to
-  // sit in the component tree, so no parent's transform/filter/overflow
-  // can ever interfere with this fixed positioning.
   if (!mounted) return null;
   return createPortal(navbarUI, document.body);
 };

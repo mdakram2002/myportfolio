@@ -5,7 +5,6 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// 7 categories total. Only 3 are ever visible as cards at once (see `slots` state below).
 const skillsData = {
   Frontend: {
     icon: Code2, accentFrom: "#2DD4BF", accentTo: "#60A5FA",
@@ -23,9 +22,8 @@ const skillsData = {
     icon: TestTube2, accentFrom: "#F472B6", accentTo: "#FB923C",
     tagline: "Catching bugs before users do",
     skills: [
-      "Unit Testing", "API Testing", "Functional Testing", "Regression Testing",
-      "Jest", "React Testing Library", "Postman", "Test Case Design",
-      "Test Data Preparation", "Defect Debugging", "Result Validation", "REST API Validation",
+      "API Testing", "Automation Testing", "Playwright", "Postman", "API Validation",
+      "Error Handling", "Result Validation", "REST API Validation",
     ],
     projects: "10+",
   },

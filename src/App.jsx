@@ -3,6 +3,7 @@ import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Education from "./components/Education";
+import Certifications from "./components/Certifications";
 import Contect from "./components/Contect";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
@@ -17,6 +18,7 @@ function App() {
       <Experience />
       <Projects />
       <Education />
+      <Certifications />
       <Contect />
       <Footer />
     </div>

@@ -6,11 +6,12 @@ import Resume from "../assets/Mohammad_Akram.pdf";
 export const NAV_HEIGHT = 96;
 
 const navLinks = [
-  { label: "Home",       href: "#home" },
-  { label: "Skills",     href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects",   href: "#projects" },
-  { label: "Education",  href: "#education" },
+  { label: "Home",           href: "#home" },
+  { label: "Skills",         href: "#skills" },
+  { label: "Experience",     href: "#experience" },
+  { label: "Projects",       href: "#projects" },
+  { label: "Education",      href: "#education" },
+  { label: "Certifications", href: "#certifications" },
 ];
 
 const Navbar = () => {

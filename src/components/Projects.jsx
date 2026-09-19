@@ -4,6 +4,7 @@ import StudyPoint from "../assets/banner.png";
 import DSA_Chatbot from "../assets/dsa_chatbot.png";
 import Knowbase from "../assets/knowbase.png";
 import MiniEventPlatform from "../assets/event.png";
+import AI_Agent from "../assets/ai_agent.png";
 
 const projects = [
   {
@@ -23,6 +24,21 @@ const projects = [
   },
   {
     id: 2,
+    name: "AI Agent — Customer Support",
+    subtitle: "Evidence-Grounded AI Customer Support Agent — OpenAI, RAG, pgvector, Fastify",
+    accentFrom: "#10B981",
+    accentTo: "#3B82F6",
+    details: [
+      "Built evidence-first AI support agent with reproducible data pipeline, 54-example golden set, and proper train/evaluation separation. Achieved 72.2% accuracy and 0.63 macro F1 vs 37% majority baseline using TF-IDF classification.",
+      "Developed full-stack system with React/Vite frontend and Fastify/TypeScript backend, integrating PostgreSQL + pgvector retrieval, structured LLM classification, evidence-grounded responses, and confidence-based escalation with 13 regression tests and LLM-as-judge evaluation.",
+    ],
+    tech: ["React", "Vite", "Fastify", "TypeScript", "PostgreSQL", "pgvector", "OpenAI GPT-4o", "TF-IDF", "RAG", "LLM-as-Judge", "Evaluation Pipeline", "CI", "Docker", "Vercel"],
+    image: AI_Agent,
+    github: "https://github.com/mdakram2002/hiver-ai-support-agent",
+    live: "https://hiver-ai-support-agent-nu.vercel.app/",
+  },
+  {
+    id: 3,
     name: "KnowBase",
     subtitle: "AI Knowledge Management Platform",
     accentFrom: "#2DD4BF",
@@ -38,7 +54,7 @@ const projects = [
   },
   
   {
-  id: 3,
+  id: 4,
   name: "AI-First Healthcare CRM",
   subtitle: "React, Redux, FastAPI, LangGraph, PostgreSQL (pgvector), Docker",
   accentFrom: "#22C55E",
@@ -67,7 +83,7 @@ const projects = [
   github: "https://github.com/mdakram2002/hcp-crm",
   },
   {
-    id: 4,
+    id: 5,
     name: "DSA AI Assistant",
     subtitle: "AI-Powered DSA Chatbot",
     accentFrom: "#F59E0B",
@@ -82,7 +98,7 @@ const projects = [
     live: "https://dsa-chatbot-six.vercel.app/",
   },
  {
-  id: 5,
+  id: 6,
   name: "Harbor Chat",
   subtitle: "React, Vite, Tailwind CSS, Node.js, Express, Socket.io, MongoDB",
   accentFrom: "#06B6D4",
@@ -112,7 +128,7 @@ const projects = [
     live: "https://harborchat-app.vercel.app/"
   },
   {
-    id: 6,
+    id: 7,
     name: "Mini Event Platform",
     subtitle: "Full-stack MERN Event Management",
     accentFrom: "#6366F1",
@@ -135,22 +151,26 @@ const projectSummaries = {
     "Added Razorpay payments, Cloudinary uploads, email confirmations, and JWT, OTP, and role-based access flows.",
   ],
   2: [
+    "Built evidence-first AI support agent with reproducible data pipeline, 54-example golden set, and proper train/evaluation separation.",
+    "Achieved 72.2% accuracy and 0.63 macro F1 vs 37% majority baseline using TF-IDF classification, with full-stack React/Vite and Fastify/TypeScript implementation.",
+  ],
+  3: [
     "Built a full-stack knowledge-management platform with a modular service layer and Gemini-powered document summarization and search.",
     "Implemented MongoDB text indexes, batch processing, JWT authentication, rate limiting, input validation, and REST APIs; deployed the client on Vercel.",
   ],
-  3: [
+  4: [
     "Built a healthcare CRM prototype with React, Redux, FastAPI, LangGraph, and PostgreSQL with pgvector for structured notes and follow-up suggestions.",
     "Implemented JWT authentication, role-based access, audit logging, and a RAG workflow for grounded responses. A public demo is not yet available.",
   ],
-  4: [
+  5: [
     "Built a Gemini-powered DSA assistant that returns structured explanations, complexity analysis, formatted code examples, and interview-focused tips.",
     "Implemented guest access, optional Google OAuth, multi-session chat history, Markdown rendering, and syntax highlighting.",
   ],
-  5: [
+  6: [
     "Built a real-time chat application with instant messaging, persisted chat history, typing indicators, presence, and delivery status.",
     "Used React, Socket.io, Express, and MongoDB with REST APIs, centralized error handling, Mongoose data access, and custom React hooks.",
   ],
-  6: [
+  7: [
     "Built a MERN event-management platform with JWT authentication, role-based access, Google and GitHub OAuth, and event CRUD.",
     "Added Cloudinary image uploads, Markdown descriptions, RSVP tracking, capacity enforcement, rate limiting, and deployment on Vercel and Railway.",
   ],

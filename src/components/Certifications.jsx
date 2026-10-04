@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Award, Sparkles, ExternalLink, X } from "lucide-react";
+import { Sparkles, ExternalLink, X } from "lucide-react";
 import AZ900 from "../assets/AZ-900.pdf";
 import genAIImage from "../assets/GenAI.jpg";
 
@@ -9,7 +9,7 @@ const certificationsData = [
     title: "Microsoft Certified: Azure Fundamentals",
     issuer: "Microsoft",
     code: "AZ-900",
-    year: "2026",
+    year: "2025",
     description: "Foundational knowledge of Azure cloud concepts, core services, security, pricing, and governance.",
     tags: ["Azure", "Cloud", "Microsoft Azure"],
     credential: AZ900,
@@ -59,39 +59,41 @@ const Certifications = () => {
             Professional certifications and credentials validating my technical expertise.
           </motion.p>
 
-          <div className="grid gap-6 max-w-4xl mx-auto">
+          <div className="grid max-w-5xl grid-cols-1 items-stretch gap-6 mx-auto md:grid-cols-2">
             {certificationsData.map((cert, index) => (
               <motion.div key={index} initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }}
                           transition={{ duration:0.6, delay:index*0.2 }}
-                          className="rounded-2xl p-6 transition duration-300 relative overflow-hidden"
+                          className="group relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl p-6 sm:p-7 transition duration-300"
                           style={{ background:"rgba(255,255,255,0.025)", border:"1px solid rgba(255,255,255,0.08)", backdropFilter:"blur(12px)" }}
                           onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(45,212,191,0.2)"}
                           onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"}>
-                
-                <div className="flex flex-col md:flex-row gap-6">
-                  {/* Icon and Code */}
-                  <div className="flex items-center gap-4 md:min-w-[200px]">
-                    <div className="flex items-center justify-center w-14 h-14 rounded-xl text-2xl"
+
+                <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full blur-3xl"
+                     style={{ background:"rgba(45,212,191,0.08)" }} />
+
+                <div className="relative z-10 flex flex-1 flex-col">
+                  <div className="mb-7 flex items-center justify-between gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl text-3xl"
                          style={{ background:"rgba(45,212,191,0.1)", border:"1px solid rgba(45,212,191,0.2)" }}>
                       {cert.icon}
                     </div>
-                    <div>
-                      <p className="text-xs text-slate-500 uppercase tracking-wider">{cert.issuer}</p>
-                      <p className="text-sm text-slate-400 font-semibold">{cert.code}</p>
-                    </div>
+                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold tracking-wide text-slate-300">
+                      {cert.code}
+                    </span>
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-1"
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">
+                      {cert.issuer} · {cert.year}
+                    </p>
+                    <h3 className="mb-3 text-2xl font-bold leading-tight sm:text-[1.7rem]"
                         style={{ background:"linear-gradient(135deg,#2DD4BF,#8B5CF6)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Manrope',sans-serif" }}>
                       {cert.title}
                     </h3>
-                    <p className="text-slate-400 text-sm mb-2">{cert.issuer} · {cert.year}</p>
-                    <p className="text-slate-500 text-sm leading-relaxed mb-3">{cert.description}</p>
+                    <p className="mb-5 text-sm leading-relaxed text-slate-400">{cert.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {cert.tags.map((tag, tagIndex) => (
-                        <span key={tagIndex} className="text-xs px-3 py-1 rounded-full"
+                        <span key={tagIndex} className="rounded-full px-3 py-1.5 text-xs"
                               style={{ background:"rgba(45,212,191,0.1)", border:"1px solid rgba(45,212,191,0.2)", color: "#2DD4BF" }}>
                           {tag}
                         </span>
@@ -99,46 +101,31 @@ const Certifications = () => {
                     </div>
                   </div>
 
-                  {/* Action */}
-                  <div className="flex items-center md:items-start">
+                  <div className="mt-7 border-t border-white/[0.08] pt-5">
                     {cert.type === 'pdf' ? (
-                      <a href={cert.credential} target="_blank" rel="noopener noreferrer" className="relative group cursor-pointer">
-                        {/* Center: icon + label */}
-                        <div className="relative z-10 flex flex-col items-center gap-3 text-center px-3">
-                          <div
-                            className="w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                            style={{
-                              background: "linear-gradient(135deg, #2DD4BF, #8B5CF6)",
-                              boxShadow: "0 0 20px rgba(45,212,191,0.35)",
-                            }}
-                          >
-                            <ExternalLink size={20} color="#0B0E1A" strokeWidth={2.5} />
-                          </div>
-                          <div>
-                            <p className="text-white text-xs font-bold uppercase tracking-widest leading-none">View Credential</p>
-                            <p className="text-slate-400 text-xs mt-1">Click to open PDF</p>
-                          </div>
+                      <a href={cert.credential} target="_blank" rel="noopener noreferrer"
+                         className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-teal-300/30 hover:bg-white/[0.06]">
+                        <div>
+                          <p className="text-sm font-bold text-white">View credential</p>
+                          <p className="mt-1 text-xs text-slate-400">Open certificate PDF</p>
                         </div>
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                              style={{ background:"linear-gradient(135deg,#2DD4BF,#8B5CF6)", boxShadow:"0 0 20px rgba(45,212,191,0.25)" }}>
+                          <ExternalLink size={18} color="#0B0E1A" strokeWidth={2.5} />
+                        </span>
                       </a>
                     ) : (
-                      <div className="relative group cursor-pointer" onClick={() => openImageModal(cert.credential)}>
-                        {/* Center: icon + label */}
-                        <div className="relative z-10 flex flex-col items-center gap-3 text-center px-3">
-                          <div
-                            className="w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                            style={{
-                              background: "linear-gradient(135deg, #2DD4BF, #8B5CF6)",
-                              boxShadow: "0 0 20px rgba(45,212,191,0.35)",
-                            }}
-                          >
-                            <ExternalLink size={20} color="#0B0E1A" strokeWidth={2.5} />
-                          </div>
-                          <div>
-                            <p className="text-white text-xs font-bold uppercase tracking-widest leading-none">View Credential</p>
-                            <p className="text-slate-400 text-xs mt-1">Click to open Image</p>
-                          </div>
+                      <button type="button" onClick={() => openImageModal(cert.credential)}
+                         className="flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-colors hover:border-teal-300/30 hover:bg-white/[0.06]">
+                        <div>
+                          <p className="text-sm font-bold text-white">View credential</p>
+                          <p className="mt-1 text-xs text-slate-400">Preview certificate image</p>
                         </div>
-                      </div>
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                              style={{ background:"linear-gradient(135deg,#2DD4BF,#8B5CF6)", boxShadow:"0 0 20px rgba(45,212,191,0.25)" }}>
+                          <ExternalLink size={18} color="#0B0E1A" strokeWidth={2.5} />
+                        </span>
+                      </button>
                     )}
                   </div>
                 </div>

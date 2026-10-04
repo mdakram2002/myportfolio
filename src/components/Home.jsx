@@ -3,10 +3,10 @@ import { NAV_HEIGHT } from "./Navbar";
 import PortfolioAI from "./PortfolioAI";
 
 const stats = [
-  { value: "2+",   label: "Years building web apps" },
-  { value: "7",    label: "Projects showcased" },
-  { value: "MERN", label: "Core stack" },
-  { value: "Open", label: "To opportunities" },
+  { value: "MERN", label: "Full-Stack Development" },
+  { value: "FastAPI", label: "Backend & REST APIs" },
+  { value: "GenAI", label: "RAG & AI Agents" },
+  { value: "Open", label: "To Opportunities" },
 ];
 
 const Home = () => {

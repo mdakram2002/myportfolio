@@ -1,11 +1,4 @@
-import { Github, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
-import Harbor from "../assets/harbor.png";
-import StudyPoint from "../assets/banner.png";
-import DSA_Chatbot from "../assets/dsa_chatbot.png";
-import Knowbase from "../assets/knowbase.png";
-import MiniEventPlatform from "../assets/event.png";
-import AI_Agent from "../assets/ai_agent.png";
-
+import { Github, Sparkles, ArrowRight } from "lucide-react";
 const projects = [
   {
     id: 1,
@@ -18,7 +11,6 @@ const projects = [
       "Added Razorpay payments, Cloudinary video uploads, Nodemailer confirmations, and JWT, OTP, and role-based access flows. Deployed the frontend to Netlify and the backend to Azure App Service with Docker and GitHub Actions.",
     ],
     tech: ["React", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "JWT + OTP + RBAC", "Razorpay", "Cloudinary", "Nodemailer", "Docker", "Azure App Service", "GitHub Actions CI/CD", "Netlify"],
-    image: StudyPoint,
     github: "https://github.com/mdakram2002/Study_Point",
     live: "https://studypointin.netlify.app/",
   },
@@ -33,7 +25,6 @@ const projects = [
       "Developed full-stack system with React/Vite frontend and Fastify/TypeScript backend, integrating PostgreSQL + pgvector retrieval, structured LLM classification, evidence-grounded responses, and confidence-based escalation with 13 regression tests and LLM-as-judge evaluation.",
     ],
     tech: ["React", "Vite", "Fastify", "TypeScript", "PostgreSQL", "pgvector", "OpenAI GPT-4o", "TF-IDF", "RAG", "LLM-as-Judge", "Evaluation Pipeline", "CI", "Docker", "Vercel"],
-    image: AI_Agent,
     github: "https://github.com/mdakram2002/hiver-ai-support-agent",
     live: "https://hiver-ai-support-agent-nu.vercel.app/",
   },
@@ -48,7 +39,6 @@ const projects = [
       "Implemented MongoDB text indexes, batch processing, JWT authentication, rate limiting, input validation, and REST APIs; deployed the client on Vercel.",
     ],
     tech: ["Next.js 14", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "JWT", "Vercel"],
-    image: Knowbase,
     github: "https://github.com/mdakram2002/knowbase-ai",
     live: "https://knowbase-ai-client.vercel.app/",
   },
@@ -79,7 +69,6 @@ const projects = [
     "JWT",
     "RBAC"
   ],
-  image: null,
   github: "https://github.com/mdakram2002/hcp-crm",
   },
   {
@@ -93,7 +82,6 @@ const projects = [
       "Implemented guest access, optional Google OAuth, multi-session chat history, Markdown rendering, and syntax highlighting.",
     ],
     tech: ["React", "Node.js", "Express.js", "MongoDB Atlas", "Gemini API", "Google OAuth 2.0", "Markdown", "Vercel"],
-    image: DSA_Chatbot,
     github: "https://github.com/mdakram2002/dsa_chatbot",
     live: "https://dsa-chatbot-six.vercel.app/",
   },
@@ -123,7 +111,6 @@ const projects = [
     "Vercel",
     "Render"
     ],
-    image: Harbor,
     github: "https://github.com/mdakram2002/chat-app",
     live: "https://harborchat-app.vercel.app/"
   },
@@ -139,7 +126,6 @@ const projects = [
       "Deployed frontend to Vercel, backend to Railway, with API rate limiting, CORS configuration, error handling, and toast notifications for instant user feedback.",
     ],
     tech: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "Cloudinary", "JWT", "Vercel"],
-    image: MiniEventPlatform,
     github: "https://github.com/mdakram2002/mini-event-platform",
     live: "https://mini-event-platform-ten.vercel.app",
   },
@@ -180,263 +166,185 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="pj-root min-h-screen w-full bg-slate-950 text-white py-20 overflow-x-hidden relative"
+      className="pj-root w-full text-white py-20 sm:py-24 overflow-hidden relative"
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
-
         .pj-display { font-family: 'Manrope', sans-serif; }
         .pj-body    { font-family: 'Inter', sans-serif; }
-
-        .pj-grid {
-          background-image:
-            linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-          background-size: 56px 56px;
-          mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.5) 80%, transparent);
-        }
 
         .pj-pill {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* project card */
         .pj-card {
-          border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(255,255,255,0.025);
-          backdrop-filter: blur(12px);
-          transition: border-color .35s, transform .3s;
-        }
-        .pj-card:hover { transform: translateY(-3px); }
-
-        /* image container — fixed height, fills fully */
-        .pj-img-wrap {
           position: relative;
-          overflow: hidden;
-          height: 220px;
-          flex-shrink: 0;
+          border: 1px solid rgba(255,255,255,0.09);
+          background: linear-gradient(160deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02) 45%);
+          box-shadow: 0 18px 55px rgba(0,0,0,0.16);
+          transition: border-color .25s, transform .25s, box-shadow .25s;
         }
-        @media (min-width: 1024px) {
-          .pj-img-wrap {
-            height: 100%;
-            min-height: 240px;
-            max-height: 320px;
-          }
+        .pj-card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(255,255,255,0.18);
+          box-shadow: 0 24px 65px rgba(0,0,0,0.24);
         }
-        .pj-img-wrap img {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center top;
-          transition: transform .5s ease, filter .4s ease;
-        }
-        .pj-card:hover .pj-img-wrap img { transform: scale(1.04); filter: brightness(0.45); }
 
-        /* hover overlay */
-        .pj-overlay {
-          position: absolute; inset: 0;
-          display: flex; align-items: center; justify-content: center;
-          opacity: 0; transition: opacity .3s;
-        }
-        .pj-card:hover .pj-overlay { opacity: 1; }
-
-        /* live button */
-        .pj-live-btn {
-          width: 44px; height: 44px; border-radius: 50%;
-          background: rgba(255,255,255,0.15);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(255,255,255,0.3);
-          display: flex; align-items: center; justify-content: center;
-          color: #fff; transition: background .2s, transform .2s;
-        }
-        .pj-live-btn:hover { background: rgba(255,255,255,0.28); transform: scale(1.1); }
-
-        /* bullet */
         .pj-bullet {
-          width: 5px; height: 5px; border-radius: 50%;
+          width: 6px; height: 6px; border-radius: 50%;
           flex-shrink: 0; margin-top: 7px;
         }
 
-        /* tech chip */
         .pj-chip {
           border-radius: 999px;
-          padding: 3px 10px;
-          font-size: 11px;
+          padding: 5px 10px;
+          font-size: 10px;
           font-weight: 600;
           border: 1px solid;
+          line-height: 1.2;
         }
 
-        /* github btn */
-        .pj-gh-btn {
-          background: rgba(255,255,255,0.06);
+        .pj-action {
+          min-height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          border-radius: 999px;
+          padding: 0 14px;
+          font: 600 12px 'Inter', sans-serif;
+          transition: background .2s, border-color .2s, color .2s;
+        }
+        .pj-action-secondary {
+          color: #e2e8f0;
           border: 1px solid rgba(255,255,255,0.12);
-          transition: background .2s, border-color .2s;
+          background: rgba(255,255,255,0.04);
         }
-        .pj-gh-btn:hover {
-          background: rgba(255,255,255,0.12);
-          border-color: rgba(255,255,255,0.22);
+        .pj-action-secondary:hover {
+          color: #fff;
+          border-color: rgba(255,255,255,0.25);
+          background: rgba(255,255,255,0.08);
         }
-
-        /* index watermark */
-        .pj-index {
-          font-family: 'Manrope', sans-serif;
-          font-weight: 800;
-          font-size: 56px;
-          line-height: 1;
-          position: absolute;
-          top: -10px; right: 16px;
-          pointer-events: none;
-          user-select: none;
+        .pj-action-primary {
+          color: #06111d;
+          background: linear-gradient(135deg, #5eead4, #a78bfa);
         }
-        @media (max-width: 1024px) {
-          .pj-index { font-size: 40px; top: -6px; right: 12px; }
+        .pj-action-primary:hover { filter: brightness(1.08); }
+        @media (prefers-reduced-motion: reduce) {
+          .pj-card, .pj-action { transition: none; }
+          .pj-card:hover { transform: none; }
         }
       `}</style>
 
-      {/* ambient glows */}
-      <div className="absolute -top-20 right-0 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-20 right-0 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 -left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 pj-grid pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
-
-        {/* Section header */}
-        <div className="mb-12">
-          <div className="pj-pill inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 text-sm pj-body text-teal-300">
-            <Sparkles size={13} />
-            <span>Selected Work</span>
+        <div className="mb-10 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="pj-pill inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 text-sm pj-body text-teal-300">
+              <Sparkles size={13} />
+              <span>Selected Work</span>
+            </div>
+            <h2 className="pj-display mb-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
+              Things I&apos;ve Built
+            </h2>
+            <p className="pj-body max-w-xl text-base text-slate-400">
+              A selection of products and experiments, from the first schema to the final deploy.
+            </p>
           </div>
-          <h2 className="pj-display font-extrabold text-4xl md:text-5xl tracking-tight mb-2">
-            Things I&apos;ve Built
-          </h2>
-          <p className="pj-body text-slate-400 text-base max-w-xl">
-            End-to-end projects — from database schema to deployed UI, each shipped to production.
-          </p>
+          <div className="pj-body inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
+            <span className="h-2 w-2 rounded-full bg-teal-300" />
+            {projects.length} featured projects
+          </div>
         </div>
 
-        {/* Project list */}
-        <div className="space-y-7">
+        <div className="flex flex-col gap-4 lg:gap-5">
           {projects.map((project, idx) => (
             <div
               key={project.id}
-              className="pj-card rounded-2xl overflow-hidden"
+              className="pj-card grid min-w-0 grid-cols-1 gap-5 overflow-hidden rounded-3xl p-5 sm:p-6 lg:grid-cols-[minmax(190px,0.8fr)_minmax(0,1.5fr)_minmax(210px,0.9fr)] lg:items-center lg:gap-8 lg:p-7"
+              style={{ borderLeftColor: `${project.accentFrom}75` }}
             >
-              <div className={`grid grid-cols-1 lg:grid-cols-[2fr_3fr] items-stretch ${idx % 2 !== 0 ? "lg:[direction:rtl]" : ""}`}>
+              <div className="min-w-0">
+                <span
+                  className="pj-display mb-3 inline-flex h-9 min-w-9 items-center justify-center rounded-full border px-3 text-xs font-bold"
+                  style={{
+                    borderColor: `${project.accentFrom}35`,
+                    background: `${project.accentFrom}12`,
+                    color: project.accentFrom,
+                  }}
+                >
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <p
+                  className="pj-body mb-1 text-[11px] font-semibold uppercase tracking-[0.15em]"
+                  style={{ color: project.accentFrom }}
+                >
+                  {project.subtitle}
+                </p>
+                <h3 className="pj-display text-xl font-extrabold leading-tight text-white sm:text-2xl">
+                  {project.name}
+                </h3>
+              </div>
 
-                {/* Image */}
-                <div className="pj-img-wrap bg-slate-900" style={{ direction: "ltr" }}>
-                  {project.image ? (
-                    <>
-                      <img src={project.image} alt={`${project.name} preview`} />
-                      {project.live && <div className="pj-overlay">
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="pj-live-btn"
-                          aria-label={`View ${project.name} live`}
-                        >
-                          <ExternalLink size={18} />
-                        </a>
-                      </div>}
-                    </>
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-slate-900/80 px-6 text-center">
-                      <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold tracking-wide text-slate-300">
-                        Coming soon
-                      </div>
-                    </div>
+              <ul className="space-y-2.5">
+                {projectSummaries[project.id].map((description, descriptionIndex) => (
+                  <li
+                    key={descriptionIndex}
+                    className="flex items-start gap-2.5 pj-body text-xs leading-relaxed text-slate-300 sm:text-[13px]"
+                  >
+                    <span
+                      className="pj-bullet"
+                      style={{ background: `linear-gradient(135deg, ${project.accentFrom}, ${project.accentTo})` }}
+                    />
+                    <span>{description}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="min-w-0 border-t border-white/[0.08] pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+                <div className="mb-4 flex flex-wrap gap-1.5">
+                  {project.tech.slice(0, 4).map((technology) => (
+                    <span
+                      key={technology}
+                      className="pj-chip pj-body"
+                      style={{
+                        background: `${project.accentFrom}10`,
+                        borderColor: `${project.accentFrom}30`,
+                        color: project.accentFrom,
+                      }}
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                  {project.tech.length > 4 && (
+                    <span className="pj-chip pj-body border-white/10 bg-white/[0.04] text-slate-400">
+                      +{project.tech.length - 4}
+                    </span>
                   )}
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col justify-between p-5 md:p-7 relative" style={{ direction: "ltr" }}>
-
-                  {/* Watermark index */}
-                  <span
-                    className="pj-index"
-                    style={{ color: `${project.accentFrom}14` }}
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${project.name} source on GitHub`}
+                    className="pj-action pj-action-secondary"
                   >
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-
-                  <div>
-                    {/* Title row */}
-                    <div className="flex items-start justify-between gap-3 mb-1">
-                      <div>
-                        <div
-                          className="h-0.5 w-7 rounded-full mb-2.5"
-                          style={{ background: `linear-gradient(90deg, ${project.accentFrom}, ${project.accentTo})` }}
-                        />
-                        <h3
-                          className="pj-display font-extrabold text-xl sm:text-2xl leading-tight"
-                          style={{
-                            background: `linear-gradient(135deg, ${project.accentFrom}, ${project.accentTo})`,
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                          }}
-                        >
-                          {project.name}
-                        </h3>
-                        <p className="pj-body text-xs text-slate-400 mt-0.5">{project.subtitle}</p>
-                      </div>
-
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="View on GitHub"
-                        className="pj-gh-btn flex-shrink-0 p-2 rounded-lg mt-0.5"
-                      >
-                        <Github size={16} className="text-slate-300" />
-                      </a>
-                    </div>
-
-                    {/* Bullets */}
-                    <ul className="mt-3.5 space-y-2 mb-4">
-                      {projectSummaries[project.id].map((d, dIdx) => (
-                        <li key={dIdx} className="flex items-start gap-2.5 pj-body text-xs text-slate-300 leading-relaxed">
-                          <span
-                            className="pj-bullet"
-                            style={{ background: `linear-gradient(135deg, ${project.accentFrom}, ${project.accentTo})` }}
-                          />
-                          <span>{d}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Footer */}
-                  <div className="flex flex-col gap-3 pt-4 border-t border-white/[0.07]">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="pj-chip pj-body"
-                          style={{
-                            background: `${project.accentFrom}10`,
-                            borderColor: `${project.accentFrom}30`,
-                            color: project.accentFrom,
-                          }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    {project.live && <a
+                    <Github size={15} /> Source code
+                  </a>
+                  {project.live && (
+                    <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="pj-body inline-flex items-center gap-1.5 text-xs font-semibold w-fit transition-opacity hover:opacity-75"
-                      style={{ color: project.accentFrom }}
+                      className="pj-action pj-action-primary"
                     >
-                      View live project <ArrowRight size={12} />
-                    </a>}
-                  </div>
+                      Visit project <ArrowRight size={14} />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,105 +1,63 @@
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { FaEnvelope, FaLinkedin, FaGithubSquare, FaMapMarkerAlt } from "react-icons/fa";
-import { apiConnector } from "../services/apiConnector";
-import { contactusEndpoint } from "../services/api";
-import { CountryCode } from "../data/CountryCode";
 import { motion } from "framer-motion";
-import { Sparkles, ChevronDown, Search, FileText, ExternalLink } from "lucide-react";
+import { Sparkles, FileText, ExternalLink } from "lucide-react";
 import ProfilePhoto from "../assets/profile.jpeg";
 import RESUME_URL from "../assets/Mohammad_Akram.pdf";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
+  const [formStatus, setFormStatus] = useState(null);
   const {
     register,
     handleSubmit,
     reset,
-    setValue,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm();
 
-  const [dialCode, setDialCode] = useState(CountryCode[0]);
-  const [ccQuery, setCcQuery]  = useState("");
-  const [ccOpen, setCcOpen]   = useState(false);
-  const [ccHighlight, setCcHighlight] = useState(0);
-  const ccContainerRef = useRef(null);
-  const ccSearchRef    = useRef(null);
-
-  useEffect(() => {
-    register("CountryCode");
-    setValue("CountryCode", dialCode.code);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const filteredCountries = useMemo(() => {
-    const q = ccQuery.trim().toLowerCase().replace("+", "");
-    if (!q) return CountryCode;
-    return CountryCode.filter(
-      (c) =>
-        c.country.toLowerCase().includes(q) ||
-        c.code.replace("+", "").includes(q)
-    );
-  }, [ccQuery]);
-
-  useEffect(() => setCcHighlight(0), [ccQuery, ccOpen]);
-
-  useEffect(() => {
-    const onClick = (e) => {
-      if (ccContainerRef.current && !ccContainerRef.current.contains(e.target)) {
-        setCcOpen(false);
-        setCcQuery("");
-      }
-    };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
-  }, []);
-
-  useEffect(() => {
-    if (ccOpen) ccSearchRef.current?.focus();
-  }, [ccOpen]);
-
-  const pickCountry = (country) => {
-    setDialCode(country);
-    setValue("CountryCode", country.code);
-    setCcOpen(false);
-    setCcQuery("");
-  };
-
-  const onCcKeyDown = (e) => {
-    if (e.key === "Escape") { setCcOpen(false); setCcQuery(""); }
-    else if (e.key === "ArrowDown") { e.preventDefault(); setCcHighlight((h) => Math.min(h + 1, filteredCountries.length - 1)); }
-    else if (e.key === "ArrowUp")   { e.preventDefault(); setCcHighlight((h) => Math.max(h - 1, 0)); }
-    else if (e.key === "Enter")     { e.preventDefault(); if (filteredCountries[ccHighlight]) pickCountry(filteredCountries[ccHighlight]); }
-  };
-
-
   const submitContactForm = async (data) => {
+    setFormStatus(null);
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setFormStatus({
+        type: "error",
+        message: "The contact form is not configured yet. Please try again later.",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data, {
-        "Content-Type": "application/json",
+      const formData = new FormData();
+      formData.append("access_key", accessKey);
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("message", data.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
       });
-      if (res.data?.success) {
-        toast.success(res.data.message || "Message sent successfully!");
-        reset();
-        setDialCode(CountryCode[0]);
-        setValue("CountryCode", CountryCode[0].code);
-      } else {
-        toast.error(res.data?.message || "Something went wrong. Please try again.");
+
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Unable to send your message. Please try again.");
       }
-    } catch (err) {
-      console.error(err);
-      toast.error(err?.response?.data?.message || "Failed to send message. Please try again.");
+
+      reset();
+      setFormStatus({ type: "success", message: "Thanks! Your message has been sent." });
+    } catch (error) {
+      console.error("Web3Forms submission failed:", error);
+      setFormStatus({
+        type: "error",
+        message: error.message || "Unable to send your message. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (isSubmitSuccessful) reset();
-  }, [isSubmitSuccessful, reset]);
 
   const inputBase = {
     background: "rgba(255,255,255,0.05)",
@@ -152,7 +110,7 @@ const Contact = () => {
             </span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Have an exciting project or opportunity? I'd love to hear from you. Let's create something amazing together.
+            Have an exciting project or opportunity? I&apos;d love to hear from you. Let&apos;s create something amazing together.
           </p>
         </motion.div>
 
@@ -352,142 +310,81 @@ const Contact = () => {
               className="p-6 sm:p-8 rounded-2xl"
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(12px)" }}
             >
-              <form onSubmit={handleSubmit(submitContactForm)} className="space-y-5">
-
-                {/* Name row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { field: "firstName", label: "First Name", placeholder: "Akram" },
-                    { field: "lastName",  label: "Last Name",  placeholder: "Shaikh" },
-                  ].map(({ field, label, placeholder }) => (
-                    <div key={field}>
-                      <label htmlFor={field} className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
-                        {label} <span className="text-red-400">*</span>
-                      </label>
-                      <input
-                        id={field}
-                        placeholder={placeholder}
-                        style={inputBase}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                        {...register(field, { required: `${label} is required` })}
-                      />
-                      {errors[field] && (
-                        <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
-                          <span>•</span>{errors[field]?.message}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+              <form onSubmit={handleSubmit(submitContactForm)} className="space-y-5" noValidate>
+                <div>
+                  <label htmlFor="name" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                    Name <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Your name"
+                    style={inputBase}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    aria-invalid={Boolean(errors.name)}
+                    {...register("name", {
+                      required: "Name is required",
+                      validate: (value) => value.trim().length > 0 || "Name is required",
+                    })}
+                  />
+                  {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
                 </div>
 
-                {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                     Email Address <span className="text-red-400">*</span>
                   </label>
                   <input
-                    id="email" type="email" placeholder="you@example.com"
-                    style={inputBase} onFocus={onFocus} onBlur={onBlur}
-                    {...register("email", { required: "Email is required" })}
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    style={inputBase}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    aria-invalid={Boolean(errors.email)}
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Enter a valid email address",
+                      },
+                    })}
                   />
-                  {errors.email && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><span>•</span>{errors.email.message}</p>}
+                  {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
                 </div>
 
-                {/* Phone — OPTIONAL */}
-                <div>
-                  <label htmlFor="contactNumber" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
-                    Phone Number <span className="text-slate-600">(optional)</span>
-                  </label>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <div ref={ccContainerRef} className="relative" style={{ width: "110px", flexShrink: 0 }}>
-                      <button
-                        type="button"
-                        onClick={() => setCcOpen((o) => !o)}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                        style={{ ...inputBase, width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", cursor: "pointer" }}
-                      >
-                        <span>{dialCode.code}</span>
-                        <ChevronDown size={14} style={{ flexShrink: 0, transform: ccOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
-                      </button>
-
-                      {ccOpen && (
-                        <div
-                          className="absolute z-50 mt-2 rounded-lg overflow-hidden"
-                          style={{ width: "240px", background: "#0f172a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 20px 40px -10px rgba(0,0,0,0.6)" }}
-                        >
-                          <div style={{ padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                            <div className="relative">
-                              <Search size={13} style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#64748B" }} />
-                              <input
-                                ref={ccSearchRef}
-                                value={ccQuery}
-                                onChange={(e) => setCcQuery(e.target.value)}
-                                onKeyDown={onCcKeyDown}
-                                placeholder="Search country or code…"
-                                style={{ ...inputBase, padding: "8px 10px 8px 30px", fontSize: "13px" }}
-                              />
-                            </div>
-                          </div>
-                          <ul role="listbox" style={{ maxHeight: "220px", overflowY: "auto", padding: "4px 0" }}>
-                            {filteredCountries.length === 0 && (
-                              <li style={{ padding: "10px 14px", fontSize: "13px", color: "#64748B" }}>No matches found</li>
-                            )}
-                            {filteredCountries.map((c, i) => {
-                              const isSelected = c.code === dialCode.code && c.country === dialCode.country;
-                              const isHighlighted = i === ccHighlight;
-                              return (
-                                <li
-                                  key={c.country}
-                                  role="option"
-                                  aria-selected={isSelected}
-                                  onMouseEnter={() => setCcHighlight(i)}
-                                  onClick={() => pickCountry(c)}
-                                  style={{
-                                    display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px",
-                                    padding: "9px 14px", fontSize: "13px", cursor: "pointer",
-                                    color: isSelected ? "#5EEAD4" : "#CBD5E1",
-                                    background: isHighlighted ? "rgba(255,255,255,0.06)" : "transparent",
-                                  }}
-                                >
-                                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.country}</span>
-                                  <span style={{ flexShrink: 0, color: "#64748B" }}>{c.code}</span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-
-                    <input
-                      id="contactNumber" type="tel" placeholder="1234567890"
-                      style={{ ...inputBase, width: "100%" }}
-                      onFocus={onFocus} onBlur={onBlur}
-                      {...register("contactNumber", {
-                        minLength: { value: 8, message: "Too short" },
-                        maxLength: { value: 10, message: "Too long" },
-                      })}
-                    />
-                  </div>
-                  {errors.contactNumber && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><span>•</span>{errors.contactNumber.message}</p>}
-                </div>
-
-                {/* Message */}
                 <div>
                   <label htmlFor="message" className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                     Message <span className="text-red-400">*</span>
                   </label>
                   <textarea
-                    id="message" rows="4"
+                    id="message"
+                    rows="5"
                     placeholder="Tell me about your project or opportunity..."
-                    style={{ ...inputBase, resize: "none" }}
-                    onFocus={onFocus} onBlur={onBlur}
-                    {...register("message", { required: "Message is required" })}
+                    style={{ ...inputBase, resize: "vertical" }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    aria-invalid={Boolean(errors.message)}
+                    {...register("message", {
+                      required: "Message is required",
+                      validate: (value) => value.trim().length > 0 || "Message is required",
+                    })}
                   />
-                  {errors.message && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><span>•</span>{errors.message.message}</p>}
+                  {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
                 </div>
+
+                {formStatus && (
+                  <p
+                    role={formStatus.type === "error" ? "alert" : "status"}
+                    aria-live={formStatus.type === "error" ? "assertive" : "polite"}
+                    className={`text-sm ${formStatus.type === "success" ? "text-teal-300" : "text-red-400"}`}
+                  >
+                    {formStatus.message}
+                  </p>
+                )}
 
                 {/* Submit */}
                 <button

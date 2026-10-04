@@ -4,7 +4,7 @@ import PortfolioAI from "./PortfolioAI";
 
 const stats = [
   { value: "2+",   label: "Years building web apps" },
-  { value: "6",    label: "Projects showcased" },
+  { value: "7",    label: "Projects showcased" },
   { value: "MERN", label: "Core stack" },
   { value: "Open", label: "To opportunities" },
 ];
@@ -51,7 +51,7 @@ const Home = () => {
             style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}
           >
             <Sparkles size={14} />
-            <span className="ahh-body">Open to Full-Stack, Backend &amp; SDET roles</span>
+            <span className="ahh-body">Open to Full-Stack, Backend roles</span>
           </div>
 
           <h1 className="ahh-fade ahh-d2 ahh-display font-extrabold tracking-tight leading-[1.05] text-4xl md:text-5xl lg:text-6xl mb-7 text-white">
@@ -65,11 +65,8 @@ const Home = () => {
           </h1>
 
           <p className="ahh-fade ahh-d3 ahh-body text-lg text-slate-400 leading-relaxed mb-10 max-w-xl">
-            I design, build, and test full-stack applications end to end — from responsive front ends and 
-            REST API design to API testing and validation, basic test automation with Playwright and Postman, 
-            secure multi-layer authentication (JWT, OTP, RBAC, and OAuth), GenAI-powered applications, 
-            RAG pipelines, agentic AI workflows, robust database design, Docker containerization, and 
-            CI/CD pipelines deployed on Azure Web Apps, following an Agile workflow.
+            I design, build, and test full-stack applications end to end — from responsive front ends and REST APIs to API testing, Playwright automation, secure authentication, GenAI applications, RAG pipelines, agentic AI workflows, database design, Docker, and CI/CD deployments on AWS and Azure using Agile practices.
+
           </p>
 
           <div className="ahh-fade ahh-d4 flex flex-wrap gap-4 mb-16">

@@ -1,5 +1,7 @@
 /** @format */
 
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,8 +13,37 @@ html, body, #root {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  color-scheme: dark;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  color: #f8fafc;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  color: #020817;
+  background: rgba(94, 234, 212, 0.8);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
 }
 
 /* ─── GLOBAL BACKGROUND ────────────────────────────────────────────────────
@@ -74,8 +105,6 @@ body::after {
 }
 
 /* ─── TYPOGRAPHY ────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap');
-
 .font-display { font-family: 'Manrope', sans-serif; }
 .font-body    { font-family: 'Inter', sans-serif; }
 
@@ -87,3 +116,16 @@ body::after {
 .text-richblack-5 { color: #f1f2ff; }
 
 .text-gradient { @apply bg-clip-text text-transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

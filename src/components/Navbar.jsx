@@ -150,24 +150,24 @@ const Navbar = () => {
 
         .ahn-mobile-menu {
           position: fixed;
-          top: 84px;
+          top: 88px;
           left: 50%;
           transform: translateX(-50%);
           z-index: 9998;
-          width: 220px;
-          background: rgba(15, 23, 42, 0.92);
+          width: min(280px, calc(100vw - 32px));
+          background: rgba(8, 15, 30, 0.94);
           border: 1px solid rgba(255,255,255,0.1);
           backdrop-filter: blur(16px);
-          border-radius: 16px;
-          padding: 10px;
+          border-radius: 20px;
+          padding: 8px;
           display: flex;
           flex-direction: column;
           gap: 4px;
           box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
         }
         .ahn-mobile-link {
-          padding: 10px 14px;
-          border-radius: 10px;
+          padding: 12px 14px;
+          border-radius: 13px;
           color: #CBD5E1;
           font-size: 14px;
           font-weight: 500;
@@ -185,7 +185,7 @@ const Navbar = () => {
 
       <header className="ahn-navbar">
         {/* Desktop links */}
-        <nav className="ahn-links hidden md:flex items-center">
+        <nav className="ahn-links hidden md:flex items-center" aria-label="Main navigation">
           {navLinks.map(({ label, href }) => (
             <a
               key={label}
@@ -203,6 +203,8 @@ const Navbar = () => {
           className="ahn-burger inline-flex items-center justify-center md:hidden"
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="ahn-mobile-menu"
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -228,7 +230,7 @@ const Navbar = () => {
       </header>
 
       {menuOpen && (
-        <div className="ahn-mobile-menu md:hidden">
+        <nav id="ahn-mobile-menu" className="ahn-mobile-menu md:hidden" aria-label="Mobile navigation">
           {navLinks.map(({ label, href }) => (
             <a
               key={label}
@@ -239,7 +241,7 @@ const Navbar = () => {
               {label}
             </a>
           ))}
-        </div>
+        </nav>
       )}
     </>
   );

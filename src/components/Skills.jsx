@@ -58,7 +58,7 @@ const skillsData = {
   DevOps: {
     icon: Wrench, accentFrom: "#6366F1", accentTo: "#8B5CF6",
     tagline: "From commit to deployment without friction",
-    skills: ["Docker", "Microsoft Azure", "GitHub Actions", "Git / GitHub", "Postman", "Vercel / Render / Netlify", "CI/CD Pipelines", "Agile Workflow"],
+    skills: ["Docker"," AWS EC2","Microsoft Azure", "GitHub Actions", "Git / GitHub", "Postman", "Vercel / Render / Netlify", "CI/CD Pipelines", "Agile Workflow"],
     projects: "9+",
   },
   Languages: {

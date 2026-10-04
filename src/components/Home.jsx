@@ -21,10 +21,10 @@ const contactLinks = [
 
 const expertise = [
   "19+ production REST APIs (Node.js / Express) with modular middleware and structured logging",
-  "Auth & security: JWT access/refresh rotation, RBAC, Redis caching, and refresh-token flows",
-  "Databases: MongoDB indexes and projection; PostgreSQL schema design and query optimization",
+  "Auth & security: JWT authentication, OTP verification, RBAC, API rate limiting, and Redis-based sessions/caching",
+  "MongoDB indexing and projection; PostgreSQL schema design, query optimization, and pgvector",
   "Cloud & CI/CD: Docker, GitHub Actions, Azure, AWS EC2, and containerized deployments",
-  "Skilled GenAI: RAG pipelines and OpenAI/Groq integrations as a secondary specialization",
+  "Skilled GenAI: RAG pipelines, vector search, LangGraph, and OpenAI/Groq LLM integrations as a secondary specialization",
 ];
 
 const Home = () => {

@@ -3,7 +3,7 @@ const projects = [
   {
     id: 1,
     name: "StudyPoint",
-    subtitle: "EdTech Application",
+    subtitle: "Ed-Tech Platform",
     accentFrom: "#8B5CF6",
     accentTo: "#EC4899",
     details: [
@@ -46,7 +46,7 @@ const projects = [
   {
   id: 4,
   name: "AI-First Healthcare CRM",
-  subtitle: "React, Redux, FastAPI, LangGraph, PostgreSQL (pgvector), Docker",
+  subtitle: "AI-Powered Healthcare Customer Relationship Management",
   accentFrom: "#22C55E",
   accentTo: "#06B6D4",
   details: [
@@ -88,7 +88,7 @@ const projects = [
  {
   id: 6,
   name: "Harbor Chat",
-  subtitle: "React, Vite, Tailwind CSS, Node.js, Express, Socket.io, MongoDB",
+  subtitle: "Real-Time Chat Application",
   accentFrom: "#06B6D4",
   accentTo: "#8B5CF6",
   details: [
@@ -129,6 +129,20 @@ const projects = [
     github: "https://github.com/mdakram2002/mini-event-platform",
     live: "https://mini-event-platform-ten.vercel.app",
   },
+  {
+    id: 8,
+    name: "Contract Obligation Assistant",
+    subtitle: "AI-Powered Contract Review & Deadline Tracking",
+    accentFrom: "#F97316",
+    accentTo: "#FBBF24",
+    details: [
+      "Built a full-stack application that extracts contract parties, key terms, obligations, and renewal deadlines from PDF, DOCX, or pasted text, with source quotes and page-level evidence.",
+      "Added human approval workflows, contract version tracking, and deterministic deadline calculations using React, TypeScript, FastAPI, and PostgreSQL.",
+    ],
+    tech: ["React", "TypeScript", "FastAPI", "Python", "PostgreSQL", "SQLAlchemy", "LLM", "Pydantic"],
+    github: "https://github.com/mdakram2002/contract-obligation-assistant",
+    live: "https://contract-obligation-assistant.vercel.app/",
+  },
 ];
 
 const projectSummaries = {
@@ -160,7 +174,16 @@ const projectSummaries = {
     "Launched a MERN event-management platform with JWT authentication, role-based access, Google and GitHub OAuth, and event CRUD.",
     "Integrated Cloudinary image uploads, Markdown descriptions, RSVP tracking, MongoDB transaction-based capacity enforcement, rate limiting, and deployment on Vercel and Railway.",
   ],
+  8: [
+    "Extracts contract parties, clauses, obligations, and deadlines from PDF, DOCX, or pasted text, with every AI-extracted item linked to source evidence.",
+    "Includes human review and approval, version history, and deterministic renewal and notice deadline calculations in a React/TypeScript, FastAPI, and PostgreSQL application.",
+  ],
 };
+
+const projectOrder = [1, 4, 3, 2, 8, 5, 6, 7];
+const orderedProjects = [...projects].sort(
+  (first, second) => projectOrder.indexOf(first.id) - projectOrder.indexOf(second.id),
+);
 
 const Projects = () => {
   return (
@@ -255,12 +278,12 @@ const Projects = () => {
           </div>
           <div className="pj-body inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
             <span className="h-2 w-2 rounded-full bg-teal-300" />
-            {projects.length} featured projects
+            {orderedProjects.length} featured projects
           </div>
         </div>
 
         <div className="flex flex-col gap-4 lg:gap-5">
-          {projects.map((project, idx) => (
+          {orderedProjects.map((project, idx) => (
             <div
               key={project.id}
               className="pj-card grid min-w-0 grid-cols-1 gap-5 overflow-hidden rounded-3xl p-5 sm:p-6 lg:grid-cols-[minmax(190px,0.8fr)_minmax(0,1.5fr)_minmax(210px,0.9fr)] lg:items-center lg:gap-8 lg:p-7"

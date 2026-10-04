@@ -133,32 +133,32 @@ const projects = [
 
 const projectSummaries = {
   1: [
-    "Built an EdTech platform with React, Redux Toolkit, Node.js, Express, and MongoDB using an MVC-style backend architecture.",
-    "Added Razorpay payments, Cloudinary uploads, email confirmations, and JWT, OTP, and role-based access flows.",
+    "Delivered a full-featured EdTech platform using MVC architecture and Redux state management, supporting 100+ users.",
+    "Integrated Razorpay payments, Cloudinary video uploads, and Nodemailer confirmations, reducing checkout steps from 5 to 3; implemented 19+ secure REST APIs with JWT, OTP, and RBAC.",
   ],
   2: [
-    "Built evidence-first AI support agent with reproducible data pipeline, 54-example golden set, and proper train/evaluation separation.",
-    "Achieved 72.2% accuracy and 0.63 macro F1 vs 37% majority baseline using TF-IDF classification, with full-stack React/Vite and Fastify/TypeScript implementation.",
+    "Established an evidence-first AI support agent with a reproducible data pipeline, 54-example golden set, and train/evaluation separation.",
+    "Reached 72.2% accuracy and 0.63 macro F1 versus a 37% majority baseline using TF-IDF classification, with a React/Vite frontend and Fastify/TypeScript backend.",
   ],
   3: [
-    "Built a full-stack knowledge-management platform with a modular service layer and Gemini-powered document summarization and search.",
-    "Implemented MongoDB text indexes, batch processing, JWT authentication, rate limiting, input validation, and REST APIs; deployed the client on Vercel.",
+    "Engineered a modular AI knowledge platform with Gemini-powered summarization and semantic search across 1,000+ documents, reducing search latency by 30%.",
+    "Created 8+ RESTful APIs and added MongoDB indexing, Redis caching, JWT authentication, rate limiting, and input validation across public, guest, and protected workflows.",
   ],
   4: [
-    "Built a healthcare CRM prototype with React, Redux, FastAPI, LangGraph, and PostgreSQL with pgvector for structured notes and follow-up suggestions.",
-    "Implemented JWT authentication, role-based access, audit logging, and a RAG workflow for grounded responses. A public demo is not yet available.",
+    "Orchestrated a LangGraph state machine with 8 Pydantic-validated tools for entity extraction, voice-note summaries, and semantic follow-up suggestions across 5+ core screens.",
+    "Secured FastAPI services with JWT, rep/manager/guest RBAC, and audit logging; added a pgvector RAG pipeline and deployed the Dockerized React/Redux app on AWS EC2 with GitHub Actions CI/CD and health checks.",
   ],
   5: [
-    "Built a Gemini-powered DSA assistant that returns structured explanations, complexity analysis, formatted code examples, and interview-focused tips.",
-    "Implemented guest access, optional Google OAuth, multi-session chat history, Markdown rendering, and syntax highlighting.",
+    "Developed a Gemini-powered DSA assistant that returns structured explanations, complexity analysis, formatted code examples, and interview-focused tips.",
+    "Enabled guest access, optional Google OAuth, multi-session chat history, Markdown rendering, and syntax highlighting.",
   ],
   6: [
-    "Built a real-time chat application with instant messaging, persisted chat history, typing indicators, presence, and delivery status.",
-    "Used React, Socket.io, Express, and MongoDB with REST APIs, centralized error handling, Mongoose data access, and custom React hooks.",
+    "Implemented a real-time chat application with instant messaging, persisted chat history, typing indicators, presence, and delivery status.",
+    "Structured the application with React, Socket.io, Express, and MongoDB, including REST APIs, centralized error handling, Mongoose data access, and custom React hooks.",
   ],
   7: [
-    "Built a MERN event-management platform with JWT authentication, role-based access, Google and GitHub OAuth, and event CRUD.",
-    "Added Cloudinary image uploads, Markdown descriptions, RSVP tracking, capacity enforcement, rate limiting, and deployment on Vercel and Railway.",
+    "Launched a MERN event-management platform with JWT authentication, role-based access, Google and GitHub OAuth, and event CRUD.",
+    "Integrated Cloudinary image uploads, Markdown descriptions, RSVP tracking, MongoDB transaction-based capacity enforcement, rate limiting, and deployment on Vercel and Railway.",
   ],
 };
 

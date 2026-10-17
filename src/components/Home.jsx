@@ -20,11 +20,12 @@ const contactLinks = [
 ];
 
 const expertise = [
-  "19+ production REST APIs (Node.js / Express) with modular middleware and structured logging",
-  "Auth & security: JWT authentication, OTP verification, RBAC, API rate limiting, and Redis-based sessions/caching",
-  "MongoDB indexing and projection; PostgreSQL schema design, query optimization, and pgvector",
-  "Cloud & CI/CD: Docker, GitHub Actions, Azure, AWS EC2, and containerized deployments",
-  "Skilled GenAI: RAG pipelines, vector search, LangGraph, and OpenAI/Groq LLM integrations as a secondary specialization",
+  "Full-stack development: React.js, TypeScript, Node.js, Express.js, and FastAPI for web applications and backend services",
+  "Microservices & system design: API Gateway, REST/gRPC APIs, distributed order processing, Saga Pattern, and Transactional Outbox",
+  "Auth & security: JWT authentication, OTP verification, RBAC, API rate limiting, and Redis-based sessions and caching",
+  "Databases & messaging: MongoDB, PostgreSQL, Redis Streams, BullMQ, pgvector, event-driven workflows, and background job retries",
+  "Cloud & CI/CD: Docker, Docker Compose, GitHub Actions, Azure, AWS EC2, and containerized deployments",
+  "Generative AI: LangGraph, RAG pipelines, vector search, and OpenAI/Groq LLM integrations as a secondary specialization"
 ];
 
 const Home = () => {
@@ -104,10 +105,10 @@ const Home = () => {
               Summary
             </h2>
             <p className="ahh-body text-base leading-7 text-slate-400 sm:text-[17px]">
-              Software Engineer with hands-on experience building production-ready frontend, backend services, REST APIs,
-              and database-driven applications using JavaScript, TypeScript, React.js, Node.js, FastAPI, MongoDB, and
-              PostgreSQL. Strong foundation in C++, DSA, and OOP, with experience in Docker, AWS EC2, Azure, GitHub Actions,
-              API integration, testing, debugging, and performance optimization.
+              Software Engineer with hands-on experience building full-stack applications, backend services,
+              REST/gRPC APIs, microservices, and database-driven applications using JavaScript, TypeScript,
+              React.js, Node.js, FastAPI, MongoDB, and PostgreSQL. Strong foundation in C++, DSA, and OOP,
+              with experience in Docker, AWS EC2, Azure, GitHub Actions CI/CD, API integration, testing, debugging, and Generative AI.
 
             </p>
           </div>

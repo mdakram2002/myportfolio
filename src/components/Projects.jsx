@@ -1,6 +1,20 @@
 import { Github, Sparkles, ArrowRight } from "lucide-react";
 const projects = [
   {
+    id: 9,
+    name: "OrderFlow",
+    subtitle: "E-Commerce Platform with Microservices Architecture",
+    accentFrom: "#F97316",
+    accentTo: "#EC4899",
+    details: [
+      "Architected a microservices-based e-commerce platform with 5+ independent services, an API Gateway, and REST/gRPC APIs, separating user, product, order, payment, and notification workflows across PostgreSQL and MongoDB.",
+      "Engineered reliable distributed order processing with the Saga Pattern, Transactional Outbox, Redis Streams, and BullMQ for event-driven workflows, background jobs, and retries. Secured APIs with JWT authentication and rate limiting, using Docker Compose and GitHub Actions CI/CD for orchestration and automated testing.",
+    ],
+    tech: ["Microservices", "Node.js", "FastAPI", "PostgreSQL", "MongoDB", "REST/gRPC", "Saga Pattern", "Transactional Outbox", "Redis Streams", "BullMQ", "JWT", "Docker Compose", "GitHub Actions"],
+    github: "https://github.com/mdakram2002/orderFlow",
+    live: "https://orderflow-online-shopping.vercel.app/",
+  },
+  {
     id: 1,
     name: "StudyPoint",
     subtitle: "Ed-Tech Platform",
@@ -70,6 +84,7 @@ const projects = [
     "RBAC"
   ],
   github: "https://github.com/mdakram2002/hcp-crm",
+  live: "https://hcp-crm-sigma.vercel.app/",
   },
   {
     id: 5,
@@ -146,6 +161,10 @@ const projects = [
 ];
 
 const projectSummaries = {
+  9: [
+    "Architected 5+ independent services behind an API Gateway, separating user, product, order, payment, and notification workflows across PostgreSQL and MongoDB.",
+    "Built reliable event-driven order processing with Saga, Transactional Outbox, Redis Streams, and BullMQ; secured APIs with JWT and rate limiting and automated delivery with Docker Compose and GitHub Actions.",
+  ],
   1: [
     "Delivered a full-featured EdTech platform using MVC architecture and Redux state management, supporting 100+ users.",
     "Integrated Razorpay payments, Cloudinary video uploads, and Nodemailer confirmations, reducing checkout steps from 5 to 3; implemented 19+ secure REST APIs with JWT, OTP, and RBAC.",
@@ -180,7 +199,7 @@ const projectSummaries = {
   ],
 };
 
-const projectOrder = [1, 4, 3, 2, 8, 5, 6, 7];
+const projectOrder = [9, 1, 4, 3, 2, 8, 5, 6, 7];
 const orderedProjects = [...projects].sort(
   (first, second) => projectOrder.indexOf(first.id) - projectOrder.indexOf(second.id),
 );
